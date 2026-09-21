@@ -40,16 +40,20 @@
     .tip { background: var(--accent-light); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 10px 14px; margin-top: 14px; font-size: 14px; color: var(--accent); }
     [data-lang] { display: none; }
     [data-lang].visible { display: block; }
+  ion-icon.section-icon-svg { font-size: 22px; width: 36px; display: inline-flex; align-items: center; justify-content: center; color: var(--accent); }
+  ion-icon.tip-icon { font-size: 16px; vertical-align: middle; margin-right: 4px; color: var(--accent); }
   </style>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@7.4.0/dist/ionicons/ionicons.esm.min.js"></script>
+  <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@7.4.0/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
 
 <div data-lang="es" class="visible">
   <header><h1>FastGrade</h1><p>Guía de uso de la app</p></header>
   <div class="lang-bar">
-    <button class="lang-btn active" onclick="setLang('es')">Español</button>
     <button class="lang-btn" onclick="setLang('ca')">Català</button>
     <button class="lang-btn" onclick="setLang('en')">English</button>
+    <button class="lang-btn active" onclick="setLang('es')">Español</button>
     <button class="lang-btn" onclick="setLang('eu')">Euskera</button>
     <button class="lang-btn" onclick="setLang('gl')">Galego</button>
   </div>
@@ -57,7 +61,7 @@
 
     <div class="section open">
       <div class="section-header" onclick="toggle(this)">
-        <span class="section-icon">🏠</span>
+        <span class="section-icon"><ion-icon name="home" class="section-icon-svg"></ion-icon></span>
         <span class="section-title">Inicio</span>
         <span class="chevron">▶</span>
       </div>
@@ -66,13 +70,13 @@
         <div class="feature"><div class="feature-title">Escanear examen</div><p>Botón grande en la parte superior. Te lleva directamente a la pestaña de escanear para corregir una hoja nueva.</p></div>
         <div class="feature"><div class="feature-title">Pendiente de corregir</div><p>Muestra los exámenes que ya has creado pero a los que aún les faltan hojas por escanear. Pulsa uno para ir a su detalle.</p></div>
         <div class="feature"><div class="feature-title">Corregido recientemente</div><p>Las últimas hojas corregidas, con el nombre del alumno y la nota. Pulsa una para ver el detalle del examen.</p></div>
-        <div class="tip">💡 Todos los datos se guardan solo en tu dispositivo. La app no envía nada a ningún servidor.</div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Todos los datos se guardan solo en tu dispositivo. La app no envía nada a ningún servidor.</div>
       </div>
     </div>
 
     <div class="section">
       <div class="section-header" onclick="toggle(this)">
-        <span class="section-icon">👥</span>
+        <span class="section-icon"><ion-icon name="people" class="section-icon-svg"></ion-icon></span>
         <span class="section-title">Clases</span>
         <span class="chevron">▶</span>
       </div>
@@ -87,13 +91,13 @@
         <div class="feature"><div class="feature-title">Eliminar alumno</div><p>Desliza el alumno hacia la izquierda.</p></div>
         <div class="feature"><div class="feature-title">Aleatorizar códigos</div><p>Cambia el código de todos los alumnos de la clase a la vez de forma aleatoria.</p></div>
         <div class="feature"><div class="feature-title">Importar alumnos (Excel/CSV)</div><p>Importa una lista de alumnos desde un archivo Excel (.xlsx, .xls) o CSV. La app detecta automáticamente las columnas de nombre y apellidos.</p></div>
-        <div class="tip">💡 El código de 4 cifras identifica a cada alumno en la hoja de examen. Si dos alumnos tienen el mismo código, la app avisará.</div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> El código de 4 cifras identifica a cada alumno en la hoja de examen. Si dos alumnos tienen el mismo código, la app avisará.</div>
       </div>
     </div>
 
     <div class="section">
       <div class="section-header" onclick="toggle(this)">
-        <span class="section-icon">📄</span>
+        <span class="section-icon"><ion-icon name="document-text" class="section-icon-svg"></ion-icon></span>
         <span class="section-title">Plantillas</span>
         <span class="chevron">▶</span>
       </div>
@@ -117,13 +121,13 @@
         <div class="feature"><div class="feature-title">Generar hoja en blanco</div><p>Una sola hoja sin nombre de alumno, para rellenar a mano.</p></div>
         <div class="feature"><div class="feature-title">Generar hojas de la clase</div><p>Una hoja por alumno con su nombre y código ya impresos. Elige la clase y la fecha del examen.</p></div>
         <div class="feature"><div class="feature-title">Tamaño de hoja</div><p>"1 examen por folio" imprime una hoja por página. "2 exámenes por folio" imprime dos hojas en un A4 para recortar, útil cuando hay pocas preguntas.</p></div>
-        <div class="tip">💡 Las hojas se generan como PDF para imprimir directamente desde el móvil o enviarlas al ordenador.</div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Las hojas se generan como PDF para imprimir directamente desde el móvil o enviarlas al ordenador.</div>
       </div>
     </div>
 
     <div class="section">
       <div class="section-header" onclick="toggle(this)">
-        <span class="section-icon">📷</span>
+        <span class="section-icon"><ion-icon name="camera" class="section-icon-svg"></ion-icon></span>
         <span class="section-title">Escanear</span>
         <span class="chevron">▶</span>
       </div>
@@ -142,13 +146,13 @@
         <div class="feature"><div class="feature-title">Modelo detectado</div><p>Si la plantilla tiene varios modelos, la app indica cuál ha detectado. Puedes cambiarlo manualmente.</p></div>
         <div class="feature"><div class="feature-title">Aceptar</div><p>Guarda el resultado del examen y vuelve para escanear la siguiente hoja.</p></div>
         <div class="feature"><div class="feature-title">Descartar</div><p>Descarta esta hoja sin guardar nada.</p></div>
-        <div class="tip">💡 Para mejores resultados: buena iluminación, hoja plana y sin sombras, encuadrada dentro del marco.</div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Para mejores resultados: buena iluminación, hoja plana y sin sombras, encuadrada dentro del marco.</div>
       </div>
     </div>
 
     <div class="section">
       <div class="section-header" onclick="toggle(this)">
-        <span class="section-icon">📊</span>
+        <span class="section-icon"><ion-icon name="stats-chart" class="section-icon-svg"></ion-icon></span>
         <span class="section-title">Resultados</span>
         <span class="chevron">▶</span>
       </div>
@@ -171,7 +175,7 @@
 
     <div class="section">
       <div class="section-header" onclick="toggle(this)">
-        <span class="section-icon">⚙️</span>
+        <span class="section-icon"><ion-icon name="settings" class="section-icon-svg"></ion-icon></span>
         <span class="section-title">Ajustes</span>
         <span class="chevron">▶</span>
       </div>
@@ -192,24 +196,24 @@
 <div data-lang="ca">
   <header><h1>FastGrade</h1><p>Guia d'ús de l'app</p></header>
   <div class="lang-bar">
-    <button class="lang-btn" onclick="setLang('es')">Español</button>
     <button class="lang-btn active" onclick="setLang('ca')">Català</button>
     <button class="lang-btn" onclick="setLang('en')">English</button>
+    <button class="lang-btn" onclick="setLang('es')">Español</button>
     <button class="lang-btn" onclick="setLang('eu')">Euskera</button>
     <button class="lang-btn" onclick="setLang('gl')">Galego</button>
   </div>
   <main>
     <div class="section open">
-      <div class="section-header" onclick="toggle(this)"><span class="section-icon">🏠</span><span class="section-title">Inici</span><span class="chevron">▶</span></div>
+      <div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="home" class="section-icon-svg"></ion-icon></span><span class="section-title">Inici</span><span class="chevron">▶</span></div>
       <div class="section-body">
         <p>La pantalla principal resumeix l'estat del teu treball: quins exàmens tens pendents de corregir i els últims corregits.</p>
         <div class="feature"><div class="feature-title">Escanejar examen</div><p>Botó gran a la part superior. Et porta directament a la pestanya d'escanejar per corregir un full nou.</p></div>
         <div class="feature"><div class="feature-title">Pendent de corregir</div><p>Mostra els exàmens que ja has creat però als quals encara els falten fulls per escanejar. Prem-ne un per anar al detall.</p></div>
         <div class="feature"><div class="feature-title">Corregit recentment</div><p>Els últims fulls corregits, amb el nom de l'alumne i la nota. Prem-ne un per veure el detall de l'examen.</p></div>
-        <div class="tip">💡 Totes les dades es guarden només al teu dispositiu. L'app no envia res a cap servidor.</div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Totes les dades es guarden només al teu dispositiu. L'app no envia res a cap servidor.</div>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon">👥</span><span class="section-title">Classes</span><span class="chevron">▶</span></div>
+    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="people" class="section-icon-svg"></ion-icon></span><span class="section-title">Classes</span><span class="chevron">▶</span></div>
       <div class="section-body">
         <p>Organitza els teus alumnes per classes. Cada alumne té un codi de 4 xifres que omple al full d'examen per identificar-se.</p>
         <div class="feature"><div class="feature-title">Nova classe</div><p>Botó a la part inferior. Et demana el nom de la classe (p.ex. "3r ESO A").</p></div>
@@ -223,7 +227,7 @@
         <div class="feature"><div class="feature-title">Importar alumnes (Excel/CSV)</div><p>Importa una llista d'alumnes des d'un fitxer Excel o CSV.</p></div>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon">📄</span><span class="section-title">Plantilles</span><span class="chevron">▶</span></div>
+    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="document-text" class="section-icon-svg"></ion-icon></span><span class="section-title">Plantilles</span><span class="chevron">▶</span></div>
       <div class="section-body">
         <p>Una plantilla defineix com és l'examen: nombre de preguntes, opcions, puntuació i respostes correctes.</p>
         <div class="feature"><div class="feature-title">Nova plantilla</div><p>Crea una plantilla nova omplint les dades.</p></div>
@@ -232,10 +236,10 @@
         <div class="feature"><div class="feature-title">Penalització per error</div><p>Quant resta cada resposta incorrecta. Si és 0, no hi ha penalització.</p></div>
         <div class="feature"><div class="feature-title">Models de l'examen</div><p>Si reparteixes diverses versions (A, B, C…) amb respostes correctes diferents, afegeix cada model. L'app detectarà quin model és cada full en escanejar.</p></div>
         <div class="feature"><div class="feature-title">Generar full en blanc / fulls de la classe</div><p>Genera un PDF per imprimir: un sol full en blanc o un per alumne amb nom i codi ja impresos.</p></div>
-        <div class="tip">💡 Els fulls es generen com a PDF per imprimir directament des del mòbil o enviar-los a l'ordinador.</div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Els fulls es generen com a PDF per imprimir directament des del mòbil o enviar-los a l'ordinador.</div>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon">📷</span><span class="section-title">Escanejar</span><span class="chevron">▶</span></div>
+    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="camera" class="section-icon-svg"></ion-icon></span><span class="section-title">Escanejar</span><span class="chevron">▶</span></div>
       <div class="section-body">
         <p>Corregeix un full d'examen fent una foto. L'app llegeix les respostes automàticament i calcula la nota.</p>
         <div class="feature"><div class="feature-title">Triar classe i plantilla</div><p>Selecciona de quina classe és l'examen i amb quina plantilla es va fer.</p></div>
@@ -244,10 +248,10 @@
         <div class="feature"><div class="feature-title">Repetir foto / Usar aquesta foto</div><p>Repeteix si la foto no ha quedat bé, o confirma-la per analitzar el full.</p></div>
         <div class="feature"><div class="feature-title">Revisió: editar respostes</div><p>Toca una bombolla de la foto o una lletra del llistat per canviar la resposta detectada.</p></div>
         <div class="feature"><div class="feature-title">Acceptar / Descartar</div><p>Accepta per guardar el resultat o descarta per no guardar res.</p></div>
-        <div class="tip">💡 Per a millors resultats: bona il·luminació, full pla i sense ombres, enquadrat dins el marc.</div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Per a millors resultats: bona il·luminació, full pla i sense ombres, enquadrat dins el marc.</div>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon">📊</span><span class="section-title">Resultats</span><span class="chevron">▶</span></div>
+    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="stats-chart" class="section-icon-svg"></ion-icon></span><span class="section-title">Resultats</span><span class="chevron">▶</span></div>
       <div class="section-body">
         <p>Consulta tots els exàmens corregits agrupats per classe. Accedeix a estadístiques detallades i exporta les notes.</p>
         <div class="feature"><div class="feature-title">Estadístiques</div><p>Nota mitjana, moda, percentatge d'aprovats, distribució de notes, preguntes més encertades i més fallades.</p></div>
@@ -255,7 +259,7 @@
         <div class="feature"><div class="feature-title">Editar respostes / Assignar alumne</div><p>Corregeix manualment qualsevol resposta o assigna el full a un alumne diferent.</p></div>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon">⚙️</span><span class="section-title">Ajustos</span><span class="chevron">▶</span></div>
+    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="settings" class="section-icon-svg"></ion-icon></span><span class="section-title">Ajustos</span><span class="chevron">▶</span></div>
       <div class="section-body">
         <div class="feature"><div class="feature-title">Idioma</div><p>Canvia l'idioma de l'app. "Automàtic" usa l'idioma del mòbil.</p></div>
         <div class="feature"><div class="feature-title">Còpia de seguretat</div><p>Crea un fitxer amb totes les teves dades per guardar-lo on vulguis, amb o sense fotos.</p></div>
@@ -269,23 +273,23 @@
 <div data-lang="en">
   <header><h1>FastGrade</h1><p>App user guide</p></header>
   <div class="lang-bar">
-    <button class="lang-btn" onclick="setLang('es')">Español</button>
     <button class="lang-btn" onclick="setLang('ca')">Català</button>
     <button class="lang-btn active" onclick="setLang('en')">English</button>
+    <button class="lang-btn" onclick="setLang('es')">Español</button>
     <button class="lang-btn" onclick="setLang('eu')">Euskera</button>
     <button class="lang-btn" onclick="setLang('gl')">Galego</button>
   </div>
   <main>
-    <div class="section open"><div class="section-header" onclick="toggle(this)"><span class="section-icon">🏠</span><span class="section-title">Home</span><span class="chevron">▶</span></div>
+    <div class="section open"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="home" class="section-icon-svg"></ion-icon></span><span class="section-title">Home</span><span class="chevron">▶</span></div>
       <div class="section-body">
         <p>The main screen shows a summary of your work: exams pending correction and recently graded ones.</p>
         <div class="feature"><div class="feature-title">Scan exam</div><p>Large button at the top. Takes you directly to the scan tab to grade a new sheet.</p></div>
         <div class="feature"><div class="feature-title">Pending</div><p>Exams that still have sheets left to scan. Tap one to go to its detail.</p></div>
         <div class="feature"><div class="feature-title">Recently graded</div><p>The latest graded sheets with the student's name and score.</p></div>
-        <div class="tip">💡 All data is stored only on your device. The app never sends anything to a server.</div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> All data is stored only on your device. The app never sends anything to a server.</div>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon">👥</span><span class="section-title">Classes</span><span class="chevron">▶</span></div>
+    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="people" class="section-icon-svg"></ion-icon></span><span class="section-title">Classes</span><span class="chevron">▶</span></div>
       <div class="section-body">
         <p>Organise your students by class. Each student has a 4-digit code they fill in on the exam sheet to identify themselves.</p>
         <div class="feature"><div class="feature-title">New class</div><p>Button at the bottom. Enter the class name (e.g. "Year 10 A").</p></div>
@@ -296,7 +300,7 @@
         <div class="feature"><div class="feature-title">Import students (Excel/CSV)</div><p>Import a student list from an Excel or CSV file.</p></div>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon">📄</span><span class="section-title">Templates</span><span class="chevron">▶</span></div>
+    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="document-text" class="section-icon-svg"></ion-icon></span><span class="section-title">Templates</span><span class="chevron">▶</span></div>
       <div class="section-body">
         <p>A template defines how the exam works: number of questions, answer options, scoring and correct answers.</p>
         <div class="feature"><div class="feature-title">New / Edit / Duplicate / Delete</div><p>Long-press a template for options, or swipe left to delete.</p></div>
@@ -306,7 +310,7 @@
         <div class="feature"><div class="feature-title">Print sheets</div><p>Generate a PDF with a blank sheet or one sheet per student with their name and code pre-printed.</p></div>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon">📷</span><span class="section-title">Scan</span><span class="chevron">▶</span></div>
+    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="camera" class="section-icon-svg"></ion-icon></span><span class="section-title">Scan</span><span class="chevron">▶</span></div>
       <div class="section-body">
         <p>Grade an exam sheet by taking a photo. The app reads the answers automatically and calculates the score.</p>
         <div class="feature"><div class="feature-title">Choose class and template</div><p>Select which class and template the exam belongs to.</p></div>
@@ -315,10 +319,10 @@
         <div class="feature"><div class="feature-title">Retake / Use this photo</div><p>Retake if the photo didn't come out well, or confirm it to analyse the sheet.</p></div>
         <div class="feature"><div class="feature-title">Review: edit answers</div><p>Tap a bubble in the photo or a letter in the list to change a detected answer.</p></div>
         <div class="feature"><div class="feature-title">Accept / Discard</div><p>Accept to save the result or discard to cancel.</p></div>
-        <div class="tip">💡 For best results: good lighting, flat sheet with no shadows, fully inside the frame.</div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> For best results: good lighting, flat sheet with no shadows, fully inside the frame.</div>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon">📊</span><span class="section-title">Results</span><span class="chevron">▶</span></div>
+    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="stats-chart" class="section-icon-svg"></ion-icon></span><span class="section-title">Results</span><span class="chevron">▶</span></div>
       <div class="section-body">
         <p>View all graded exams grouped by class, with detailed statistics and grade export.</p>
         <div class="feature"><div class="feature-title">Statistics</div><p>Average score, mode, pass rate, score distribution, most-answered and most-missed questions.</p></div>
@@ -326,7 +330,7 @@
         <div class="feature"><div class="feature-title">Edit answers / Assign student</div><p>Manually correct any answer or reassign a sheet to a different student.</p></div>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon">⚙️</span><span class="section-title">Settings</span><span class="chevron">▶</span></div>
+    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="settings" class="section-icon-svg"></ion-icon></span><span class="section-title">Settings</span><span class="chevron">▶</span></div>
       <div class="section-body">
         <div class="feature"><div class="feature-title">Language</div><p>Change the app language. "Automatic" uses the device language.</p></div>
         <div class="feature"><div class="feature-title">Backup</div><p>Create a file with all your data to save wherever you prefer, with or without photos.</p></div>
@@ -340,23 +344,23 @@
 <div data-lang="eu">
   <header><h1>FastGrade</h1><p>Aplikazioaren erabiltzaile-gida</p></header>
   <div class="lang-bar">
-    <button class="lang-btn" onclick="setLang('es')">Español</button>
     <button class="lang-btn" onclick="setLang('ca')">Català</button>
     <button class="lang-btn" onclick="setLang('en')">English</button>
+    <button class="lang-btn" onclick="setLang('es')">Español</button>
     <button class="lang-btn active" onclick="setLang('eu')">Euskera</button>
     <button class="lang-btn" onclick="setLang('gl')">Galego</button>
   </div>
   <main>
-    <div class="section open"><div class="section-header" onclick="toggle(this)"><span class="section-icon">🏠</span><span class="section-title">Hasiera</span><span class="chevron">▶</span></div>
+    <div class="section open"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="home" class="section-icon-svg"></ion-icon></span><span class="section-title">Hasiera</span><span class="chevron">▶</span></div>
       <div class="section-body">
         <p>Pantaila nagusiak zure lanaren laburpena erakusten du: zuzentzeke dauden azterketak eta azken zuzenduak.</p>
         <div class="feature"><div class="feature-title">Azterketa eskaneatu</div><p>Goiko botoi handia. Orri berri bat zuzentzeko eskaneatzeko fitxara eramaten zaitu.</p></div>
         <div class="feature"><div class="feature-title">Zuzentzeke</div><p>Oraindik eskaneatze falta duten orriak dituzten azterketak.</p></div>
         <div class="feature"><div class="feature-title">Berriki zuzendua</div><p>Azken orri zuzenduak ikaslearen izenarekin eta notarekin.</p></div>
-        <div class="tip">💡 Datu guztiak zure gailuan soilik gordetzen dira. Aplikazioak ez du ezer zerbitzarira bidaltzen.</div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Datu guztiak zure gailuan soilik gordetzen dira. Aplikazioak ez du ezer zerbitzarira bidaltzen.</div>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon">👥</span><span class="section-title">Taldeak</span><span class="chevron">▶</span></div>
+    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="people" class="section-icon-svg"></ion-icon></span><span class="section-title">Taldeak</span><span class="chevron">▶</span></div>
       <div class="section-body">
         <p>Antolatu zure ikasleak taldeetan. Ikasle bakoitzak 4 digituko kode bat du azterketa-orrian idazteko.</p>
         <div class="feature"><div class="feature-title">Talde berria</div><p>Beheko botoia. Taldearen izena eskatzen du.</p></div>
@@ -364,7 +368,7 @@
         <div class="feature"><div class="feature-title">Ikasleak inportatu (Excel/CSV)</div><p>Ikasle-zerrenda Excel edo CSV fitxategi batetik inporta ezazu.</p></div>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon">📄</span><span class="section-title">Txantiloiak</span><span class="chevron">▶</span></div>
+    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="document-text" class="section-icon-svg"></ion-icon></span><span class="section-title">Txantiloiak</span><span class="chevron">▶</span></div>
       <div class="section-body">
         <p>Txantiloi batek azterketaren ezaugarriak definitzen ditu: galdera kopurua, aukerak, puntuazioa eta erantzun zuzenak.</p>
         <div class="feature"><div class="feature-title">Txantiloi berria / editatu / bikoiztu / ezabatu</div><p>Txantiloi bat luze sakatuz aukeretara sar zaitezke.</p></div>
@@ -372,7 +376,7 @@
         <div class="feature"><div class="feature-title">Orriak inprimatu</div><p>PDF bat sortu orri huts batekin edo ikasle bakoitzarentzat izen eta kodearekin inprimatuta.</p></div>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon">📷</span><span class="section-title">Eskaneatu</span><span class="chevron">▶</span></div>
+    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="camera" class="section-icon-svg"></ion-icon></span><span class="section-title">Eskaneatu</span><span class="chevron">▶</span></div>
       <div class="section-body">
         <p>Argazki bat ateraz azterketa-orri bat zuzendu. Aplikazioak erantzunak automatikoki irakurtzen ditu eta nota kalkulatzen du.</p>
         <div class="feature"><div class="feature-title">Taldea eta txantiloia aukeratu</div><p>Azterketa zein taldetakoa den eta zein txantiloirekin egin zen hautatu.</p></div>
@@ -381,14 +385,14 @@
         <div class="feature"><div class="feature-title">Onartu / Baztertu</div><p>Onartu emaitza gordetzeko edo baztertu ezer ez gordetzeko.</p></div>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon">📊</span><span class="section-title">Emaitzak</span><span class="chevron">▶</span></div>
+    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="stats-chart" class="section-icon-svg"></ion-icon></span><span class="section-title">Emaitzak</span><span class="chevron">▶</span></div>
       <div class="section-body">
         <p>Ikusi zuzendutako azterketa guztiak taldearen arabera, estatistika zehatzak eta notak esportatzeko aukerarekin.</p>
         <div class="feature"><div class="feature-title">Estatistikak</div><p>Batez besteko nota, moda, gainditzen dutenen ehunekoa, notak banatzea.</p></div>
         <div class="feature"><div class="feature-title">Notak esportatu</div><p>Excel fitxategi bat sortu nota guztiekin.</p></div>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon">⚙️</span><span class="section-title">Ezarpenak</span><span class="chevron">▶</span></div>
+    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="settings" class="section-icon-svg"></ion-icon></span><span class="section-title">Ezarpenak</span><span class="chevron">▶</span></div>
       <div class="section-body">
         <div class="feature"><div class="feature-title">Hizkuntza</div><p>Aldatu aplikazioaren hizkuntza. "Automatikoa" gailuaren hizkuntza erabiltzen du.</p></div>
         <div class="feature"><div class="feature-title">Segurtasun-kopia</div><p>Sortu fitxategi bat zure datu guztiekin nahi duzun lekuan gordetzeko.</p></div>
@@ -401,23 +405,23 @@
 <div data-lang="gl">
   <header><h1>FastGrade</h1><p>Guía de uso da app</p></header>
   <div class="lang-bar">
-    <button class="lang-btn" onclick="setLang('es')">Español</button>
     <button class="lang-btn" onclick="setLang('ca')">Català</button>
     <button class="lang-btn" onclick="setLang('en')">English</button>
+    <button class="lang-btn" onclick="setLang('es')">Español</button>
     <button class="lang-btn" onclick="setLang('eu')">Euskera</button>
     <button class="lang-btn active" onclick="setLang('gl')">Galego</button>
   </div>
   <main>
-    <div class="section open"><div class="section-header" onclick="toggle(this)"><span class="section-icon">🏠</span><span class="section-title">Inicio</span><span class="chevron">▶</span></div>
+    <div class="section open"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="home" class="section-icon-svg"></ion-icon></span><span class="section-title">Inicio</span><span class="chevron">▶</span></div>
       <div class="section-body">
         <p>A pantalla principal resume o estado do teu traballo: que exames tes pendentes de correxir e os últimos correxidos.</p>
         <div class="feature"><div class="feature-title">Escanear exame</div><p>Botón grande na parte superior. Lévate directamente á pestana de escanear para correxir unha folla nova.</p></div>
         <div class="feature"><div class="feature-title">Pendente de correxir</div><p>Mostra os exames que xa creaches pero aos que aínda lles faltan follas por escanear.</p></div>
         <div class="feature"><div class="feature-title">Correxido recentemente</div><p>As últimas follas correxidas co nome do alumno e a nota.</p></div>
-        <div class="tip">💡 Todos os datos gárdanse só no teu dispositivo. A app non envía nada a ningún servidor.</div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Todos os datos gárdanse só no teu dispositivo. A app non envía nada a ningún servidor.</div>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon">👥</span><span class="section-title">Clases</span><span class="chevron">▶</span></div>
+    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="people" class="section-icon-svg"></ion-icon></span><span class="section-title">Clases</span><span class="chevron">▶</span></div>
       <div class="section-body">
         <p>Organiza os teus alumnos por clases. Cada alumno ten un código de 4 cifras que enche na folla de exame.</p>
         <div class="feature"><div class="feature-title">Nova clase</div><p>Botón na parte inferior. Pídelle o nome da clase.</p></div>
@@ -426,7 +430,7 @@
         <div class="feature"><div class="feature-title">Importar alumnos (Excel/CSV)</div><p>Importa unha lista de alumnos desde un ficheiro Excel ou CSV.</p></div>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon">📄</span><span class="section-title">Modelos</span><span class="chevron">▶</span></div>
+    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="document-text" class="section-icon-svg"></ion-icon></span><span class="section-title">Modelos</span><span class="chevron">▶</span></div>
       <div class="section-body">
         <p>Un modelo define como é o exame: número de preguntas, opcións, puntuación e respostas correctas.</p>
         <div class="feature"><div class="feature-title">Novo / Editar / Duplicar / Eliminar</div><p>Mantén premido un modelo para acceder ás opcións.</p></div>
@@ -434,7 +438,7 @@
         <div class="feature"><div class="feature-title">Xerar follas</div><p>Xera un PDF cunha folla en branco ou unha por alumno co seu nome e código xa impresos.</p></div>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon">📷</span><span class="section-title">Escanear</span><span class="chevron">▶</span></div>
+    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="camera" class="section-icon-svg"></ion-icon></span><span class="section-title">Escanear</span><span class="chevron">▶</span></div>
       <div class="section-body">
         <p>Correxe unha folla de exame facendo unha foto. A app le as respostas automaticamente e calcula a nota.</p>
         <div class="feature"><div class="feature-title">Elixir clase e modelo</div><p>Selecciona de que clase é o exame e con que modelo se fixo.</p></div>
@@ -443,7 +447,7 @@
         <div class="feature"><div class="feature-title">Aceptar / Descartar</div><p>Acepta para gardar o resultado ou descarta para cancelar.</p></div>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon">📊</span><span class="section-title">Resultados</span><span class="chevron">▶</span></div>
+    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="stats-chart" class="section-icon-svg"></ion-icon></span><span class="section-title">Resultados</span><span class="chevron">▶</span></div>
       <div class="section-body">
         <p>Consulta todos os exames correxidos agrupados por clase, con estatísticas detalladas e exportación de notas.</p>
         <div class="feature"><div class="feature-title">Estatísticas</div><p>Nota media, moda, porcentaxe de aprobados, distribución de notas.</p></div>
@@ -451,7 +455,7 @@
         <div class="feature"><div class="feature-title">Editar respostas / Asignar alumno</div><p>Corrixe manualmente calquera resposta ou asigna a folla a un alumno diferente.</p></div>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon">⚙️</span><span class="section-title">Axustes</span><span class="chevron">▶</span></div>
+    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="settings" class="section-icon-svg"></ion-icon></span><span class="section-title">Axustes</span><span class="chevron">▶</span></div>
       <div class="section-body">
         <div class="feature"><div class="feature-title">Idioma</div><p>Cambia o idioma da app. "Automático" usa o idioma do móbil.</p></div>
         <div class="feature"><div class="feature-title">Copia de seguridade</div><p>Crea un ficheiro con todos os teus datos para gardalo onde queiras.</p></div>
