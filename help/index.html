@@ -7,44 +7,73 @@
   <style>
     :root {
       --accent: #4f46e5;
+      --accent-text: #4f46e5;
       --accent-light: #eef2ff;
       --bg: #f9fafb;
       --surface: #ffffff;
       --text: #111827;
-      --text-secondary: #6b7280;
+      --text-secondary: #4b5563;
       --border: #e5e7eb;
+      --example-bg: #fffbeb;
+      --example-border: #fcd34d;
+      --example-text: #92400e;
       --radius: 12px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --accent: #5b54e8;
+        --accent-text: #8b85ff;
+        --accent-light: #1e1b4b;
+        --bg: #0b0b12;
+        --surface: #16161f;
+        --text: #f4f4f8;
+        --text-secondary: #b4b4c0;
+        --border: #2a2a36;
+        --example-bg: #2a2110;
+        --example-border: #a16207;
+        --example-text: #fcd34d;
+      }
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
     header { background: var(--accent); color: #fff; padding: 32px 20px 24px; text-align: center; }
     header h1 { font-size: 28px; font-weight: 700; margin-bottom: 6px; }
-    header p { font-size: 15px; opacity: .85; }
-    .lang-bar { background: var(--surface); border-bottom: 1px solid var(--border); padding: 10px 20px; display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; position: sticky; top: 0; z-index: 10; }
-    .lang-btn { border: 1.5px solid var(--border); background: var(--bg); color: var(--text-secondary); border-radius: 20px; padding: 5px 14px; font-size: 13px; cursor: pointer; transition: all .15s; }
+    header p { font-size: 15px; opacity: .9; }
+    .lang-bar { background: var(--surface); border-bottom: 1px solid var(--border); padding: 10px 16px; display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; position: sticky; top: 0; z-index: 10; }
+    .lang-btn { border: 1.5px solid var(--border); background: var(--bg); color: var(--text-secondary); border-radius: 20px; padding: 5px 14px; font-size: 13px; cursor: pointer; }
     .lang-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
     main { max-width: 720px; margin: 0 auto; padding: 24px 16px 60px; }
-    .section { background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 16px; overflow: hidden; }
+    .section { background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 14px; overflow: hidden; }
     .section-header { display: flex; align-items: center; gap: 12px; padding: 16px 18px; cursor: pointer; user-select: none; }
-    .section-icon { font-size: 22px; width: 36px; text-align: center; }
     .section-title { font-size: 17px; font-weight: 600; flex: 1; }
     .chevron { color: var(--text-secondary); font-size: 12px; transition: transform .2s; }
     .section.open .chevron { transform: rotate(90deg); }
-    .section-body { display: none; padding: 0 18px 18px; border-top: 1px solid var(--border); }
+    .section-body { display: none; padding: 0 18px 20px; border-top: 1px solid var(--border); }
     .section.open .section-body { display: block; }
-    .section-body p { margin-top: 12px; font-size: 15px; color: var(--text-secondary); }
+    .section-body > p { margin-top: 12px; font-size: 15.5px; color: var(--text-secondary); }
+    .subhead { margin-top: 20px; font-size: 15.5px; font-weight: 700; color: var(--text); }
+    ol.steps { list-style: none; counter-reset: step; margin-top: 10px; }
+    ol.steps li { counter-increment: step; position: relative; padding: 2px 0 10px 40px; font-size: 15.5px; color: var(--text-secondary); }
+    ol.steps li::before { content: counter(step); position: absolute; left: 0; top: 1px; width: 27px; height: 27px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+    b { color: var(--text); font-weight: 600; }
     .feature { margin-top: 14px; }
-    .feature-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
-    .feature-title::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
-    .feature p { font-size: 14px; color: var(--text-secondary); margin-top: 2px; padding-left: 12px; }
-    .tip { background: var(--accent-light); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 10px 14px; margin-top: 14px; font-size: 14px; color: var(--accent); }
+    .feature-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 2px; display: flex; align-items: center; gap: 8px; }
+    .feature-title::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+    .feature p { font-size: 15px; color: var(--text-secondary); padding-left: 15px; }
+    .tip { background: var(--accent-light); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 10px 14px; margin-top: 16px; font-size: 14.5px; color: var(--accent-text); }
+    .tip b { color: var(--accent-text); }
+    .example { background: var(--example-bg); border: 1px solid var(--example-border); border-radius: 10px; padding: 12px 14px; margin-top: 16px; }
+    .example-title { font-weight: 700; font-size: 14.5px; color: var(--example-text); display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+    .example p, .example li { font-size: 15px; color: var(--text); }
+    .example ul { padding-left: 18px; }
+    .example li { margin-top: 4px; }
     [data-lang] { display: none; }
     [data-lang].visible { display: block; }
-  ion-icon.section-icon-svg { font-size: 22px; width: 36px; display: inline-flex; align-items: center; justify-content: center; color: var(--accent); }
-  ion-icon.tip-icon { font-size: 16px; vertical-align: middle; margin-right: 4px; color: var(--accent); }
-  .screenshot-row { display: flex; gap: 10px; overflow-x: auto; padding: 14px 0 6px; scrollbar-width: none; margin-top: 4px; }
-  .screenshot-row::-webkit-scrollbar { display: none; }
-  .screenshot-row img { height: 260px; width: auto; border-radius: 14px; flex-shrink: 0; box-shadow: 0 2px 10px rgba(0,0,0,.15); border: 1px solid var(--border); }
+    ion-icon.section-icon-svg { font-size: 22px; width: 36px; display: inline-flex; align-items: center; justify-content: center; color: var(--accent-text); }
+    ion-icon.tip-icon { font-size: 16px; vertical-align: middle; margin-right: 4px; }
+    .screenshot-row { display: flex; gap: 10px; overflow-x: auto; padding: 14px 0 6px; scrollbar-width: none; }
+    .screenshot-row::-webkit-scrollbar { display: none; }
+    .screenshot-row img { height: 260px; width: auto; border-radius: 14px; flex-shrink: 0; box-shadow: 0 2px 10px rgba(0,0,0,.15); border: 1px solid var(--border); }
   </style>
   <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@7.4.0/dist/ionicons/ionicons.esm.min.js"></script>
   <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@7.4.0/dist/ionicons/ionicons.js"></script>
@@ -52,31 +81,43 @@
 <body>
 
 <div data-lang="es" class="visible">
-  <header><h1>FastGrade</h1><p>Guía de uso de la app</p></header>
+  <header><h1>FastGrade</h1><p>Guía de uso, paso a paso</p></header>
   <div class="lang-bar">
     <button class="lang-btn" onclick="setLang('ca')">Català</button>
     <button class="lang-btn" onclick="setLang('en')">English</button>
     <button class="lang-btn active" onclick="setLang('es')">Español</button>
-    <button class="lang-btn" onclick="setLang('eu')">Euskera</button>
+    <button class="lang-btn" onclick="setLang('eu')">Euskara</button>
     <button class="lang-btn" onclick="setLang('gl')">Galego</button>
   </div>
   <main>
 
     <div class="section open">
       <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="rocket" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Empieza aquí</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <p>FastGrade corrige exámenes tipo test con la cámara del móvil. No hace falta saber de informática: si sabes hacer una foto con el móvil, sabes usar FastGrade.</p>
+        <h3 class="subhead">Cómo funciona, en 5 pasos</h3>
+        <ol class="steps"><li><b>Crea tu clase.</b> En la pestaña <b>Clases</b>, crea el grupo y añade a tus alumnos. La app le da a cada alumno un número de 4 cifras, que es como su «carnet» en el examen.</li><li><b>Crea el examen.</b> En la pestaña <b>Plantillas</b>, indica cuántas preguntas tiene y marca cuál es la respuesta correcta de cada una.</li><li><b>Imprime las hojas de respuestas</b> desde esa misma plantilla. Los alumnos contestan rellenando las burbujas con bolígrafo.</li><li><b>Haz una foto de cada hoja</b> en la pestaña <b>Escanear</b>. La app lee las respuestas y pone la nota sola.</li><li><b>Mira las notas</b> en la pestaña <b>Resultados</b>: la nota de cada alumno, las estadísticas de la clase y un archivo para abrir en Excel.</li></ol>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> ¿Qué es una «plantilla»?</div><p>Es tu examen dentro de la app. Guarda cuántas preguntas tiene, cuál es la respuesta buena de cada una y cómo quieres puntuarlo. La creas una vez y la puedes usar con todas tus clases.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Todo se guarda solo en tu móvil. La app no envía nada a internet: ni los nombres de los alumnos, ni las notas, ni las fotos.</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
         <span class="section-icon"><ion-icon name="home" class="section-icon-svg"></ion-icon></span>
         <span class="section-title">Inicio</span>
         <span class="chevron">▶</span>
       </div>
       <div class="section-body">
-        <p>La pantalla principal resume el estado de tu trabajo: qué exámenes tienes pendientes de corregir y los últimos corregidos.</p>
-        <div class="feature"><div class="feature-title">Escanear examen</div><p>Botón grande en la parte superior. Te lleva directamente a la pestaña de escanear para corregir una hoja nueva.</p></div>
-        <div class="feature"><div class="feature-title">Pendiente de corregir</div><p>Muestra los exámenes que ya has creado pero a los que aún les faltan hojas por escanear. Pulsa uno para ir a su detalle.</p></div>
-        <div class="feature"><div class="feature-title">Corregido recientemente</div><p>Las últimas hojas corregidas, con el nombre del alumno y la nota. Pulsa una para ver el detalle del examen.</p></div>
-        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Todos los datos se guardan solo en tu dispositivo. La app no envía nada a ningún servidor.</div>
+        <p>Es la primera pantalla que ves al abrir la app. De un vistazo te dice qué tienes pendiente.</p>
+        <div class="feature"><div class="feature-title">Escanear examen</div><p>El botón grande de arriba. Te lleva directamente a la cámara para corregir.</p></div>
+        <div class="feature"><div class="feature-title">Pendiente de corregir</div><p>Exámenes que has empezado a corregir pero en los que aún faltan alumnos por escanear. Tócalo para ir a ese examen.</p></div>
+        <div class="feature"><div class="feature-title">Corregido recientemente</div><p>Las últimas hojas que has corregido, con el nombre del alumno y su nota.</p></div>
       </div>
     </div>
-
     <div class="section">
       <div class="section-header" onclick="toggle(this)">
         <span class="section-icon"><ion-icon name="people" class="section-icon-svg"></ion-icon></span>
@@ -84,114 +125,152 @@
         <span class="chevron">▶</span>
       </div>
       <div class="section-body">
-        <div class="screenshot-row">
-          <img src="img/es-clases.jpg" alt="Pantalla de Clases">
-          <img src="img/es-clase-detalle.jpg" alt="Detalle de clase con alumnos">
-        </div>
-        <p>Organiza a tus alumnos por clases. Cada alumno tiene un código de 4 cifras que rellena en la hoja de examen para identificarse.</p>
-        <div class="feature"><div class="feature-title">Nueva clase</div><p>Botón en la parte inferior. Te pide el nombre de la clase (p.ej. "3r ESO A").</p></div>
-        <div class="feature"><div class="feature-title">Cambiar color</div><p>Mantén pulsada una clase para acceder a las opciones: puedes cambiar su color para distinguirla visualmente.</p></div>
-        <div class="feature"><div class="feature-title">Renombrar clase</div><p>Mantén pulsada la clase y elige "Renombrar".</p></div>
-        <div class="feature"><div class="feature-title">Eliminar clase</div><p>Desliza la clase hacia la izquierda o mantén pulsada y elige "Eliminar". Se borrarán también todos sus alumnos y exámenes.</p></div>
-        <div class="feature"><div class="feature-title">Añadir alumno</div><p>Dentro de la clase, pulsa "Añadir alumno". Se le asigna automáticamente un código de 4 cifras.</p></div>
-        <div class="feature"><div class="feature-title">Editar alumno</div><p>Toca el nombre de un alumno para editar su nombre, apellidos o cambiar su código.</p></div>
-        <div class="feature"><div class="feature-title">Eliminar alumno</div><p>Desliza el alumno hacia la izquierda.</p></div>
-        <div class="feature"><div class="feature-title">Aleatorizar códigos</div><p>Cambia el código de todos los alumnos de la clase a la vez de forma aleatoria.</p></div>
-        <div class="feature"><div class="feature-title">Importar alumnos (Excel/CSV)</div><p>Importa una lista de alumnos desde un archivo Excel (.xlsx, .xls) o CSV. La app detecta automáticamente las columnas de nombre y apellidos.</p></div>
-        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> El código de 4 cifras identifica a cada alumno en la hoja de examen. Si dos alumnos tienen el mismo código, la app avisará.</div>
+        <div class="screenshot-row"><img src="img/es-clases.jpg" alt="Lista de clases" loading="lazy"><img src="img/es-clase-detalle.jpg" alt="Alumnos de una clase" loading="lazy"></div>
+        <p>Aquí están tus grupos y sus alumnos. Cada alumno tiene un <b>código de 4 cifras</b>: lo escribe en la hoja del examen para que la app sepa de quién es.</p>
+        <h3 class="subhead">Crear una clase y añadir alumnos</h3>
+        <ol class="steps"><li>Toca <b>Nueva clase</b> y escribe su nombre (por ejemplo, «3.º ESO A»).</li><li>Toca la clase para entrar.</li><li>Toca <b>Añadir alumno</b> y escribe el nombre y los apellidos. El código de 4 cifras se pone solo.</li><li>Si ya tienes la lista en un Excel, toca <b>Importar alumnos (Excel/CSV)</b> y elige el archivo. La app encuentra sola los nombres y apellidos: no hace falta escribirlos uno a uno.</li></ol>
+        <h3 class="subhead">Otras cosas que puedes hacer</h3>
+        <div class="feature"><div class="feature-title">Cambiar un alumno</div><p>Toca su nombre para cambiarle el nombre o el código, o para eliminarlo.</p></div>
+        <div class="feature"><div class="feature-title">Cambiar todos los códigos</div><p><b>Aleatorizar códigos</b> da un código nuevo a todos los alumnos de la clase a la vez.</p></div>
+        <div class="feature"><div class="feature-title">Cambiar el nombre o el color de una clase</div><p>En la lista de clases, toca los tres puntos (…) de la clase o mantenla pulsada. El color sirve para distinguirlas de un vistazo.</p></div>
+        <div class="feature"><div class="feature-title">Borrar</div><p>Desliza el dedo hacia la izquierda sobre un alumno o una clase. Cuidado: si borras una clase, se borran también sus alumnos y sus exámenes.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Dos alumnos no pueden tener el mismo código. Si intentas repetir uno, la app te avisa.</div>
       </div>
     </div>
-
     <div class="section">
       <div class="section-header" onclick="toggle(this)">
         <span class="section-icon"><ion-icon name="document-text" class="section-icon-svg"></ion-icon></span>
-        <span class="section-title">Plantillas</span>
+        <span class="section-title">Plantillas: crear el examen</span>
         <span class="chevron">▶</span>
       </div>
       <div class="section-body">
-        <div class="screenshot-row">
-          <img src="img/es-plantillas.jpg" alt="Lista de plantillas">
-          <img src="img/es-plantilla-datos.jpg" alt="Datos del examen">
-          <img src="img/es-plantilla-formato.jpg" alt="Formato y notas">
-          <img src="img/es-plantilla-imprimir.jpg" alt="Imprimir hojas">
-        </div>
-        <p>Una plantilla define cómo es el examen: número de preguntas, opciones, puntuación y respuestas correctas. A partir de ella se generan e imprimen las hojas y se corrigen después.</p>
-        <div class="feature"><div class="feature-title">Nueva plantilla</div><p>Crea una plantilla nueva rellenando sus datos.</p></div>
-        <div class="feature"><div class="feature-title">Editar plantilla</div><p>Mantén pulsada una plantilla para editarla.</p></div>
-        <div class="feature"><div class="feature-title">Duplicar plantilla</div><p>Crea una copia exacta de la plantilla para modificarla.</p></div>
-        <div class="feature"><div class="feature-title">Eliminar plantilla</div><p>Desliza la plantilla hacia la izquierda o usa el menú.</p></div>
-        <p style="margin-top:14px; font-weight:600;">Campos de la plantilla:</p>
-        <div class="feature"><div class="feature-title">Título, curso y asignatura</div><p>Información que aparece impresa en la cabecera de la hoja.</p></div>
-        <div class="feature"><div class="feature-title">Logo del centro</div><p>Imagen opcional que se imprime arriba a la izquierda. Puedes elegirla de la galería de fotos o de los archivos.</p></div>
-        <div class="feature"><div class="feature-title">Idioma de la hoja</div><p>Idioma en el que se imprime la hoja (independiente del idioma de la app).</p></div>
-        <div class="feature"><div class="feature-title">Número de preguntas y opciones</div><p>Cuántas preguntas tiene el examen y cuántas opciones de respuesta (A, B, C…) por pregunta.</p></div>
-        <div class="feature"><div class="feature-title">Penalización por error</div><p>Cuánto resta cada respuesta incorrecta. Si es 0, no hay penalización. Puedes elegir el valor manualmente o usar la fórmula automática estándar.</p></div>
-        <div class="feature"><div class="feature-title">Respuestas en blanco</div><p>Decide si las respuestas sin marcar también restan o no.</p></div>
-        <div class="feature"><div class="feature-title">Nota máxima</div><p>El valor sobre el que se calcula la nota final (p.ej. 10).</p></div>
-        <div class="feature"><div class="feature-title">Respuestas correctas</div><p>Marca qué opción es la correcta en cada pregunta.</p></div>
-        <div class="feature"><div class="feature-title">Modelos del examen</div><p>Si repartes varias versiones del examen (A, B, C…) con distintas respuestas correctas, añade cada modelo aquí. La app detectará automáticamente qué modelo es cada hoja al escanear.</p></div>
-        <p style="margin-top:14px; font-weight:600;">Imprimir hojas:</p>
-        <div class="feature"><div class="feature-title">Generar hoja en blanco</div><p>Una sola hoja sin nombre de alumno, para rellenar a mano.</p></div>
-        <div class="feature"><div class="feature-title">Generar hojas de la clase</div><p>Una hoja por alumno con su nombre y código ya impresos. Elige la clase y la fecha del examen.</p></div>
-        <div class="feature"><div class="feature-title">Tamaño de hoja</div><p>"1 examen por folio" imprime una hoja por página. "2 exámenes por folio" imprime dos hojas en un A4 para recortar, útil cuando hay pocas preguntas.</p></div>
-        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Las hojas se generan como PDF para imprimir directamente desde el móvil o enviarlas al ordenador.</div>
+        <div class="screenshot-row"><img src="img/es-plantillas.jpg" alt="Lista de plantillas" loading="lazy"><img src="img/es-plantilla-datos.jpg" alt="Datos del examen" loading="lazy"><img src="img/es-plantilla-formato.jpg" alt="Formato y notas" loading="lazy"><img src="img/es-plantilla-imprimir.jpg" alt="Imprimir hojas" loading="lazy"></div>
+        <p>La plantilla es tu examen dentro de la app. Toca una plantilla de la lista para abrirla y cambiar lo que quieras. Con los tres puntos (…), o manteniéndola pulsada, también puedes <b>duplicarla</b> (para hacer un examen parecido sin empezar de cero) o <b>eliminarla</b>.</p>
+        <h3 class="subhead">Crear un examen, paso a paso</h3>
+        <ol class="steps"><li>En la pestaña <b>Plantillas</b>, toca <b>Nueva plantilla</b>.</li><li>Escribe el <b>título</b> y, si quieres, la asignatura y el curso. Salen impresos arriba de la hoja. También puedes añadir el <b>logo de tu centro</b>.</li><li>Elige el <b>idioma de la hoja</b>: es el idioma de los textos impresos, no el de la app.</li><li>Escribe el <b>número de preguntas</b> y elige cuántas <b>opciones</b> tiene cada una (de A-B hasta A-B-C-D-E).</li><li>Decide si los errores <b>restan</b> y si las preguntas en blanco también restan. Si no quieres complicarte, deja la penalización en 0: así los errores no restan nada.</li><li>Elige la <b>nota máxima</b>. Normalmente, 10.</li><li>En <b>Respuestas correctas</b>, toca en cada pregunta la letra buena.</li><li>Toca <b>Crear plantilla</b>. Si estás cambiando una plantilla que ya existía, el botón se llama <b>Guardar cambios</b>.</li></ol>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> La penalización, explicada fácil</div><p>Es lo que resta cada error. Por ejemplo, con 0,25, cuatro errores quitan lo mismo que da un acierto. Si eliges <b>Automática</b>, la app usa la fórmula habitual de los tests: con 4 opciones, cada error resta un tercio de acierto.</p></div>
+        <h3 class="subhead">Imprimir las hojas de respuestas</h3>
+        <p>Abre la plantilla y baja hasta <b>Imprimir hojas</b>. Tienes dos opciones:</p>
+        <div class="feature"><div class="feature-title">Hoja sin nombre</div><p>Una hoja en blanco. El alumno escribe a mano su código de 4 cifras. Puedes hacer tantas fotocopias como quieras.</p></div>
+        <div class="feature"><div class="feature-title">Hojas de una clase</div><p>Una hoja por alumno, con su nombre y su código ya impresos. Elige la clase y la fecha del examen.</p></div>
+        <div class="feature"><div class="feature-title">2 exámenes por folio</div><p>Si el examen tiene pocas preguntas, puedes imprimir dos hojas en cada folio y cortarlo por la mitad. Ahorras papel.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Las hojas salen en PDF: puedes imprimirlas desde el móvil o enviártelas al ordenador.</div>
+        <p>En los apartados siguientes se explica cómo dar más puntos a unas preguntas que a otras, aceptar más de una respuesta, trabajar con criterios de evaluación y repartir varios modelos del examen. <b>Todo es opcional</b>: si no lo necesitas, sáltatelo.</p>
       </div>
     </div>
-
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="podium" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Preguntas que valen más que otras</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <p>Normalmente todas las preguntas valen lo mismo. Si quieres que alguna cuente más (por ejemplo, porque es más difícil), puedes darle más puntos.</p>
+        <h3 class="subhead">Cómo se hace</h3>
+        <ol class="steps"><li>Abre la plantilla.</li><li>En <b>Puntuación por pregunta</b>, elige <b>Personalizada</b>.</li><li>En la lista de <b>Respuestas correctas</b>, al lado de cada pregunta aparecen los botones <b>−</b> y <b>+</b>. Úsalos para indicar cuántos puntos vale esa pregunta.</li><li>Encima de la lista verás el <b>total de puntos</b> del examen.</li><li>Toca <b>Guardar cambios</b>.</li></ol>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> Ejemplo</div><p>Un examen de 10 preguntas: las 8 primeras valen 1 punto y las 2 últimas, 3 puntos cada una. En total, 14 puntos. La nota final se sigue dando sobre 10 (o sobre la nota máxima que hayas elegido): la app hace la regla de tres sola. Un alumno que solo acierta las 2 últimas consigue 6 de 14 puntos, es decir, un 4,29.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Si usas penalización, fallar una pregunta que vale más también resta más.</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="checkmark-done" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Más de una respuesta correcta</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <p>A veces una pregunta tiene dos respuestas válidas, o te das cuenta después del examen de que estaba mal planteada y otra opción también debería valer. Puedes marcar varias letras como correctas en la misma pregunta.</p>
+        <h3 class="subhead">Cómo se hace</h3>
+        <ol class="steps"><li>Abre la plantilla.</li><li>En <b>Respuestas correctas</b>, toca todas las letras que den por buena esa pregunta. Si vuelves a tocar una letra marcada, se desmarca.</li><li>Toca <b>Guardar cambios</b>.</li></ol>
+        <p>Al corregir, si el alumno ha marcado cualquiera de esas letras, cuenta como acierto.</p>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> Ejemplo</div><p>Ya has corregido el examen y te das cuenta de que en la pregunta 12 la B también es correcta. Abre la plantilla, toca también la B en la pregunta 12 y guarda. Luego ve a <b>Resultados</b>, abre ese examen y toca <b>Aplicar ajustes de plantilla</b>: la app vuelve a calcular todas las notas sin tener que escanear otra vez.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Cada pregunta tiene que tener siempre al menos una respuesta correcta, así que la última letra marcada no se puede quitar.</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="pricetags" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Criterios de evaluación (RA y CE)</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <p>Si en tu programación trabajas con criterios de evaluación, resultados de aprendizaje o competencias, puedes indicar qué criterio evalúa cada pregunta. Así la app te dice, para cada alumno, qué parte de cada criterio domina. Por ejemplo: «Marta: CE 2.1 → 90 %, CE 2.3 → 40 %».</p>
+        <h3 class="subhead">1. Crea los criterios</h3>
+        <ol class="steps"><li>Abre la plantilla.</li><li>En la sección <b>Criterios de evaluación</b>, toca <b>+ Añadir criterio</b>.</li><li>Escribe un nombre corto, tal como aparece en tu programación (por ejemplo, «CE 2.1» o «RA1»).</li><li>Repite con cada criterio que evalúe el examen.</li></ol>
+        <p>Si te equivocas, toca el criterio para cambiarle el nombre o eliminarlo.</p>
+        <h3 class="subhead">2. Indica qué evalúa cada pregunta</h3>
+        <p>En la lista de <b>Respuestas correctas</b>, debajo de las letras de cada pregunta aparecen tus criterios. Toca los que evalúa esa pregunta (se quedan marcados). Una pregunta puede evaluar uno, varios o ninguno. Al acabar, toca <b>Guardar cambios</b>.</p>
+        <h3 class="subhead">3. Consulta los resultados</h3>
+        <div class="feature"><div class="feature-title">De toda la clase</div><p>En <b>Resultados</b>, abre el examen. En <b>Por criterio</b> verás la media de la clase en cada criterio.</p></div>
+        <div class="feature"><div class="feature-title">De cada alumno</div><p>En ese mismo examen, toca la hoja de un alumno para ver sus porcentajes.</p></div>
+        <div class="feature"><div class="feature-title">En Excel</div><p>Al tocar <b>Exportar notas</b>, el archivo lleva una columna por criterio con el porcentaje de cada alumno. Es justo lo que suele hacer falta para poner las notas por criterios.</p></div>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> ¿Cómo se calcula el porcentaje?</div><p>El criterio CE 2.1 está en las preguntas 1, 2, 3 y 4. Marta acierta 3 de las 4: tiene un 75 % en CE 2.1. Si las preguntas valen puntos distintos, se tiene en cuenta. La penalización no se aplica aquí: lo que se mide es qué parte del criterio sabe el alumno, no su nota.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> La barra sale en verde a partir del 50 % y en rojo por debajo, siempre con el número al lado.</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="copy" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Varios modelos del examen (A, B, C, D)</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <p>Para que no se copien, puedes repartir versiones distintas del mismo examen: el modelo A, el B, etc., con las preguntas en otro orden y las respuestas cambiadas de sitio. La app corrige cada hoja con su modelo.</p>
+        <h3 class="subhead">Cómo funciona en el aula</h3>
+        <p>Todas las hojas de respuestas se imprimen iguales. Cada alumno marca en su hoja, en la casilla del modelo, qué modelo le ha tocado (A, B, C o D). Al escanear, la app lee esa casilla y usa las respuestas correctas de ese modelo.</p>
+        <h3 class="subhead">1. Añade los modelos</h3>
+        <ol class="steps"><li>Abre la plantilla.</li><li>En <b>Modelos del examen</b>, toca <b>+ B</b> (y <b>+ C</b> o <b>+ D</b> si los necesitas).</li><li>Toca la letra de un modelo para ver y rellenar sus respuestas.</li></ol>
+        <h3 class="subhead">2. Marca las respuestas correctas de cada modelo</h3>
+        <p>Con el modelo B elegido, marca en cada pregunta la letra que es correcta <b>en el modelo B</b>. Si has cambiado las respuestas de sitio, no será la misma que en el A. No pasa nada: cada modelo tiene sus propias respuestas correctas.</p>
+        <h3 class="subhead">3. Si has cambiado el orden de las preguntas: la casilla «= A»</h3>
+        <p>En los modelos B, C y D, al lado de cada pregunta hay una casilla que pone <b>= A</b>. Ahí escribes qué número tiene esa misma pregunta en el modelo A.</p>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> Ejemplo</div><ul><li>La pregunta 1 del modelo B es la pregunta 7 del modelo A → en la pregunta 1 del B escribes <b>7</b>.</li><li>La pregunta 2 del modelo B es la pregunta 3 del modelo A → en la pregunta 2 del B escribes <b>3</b>.</li><li>Y así con todas las preguntas.</li></ul></div>
+        <p>¿Para qué sirve? Los puntos de cada pregunta y los criterios de evaluación se configuran <b>solo en el modelo A</b>. Con esta casilla, la app sabe que la pregunta 1 del B es la misma que la 7 del A y le aplica sus puntos y sus criterios. Además, las estadísticas de preguntas más falladas y más acertadas juntan a todos los alumnos por la pregunta de verdad, les haya tocado el modelo que les haya tocado.</p>
+        <div class="feature"><div class="feature-title">Si no has cambiado el orden</div><p>No toques nada: las casillas ya vienen con el mismo número que la pregunta.</p></div>
+        <div class="feature"><div class="feature-title">Si una casilla sale en rojo</div><p>Has escrito el mismo número del modelo A en dos preguntas. Cada pregunta del A tiene que aparecer una sola vez. La app no te deja guardar hasta que lo corrijas.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Si cambias la plantilla cuando ya has corregido algún examen, entra en ese examen (en <b>Resultados</b>) y toca <b>Aplicar ajustes de plantilla</b> para que las notas se recalculen.</div>
+      </div>
+    </div>
     <div class="section">
       <div class="section-header" onclick="toggle(this)">
         <span class="section-icon"><ion-icon name="camera" class="section-icon-svg"></ion-icon></span>
-        <span class="section-title">Escanear</span>
+        <span class="section-title">Escanear: corregir las hojas</span>
         <span class="chevron">▶</span>
       </div>
       <div class="section-body">
-        <div class="screenshot-row">
-          <img src="img/es-escanear.jpg" alt="Pantalla de escanear">
-        </div>
-        <p>Corrige una hoja de examen haciendo una foto. La app lee las respuestas automáticamente y calcula la nota.</p>
-        <div class="feature"><div class="feature-title">Elegir clase y plantilla</div><p>Antes de escanear, selecciona de qué clase es el examen y con qué plantilla se hizo. Puedes cambiarlos en cualquier momento.</p></div>
-        <div class="feature"><div class="feature-title">Flash</div><p>Activa o desactiva el flash de la cámara para mejorar la iluminación en entornos oscuros.</p></div>
-        <div class="feature"><div class="feature-title">Marco de encuadre</div><p>Encaja toda la hoja dentro del marco blanco antes de hacer la foto. Cuanto más centrada y bien iluminada, mejor funciona el lector.</p></div>
-        <div class="feature"><div class="feature-title">Hacer foto</div><p>Pulsa el botón redondo grande para capturar la imagen.</p></div>
-        <div class="feature"><div class="feature-title">Repetir foto</div><p>Si la foto no ha quedado bien, pulsa "Repetir" para volver a intentarlo.</p></div>
-        <div class="feature"><div class="feature-title">Usar esta foto</div><p>Confirma la foto para que la app empiece a analizar la hoja.</p></div>
-        <p style="margin-top:14px; font-weight:600;">Pantalla de revisión:</p>
-        <div class="feature"><div class="feature-title">Foto con burbujas marcadas</div><p>La app muestra la hoja con las respuestas detectadas. Verde = correcta, rojo = marcada pero incorrecta, aro verde = dónde estaba la respuesta correcta. Pellizca con dos dedos para ampliar.</p></div>
-        <div class="feature"><div class="feature-title">Editar respuesta</div><p>Toca una burbuja de la foto o una letra del listado inferior para cambiar la respuesta detectada.</p></div>
-        <div class="feature"><div class="feature-title">Nº de alumno</div><p>Código de 4 cifras detectado en la hoja. Puedes modificarlo si la lectura no fue correcta.</p></div>
-        <div class="feature"><div class="feature-title">Modelo detectado</div><p>Si la plantilla tiene varios modelos, la app indica cuál ha detectado. Puedes cambiarlo manualmente.</p></div>
-        <div class="feature"><div class="feature-title">Aceptar</div><p>Guarda el resultado del examen y vuelve para escanear la siguiente hoja.</p></div>
-        <div class="feature"><div class="feature-title">Descartar</div><p>Descarta esta hoja sin guardar nada.</p></div>
-        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Para mejores resultados: buena iluminación, hoja plana y sin sombras, encuadrada dentro del marco.</div>
+        <div class="screenshot-row"><img src="img/es-escanear.jpg" alt="Pantalla de escanear" loading="lazy"></div>
+        <h3 class="subhead">Cómo corregir</h3>
+        <ol class="steps"><li>Ve a la pestaña <b>Escanear</b>.</li><li>Elige la <b>clase</b> y después la <b>plantilla</b> (el examen).</li><li>Pon la hoja sobre la mesa y encájala dentro del marco blanco de la pantalla.</li><li>Toca el botón redondo grande para hacer la foto. Si no ha salido bien, toca <b>Repetir</b>; si está bien, toca <b>Usar esta foto</b>.</li><li>Revisa lo que ha leído la app y toca <b>Aceptar</b> para guardarlo. Ya puedes pasar a la siguiente hoja.</li></ol>
+        <h3 class="subhead">La pantalla de revisión</h3>
+        <div class="feature"><div class="feature-title">Los colores</div><p>Verde: el alumno ha acertado. Rojo: ha marcado una respuesta equivocada. Aro verde: dónde estaba la respuesta correcta. Puedes ampliar la foto con dos dedos.</p></div>
+        <div class="feature"><div class="feature-title">Corregir una lectura</div><p>Si la app ha leído mal alguna respuesta, toca la burbuja buena en la foto o la letra en la lista de abajo.</p></div>
+        <div class="feature"><div class="feature-title">El alumno</div><p>La app lee el código de 4 cifras de la hoja y te dice de quién es. Si no lo ha leído bien, puedes cambiarlo. Si no sabes de quién es, toca <b>Guardar sin asignar</b> y lo asignas más tarde.</p></div>
+        <div class="feature"><div class="feature-title">El modelo</div><p>Si el examen tiene varios modelos, te dice cuál ha detectado. Si se ha equivocado, cámbialo.</p></div>
+        <div class="feature"><div class="feature-title">Descartar</div><p>Si no quieres guardar esa hoja, toca <b>Descartar</b> y no se guarda nada.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Para que lea bien: buena luz, la hoja plana y sin sombras, y bien encajada en el marco. Si hay poca luz, enciende el flash.</div>
       </div>
     </div>
-
     <div class="section">
       <div class="section-header" onclick="toggle(this)">
         <span class="section-icon"><ion-icon name="stats-chart" class="section-icon-svg"></ion-icon></span>
-        <span class="section-title">Resultados</span>
+        <span class="section-title">Resultados: notas y estadísticas</span>
         <span class="chevron">▶</span>
       </div>
       <div class="section-body">
-        <div class="screenshot-row">
-          <img src="img/es-resultados.jpg" alt="Estadísticas del examen">
-        </div>
-        <p>Consulta todos los exámenes corregidos, agrupados por clase. Accede a estadísticas detalladas y exporta las notas.</p>
-        <div class="feature"><div class="feature-title">Lista de exámenes por clase</div><p>Pulsa una clase para ver todos sus exámenes corregidos.</p></div>
-        <div class="feature"><div class="feature-title">Eliminar exámenes de una clase</div><p>Desliza la clase hacia la izquierda para eliminar todos sus exámenes (la clase y los alumnos no se borran).</p></div>
-        <p style="margin-top:14px; font-weight:600;">Detalle de un examen:</p>
-        <div class="feature"><div class="feature-title">Estadísticas</div><p>Nota media, moda, porcentaje de aprobados, distribución de notas, preguntas más acertadas y más falladas.</p></div>
-        <div class="feature"><div class="feature-title">Hojas corregidas</div><p>Lista de todos los alumnos con su nota. Pulsa una hoja para ver el detalle.</p></div>
-        <div class="feature"><div class="feature-title">Exportar notas</div><p>Genera un archivo Excel (.xlsx) con todas las notas del examen: número de alumno, nombre, apellidos, modelo, aciertos, errores, blancos y nota final.</p></div>
-        <div class="feature"><div class="feature-title">Aplicar ajustes de plantilla</div><p>Recalcula todas las notas del examen con la penalización y nota máxima actuales de la plantilla (útil si has editado la plantilla después de corregir).</p></div>
-        <div class="feature"><div class="feature-title">Eliminar examen</div><p>Borra todas las hojas corregidas de ese examen.</p></div>
-        <p style="margin-top:14px; font-weight:600;">Detalle de una hoja:</p>
-        <div class="feature"><div class="feature-title">Editar respuestas</div><p>Cambia manualmente la respuesta detectada en cualquier pregunta.</p></div>
-        <div class="feature"><div class="feature-title">Asignar / cambiar alumno</div><p>Asigna la hoja a un alumno de la clase o cambia la asignación.</p></div>
-        <div class="feature"><div class="feature-title">Eliminar hoja</div><p>Borra solo esta hoja del examen.</p></div>
+        <div class="screenshot-row"><img src="img/es-resultados.jpg" alt="Estadísticas de un examen" loading="lazy"></div>
+        <p>Aquí están todos los exámenes corregidos, agrupados por clase. Toca una clase para ver sus exámenes y toca un examen para ver todo el detalle.</p>
+        <div class="feature"><div class="feature-title">Borrar los exámenes de una clase</div><p>Desliza la clase hacia la izquierda. Se borran sus exámenes corregidos, pero la clase y los alumnos se quedan.</p></div>
+        <h3 class="subhead">Dentro de un examen</h3>
+        <div class="feature"><div class="feature-title">Estadísticas</div><p>La nota media, la nota que más se repite, cuántos han aprobado, cómo se reparten las notas y qué preguntas se han fallado y acertado más. Si usas criterios de evaluación, también verás la media de la clase en cada uno.</p></div>
+        <div class="feature"><div class="feature-title">Hojas corregidas</div><p>La lista de alumnos con su nota. Toca una hoja para ver la foto con las respuestas marcadas y, si usas criterios, los porcentajes de ese alumno.</p></div>
+        <div class="feature"><div class="feature-title">Cambiar una respuesta a mano</div><p>Dentro de la hoja, toca <b>Editar respuestas</b>, cambia lo que haga falta y guarda. La nota se recalcula sola.</p></div>
+        <div class="feature"><div class="feature-title">Asignar una hoja a un alumno</div><p>Si una hoja se ha quedado sin alumno, ábrela, toca <b>Asignar a alumno</b> y elige quién es.</p></div>
+        <div class="feature"><div class="feature-title">Exportar notas</div><p>Crea un archivo que se abre con Excel o se puede pasar a tu cuaderno de notas. Lleva el número y el nombre de cada alumno, su modelo, los aciertos, los errores, las respuestas en blanco, la nota y, si los usas, el porcentaje de cada criterio. Puedes enviarlo por correo, guardarlo en Drive, etc.</p></div>
+        <div class="feature"><div class="feature-title">Aplicar ajustes de plantilla</div><p>Si cambias la plantilla después de corregir (una respuesta correcta, la penalización, los puntos…), este botón vuelve a calcular todas las notas del examen. No hay que escanear nada otra vez.</p></div>
+        <div class="feature"><div class="feature-title">Cambiar la nota máxima de un examen</div><p>Toca donde pone «Sobre 10» para calcular las notas de ese examen sobre otro número (por ejemplo, sobre 100). Solo afecta a ese examen.</p></div>
+        <div class="feature"><div class="feature-title">Borrar</div><p>Desliza una hoja hacia la izquierda para borrarla, o usa <b>Eliminar examen completo</b>, al final de la pantalla.</p></div>
       </div>
     </div>
-
     <div class="section">
       <div class="section-header" onclick="toggle(this)">
         <span class="section-icon"><ion-icon name="settings" class="section-icon-svg"></ion-icon></span>
@@ -199,13 +278,27 @@
         <span class="chevron">▶</span>
       </div>
       <div class="section-body">
-        <div class="feature"><div class="feature-title">Idioma</div><p>Cambia el idioma de la app. "Automático" usa el idioma del móvil.</p></div>
-        <div class="feature"><div class="feature-title">Guardar copia de seguridad</div><p>Crea un archivo con todos tus datos (clases, alumnos, plantillas y exámenes) para guardarlo donde quieras. Puedes elegir incluir o no las fotos de las hojas.</p></div>
-        <div class="feature"><div class="feature-title">Contraseña de las copias</div><p>Establece una contraseña para proteger tus copias de seguridad. Se aplica automáticamente en cada copia sin preguntarte.</p></div>
-        <div class="feature"><div class="feature-title">Restaurar copia de seguridad</div><p>Recupera los datos de una copia guardada anteriormente. Sustituye todos los datos actuales de la app.</p></div>
-        <div class="feature"><div class="feature-title">Ver el tour otra vez</div><p>Vuelve a ver la presentación de bienvenida con ejemplos de cada sección.</p></div>
-        <div class="feature"><div class="feature-title">Escribir un correo</div><p>Abre tu app de correo con un mensaje preparado para contactar con el equipo de FastGrade.</p></div>
-        <div class="feature"><div class="feature-title">Política de privacidad</div><p>Abre la política de privacidad en el navegador.</p></div>
+        <div class="feature"><div class="feature-title">Apariencia</div><p>Elige cómo quieres ver la app: <b>Claro</b> (fondo blanco), <b>Oscuro</b> (fondo negro, más cómodo de noche) o <b>Automático</b> (cambia solo, igual que tu móvil).</p></div>
+        <div class="feature"><div class="feature-title">Idioma</div><p>El idioma de la app. «Automático» usa el de tu móvil.</p></div>
+        <div class="feature"><div class="feature-title">Ver tutorial de uso</div><p>Abre esta guía.</p></div>
+        <div class="feature"><div class="feature-title">Contraseña de las copias</div><p>Protege tus copias de seguridad con una contraseña. Solo la pones una vez y después se usa sola. Te la pedirá si recuperas una copia en otro móvil, así que apúntala en un sitio seguro.</p></div>
+        <div class="feature"><div class="feature-title">Guardar copia de seguridad</div><p>Guarda todo (clases, alumnos, exámenes y notas) en un archivo que puedes llevar a Drive, al ordenador o a un pendrive. Hazlo de vez en cuando: si pierdes el móvil o cambias de móvil, no perderás nada.</p></div>
+        <div class="feature"><div class="feature-title">Restaurar copia de seguridad</div><p>Recupera tus datos a partir de una copia. Cuidado: sustituye todo lo que haya ahora en la app.</p></div>
+        <div class="feature"><div class="feature-title">Ver el tour otra vez</div><p>Repite la presentación que sale la primera vez que abres la app.</p></div>
+        <div class="feature"><div class="feature-title">Contacto y privacidad</div><p>Escríbenos un correo si tienes dudas o problemas, o consulta la política de privacidad.</p></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="help-circle" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Si algo no funciona</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <div class="feature"><div class="feature-title">La app no lee bien la hoja</div><p>Busca un sitio con más luz o enciende el flash, pon la hoja plana y encájala bien en el marco. Tienen que verse los 4 cuadrados negros de las esquinas, y no gires ni la hoja ni el móvil. Si aun así falla alguna respuesta, puedes cambiarla a mano en la pantalla de revisión.</p></div>
+        <div class="feature"><div class="feature-title">Me equivoqué en una respuesta correcta y ya había corregido</div><p>Arregla la plantilla y guarda. Después, en <b>Resultados</b>, abre el examen y toca <b>Aplicar ajustes de plantilla</b>.</p></div>
+        <div class="feature"><div class="feature-title">No sé de quién es una hoja</div><p>Pasa si el alumno no escribió bien su código. Guárdala con <b>Guardar sin asignar</b> y, más tarde, en <b>Resultados</b>, ábrela y toca <b>Asignar a alumno</b>.</p></div>
+        <div class="feature"><div class="feature-title">He cambiado de móvil</div><p>Si hiciste una copia de seguridad, instala la app en el móvil nuevo y, en <b>Ajustes</b>, toca <b>Restaurar copia de seguridad</b>.</p></div>
       </div>
     </div>
 
@@ -213,293 +306,908 @@
 </div>
 
 <div data-lang="ca">
-  <header><h1>FastGrade</h1><p>Guia d'ús de l'app</p></header>
+  <header><h1>FastGrade</h1><p>Guia d’ús, pas a pas</p></header>
   <div class="lang-bar">
     <button class="lang-btn active" onclick="setLang('ca')">Català</button>
     <button class="lang-btn" onclick="setLang('en')">English</button>
     <button class="lang-btn" onclick="setLang('es')">Español</button>
-    <button class="lang-btn" onclick="setLang('eu')">Euskera</button>
+    <button class="lang-btn" onclick="setLang('eu')">Euskara</button>
     <button class="lang-btn" onclick="setLang('gl')">Galego</button>
   </div>
   <main>
+
     <div class="section open">
-      <div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="home" class="section-icon-svg"></ion-icon></span><span class="section-title">Inici</span><span class="chevron">▶</span></div>
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="rocket" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Comença aquí</span>
+        <span class="chevron">▶</span>
+      </div>
       <div class="section-body">
-        <p>La pantalla principal resumeix l'estat del teu treball: quins exàmens tens pendents de corregir i els últims corregits.</p>
-        <div class="feature"><div class="feature-title">Escanejar examen</div><p>Botó gran a la part superior. Et porta directament a la pestanya d'escanejar per corregir un full nou.</p></div>
-        <div class="feature"><div class="feature-title">Pendent de corregir</div><p>Mostra els exàmens que ja has creat però als quals encara els falten fulls per escanejar. Prem-ne un per anar al detall.</p></div>
-        <div class="feature"><div class="feature-title">Corregit recentment</div><p>Els últims fulls corregits, amb el nom de l'alumne i la nota. Prem-ne un per veure el detall de l'examen.</p></div>
-        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Totes les dades es guarden només al teu dispositiu. L'app no envia res a cap servidor.</div>
+        <p>FastGrade corregeix exàmens tipus test amb la càmera del mòbil. No cal saber informàtica: si saps fer una foto amb el mòbil, saps fer servir FastGrade.</p>
+        <h3 class="subhead">Com funciona, en 5 passos</h3>
+        <ol class="steps"><li><b>Crea la teva classe.</b> A la pestanya <b>Classes</b>, crea el grup i afegeix-hi l’alumnat. L’app dona a cada alumne un número de 4 xifres, que és com el seu «carnet» a l’examen.</li><li><b>Crea l’examen.</b> A la pestanya <b>Plantilles</b>, indica quantes preguntes té i marca quina és la resposta correcta de cadascuna.</li><li><b>Imprimeix els fulls de respostes</b> des d’aquesta mateixa plantilla. L’alumnat respon omplint les bombolles amb bolígraf.</li><li><b>Fes una foto de cada full</b> a la pestanya <b>Escanejar</b>. L’app llegeix les respostes i posa la nota tota sola.</li><li><b>Consulta les notes</b> a la pestanya <b>Resultats</b>: la nota de cada alumne, les estadístiques de la classe i un fitxer per obrir amb l’Excel.</li></ol>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> Què és una «plantilla»?</div><p>És el teu examen dins de l’app. Guarda quantes preguntes té, quina és la resposta bona de cadascuna i com el vols puntuar. La crees una vegada i la pots fer servir amb totes les teves classes.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Tot es guarda només al teu mòbil. L’app no envia res a internet: ni els noms de l’alumnat, ni les notes, ni les fotos.</div>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="people" class="section-icon-svg"></ion-icon></span><span class="section-title">Classes</span><span class="chevron">▶</span></div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="home" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Inici</span>
+        <span class="chevron">▶</span>
+      </div>
       <div class="section-body">
-        <p>Organitza els teus alumnes per classes. Cada alumne té un codi de 4 xifres que omple al full d'examen per identificar-se.</p>
-        <div class="feature"><div class="feature-title">Nova classe</div><p>Botó a la part inferior. Et demana el nom de la classe (p.ex. "3r ESO A").</p></div>
-        <div class="feature"><div class="feature-title">Canviar color</div><p>Mantén premuda una classe per accedir a les opcions: pots canviar el seu color per distingir-la visualment.</p></div>
-        <div class="feature"><div class="feature-title">Canviar nom</div><p>Mantén premuda la classe i tria "Canviar nom".</p></div>
-        <div class="feature"><div class="feature-title">Eliminar classe</div><p>Llisca la classe cap a l'esquerra o mantén-la premuda. S'esborraran també tots els alumnes i exàmens.</p></div>
-        <div class="feature"><div class="feature-title">Afegir alumne</div><p>Dins la classe, prem "Afegir alumne". Se li assigna automàticament un codi de 4 xifres.</p></div>
-        <div class="feature"><div class="feature-title">Editar alumne</div><p>Prem el nom d'un alumne per editar el nom, cognoms o canviar el codi.</p></div>
-        <div class="feature"><div class="feature-title">Eliminar alumne</div><p>Llisca l'alumne cap a l'esquerra.</p></div>
-        <div class="feature"><div class="feature-title">Aleatoritzar codis</div><p>Canvia el codi de tots els alumnes de la classe de forma aleatòria.</p></div>
-        <div class="feature"><div class="feature-title">Importar alumnes (Excel/CSV)</div><p>Importa una llista d'alumnes des d'un fitxer Excel o CSV.</p></div>
+        <p>És la primera pantalla que veus en obrir l’app. D’un cop d’ull et diu què tens pendent.</p>
+        <div class="feature"><div class="feature-title">Escaneja un examen</div><p>El botó gran de dalt. Et porta directament a la càmera per corregir.</p></div>
+        <div class="feature"><div class="feature-title">Pendent de corregir</div><p>Exàmens que has començat a corregir però en què encara falten alumnes per escanejar. Toca’n un per anar a aquell examen.</p></div>
+        <div class="feature"><div class="feature-title">Corregit recentment</div><p>Els últims fulls que has corregit, amb el nom de l’alumne i la nota.</p></div>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="document-text" class="section-icon-svg"></ion-icon></span><span class="section-title">Plantilles</span><span class="chevron">▶</span></div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="people" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Classes</span>
+        <span class="chevron">▶</span>
+      </div>
       <div class="section-body">
-        <p>Una plantilla defineix com és l'examen: nombre de preguntes, opcions, puntuació i respostes correctes.</p>
-        <div class="feature"><div class="feature-title">Nova plantilla</div><p>Crea una plantilla nova omplint les dades.</p></div>
-        <div class="feature"><div class="feature-title">Editar / Duplicar / Eliminar</div><p>Mantén premuda una plantilla per accedir a les opcions, o llisca-la cap a l'esquerra per eliminar-la.</p></div>
-        <div class="feature"><div class="feature-title">Nombre de preguntes i opcions</div><p>Quantes preguntes té l'examen i quantes opcions de resposta per pregunta.</p></div>
-        <div class="feature"><div class="feature-title">Penalització per error</div><p>Quant resta cada resposta incorrecta. Si és 0, no hi ha penalització.</p></div>
-        <div class="feature"><div class="feature-title">Models de l'examen</div><p>Si reparteixes diverses versions (A, B, C…) amb respostes correctes diferents, afegeix cada model. L'app detectarà quin model és cada full en escanejar.</p></div>
-        <div class="feature"><div class="feature-title">Generar full en blanc / fulls de la classe</div><p>Genera un PDF per imprimir: un sol full en blanc o un per alumne amb nom i codi ja impresos.</p></div>
-        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Els fulls es generen com a PDF per imprimir directament des del mòbil o enviar-los a l'ordinador.</div>
+        <p>Aquí hi ha els teus grups i el seu alumnat. Cada alumne té un <b>codi de 4 xifres</b>: l’escriu al full de l’examen perquè l’app sàpiga de qui és.</p>
+        <h3 class="subhead">Crear una classe i afegir-hi alumnes</h3>
+        <ol class="steps"><li>Toca <b>Nova classe</b> i escriu-ne el nom (per exemple, «3r ESO A»).</li><li>Toca la classe per entrar-hi.</li><li>Toca <b>Afegeix un alumne</b> i escriu-ne el nom i els cognoms. El codi de 4 xifres s’hi posa sol.</li><li>Si ja tens la llista en un Excel, toca <b>Importa l’alumnat (Excel/CSV)</b> i tria el fitxer. L’app troba tota sola els noms i els cognoms: no cal escriure’ls un per un.</li></ol>
+        <h3 class="subhead">Altres coses que pots fer</h3>
+        <div class="feature"><div class="feature-title">Canviar un alumne</div><p>Toca’n el nom per canviar-li el nom o el codi, o per eliminar-lo.</p></div>
+        <div class="feature"><div class="feature-title">Canviar tots els codis</div><p><b>Aleatoritza els codis</b> dona un codi nou a tot l’alumnat de la classe alhora.</p></div>
+        <div class="feature"><div class="feature-title">Canviar el nom o el color d’una classe</div><p>A la llista de classes, toca els tres punts (…) de la classe o mantén-la premuda. El color serveix per distingir-les d’un cop d’ull.</p></div>
+        <div class="feature"><div class="feature-title">Eliminar</div><p>Llisca el dit cap a l’esquerra sobre un alumne o una classe. Compte: si elimines una classe, també se n’eliminen l’alumnat i els exàmens.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Dos alumnes no poden tenir el mateix codi. Si intentes repetir-ne un, l’app t’avisa.</div>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="camera" class="section-icon-svg"></ion-icon></span><span class="section-title">Escanejar</span><span class="chevron">▶</span></div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="document-text" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Plantilles: crear l’examen</span>
+        <span class="chevron">▶</span>
+      </div>
       <div class="section-body">
-        <p>Corregeix un full d'examen fent una foto. L'app llegeix les respostes automàticament i calcula la nota.</p>
-        <div class="feature"><div class="feature-title">Triar classe i plantilla</div><p>Selecciona de quina classe és l'examen i amb quina plantilla es va fer.</p></div>
-        <div class="feature"><div class="feature-title">Flash</div><p>Activa o desactiva el flaix per millorar la il·luminació.</p></div>
-        <div class="feature"><div class="feature-title">Marc d'enquadrament</div><p>Encaixa tot el full dins del marc blanc abans de fer la foto.</p></div>
-        <div class="feature"><div class="feature-title">Repetir foto / Usar aquesta foto</div><p>Repeteix si la foto no ha quedat bé, o confirma-la per analitzar el full.</p></div>
-        <div class="feature"><div class="feature-title">Revisió: editar respostes</div><p>Toca una bombolla de la foto o una lletra del llistat per canviar la resposta detectada.</p></div>
-        <div class="feature"><div class="feature-title">Acceptar / Descartar</div><p>Accepta per guardar el resultat o descarta per no guardar res.</p></div>
-        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Per a millors resultats: bona il·luminació, full pla i sense ombres, enquadrat dins el marc.</div>
+        <p>La plantilla és el teu examen dins de l’app. Toca una plantilla de la llista per obrir-la i canviar el que vulguis. Amb els tres punts (…), o mantenint-la premuda, també la pots <b>duplicar</b> (per fer un examen semblant sense començar de zero) o <b>eliminar</b>.</p>
+        <h3 class="subhead">Crear un examen, pas a pas</h3>
+        <ol class="steps"><li>A la pestanya <b>Plantilles</b>, toca <b>Nova plantilla</b>.</li><li>Escriu el <b>títol</b> i, si vols, l’assignatura i el curs. Surten impresos a dalt del full. També hi pots afegir el <b>logotip del centre</b>.</li><li>Tria l’<b>idioma del full</b>: és l’idioma dels textos impresos, no el de l’app.</li><li>Escriu el <b>nombre de preguntes</b> i tria quantes <b>opcions</b> té cadascuna (d’A-B fins a A-B-C-D-E).</li><li>Decideix si els errors <b>resten</b> i si les preguntes en blanc també resten. Si no et vols complicar, deixa la penalització a 0: així els errors no resten res.</li><li>Tria la <b>nota màxima</b>. Normalment, 10.</li><li>A <b>Respostes correctes</b>, toca a cada pregunta la lletra bona.</li><li>Toca <b>Crea la plantilla</b>. Si estàs canviant una plantilla que ja existia, el botó es diu <b>Desa els canvis</b>.</li></ol>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> La penalització, explicada fàcil</div><p>És el que resta cada error. Per exemple, amb 0,25, quatre errors treuen el mateix que dona un encert. Si tries <b>Automàtica</b>, l’app fa servir la fórmula habitual dels tests: amb 4 opcions, cada error resta un terç d’encert.</p></div>
+        <h3 class="subhead">Imprimir els fulls de respostes</h3>
+        <p>Obre la plantilla i baixa fins a <b>Impressió dels fulls</b>. Tens dues opcions:</p>
+        <div class="feature"><div class="feature-title">Full sense nom</div><p>Un full en blanc. L’alumne hi escriu a mà el seu codi de 4 xifres. En pots fer tantes fotocòpies com vulguis.</p></div>
+        <div class="feature"><div class="feature-title">Fulls d’una classe</div><p>Un full per alumne, amb el nom i el codi ja impresos. Tria la classe i la data de l’examen.</p></div>
+        <div class="feature"><div class="feature-title">2 exàmens per foli</div><p>Si l’examen té poques preguntes, pots imprimir dos fulls a cada foli i tallar-lo per la meitat. Estalvies paper.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Els fulls surten en PDF: els pots imprimir des del mòbil o enviar-te’ls a l’ordinador.</div>
+        <p>Als apartats següents s’explica com donar més punts a unes preguntes que a d’altres, acceptar més d’una resposta, treballar amb criteris d’avaluació i repartir diversos models de l’examen. <b>Tot és opcional</b>: si no ho necessites, salta-t’ho.</p>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="stats-chart" class="section-icon-svg"></ion-icon></span><span class="section-title">Resultats</span><span class="chevron">▶</span></div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="podium" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Preguntes que valen més que d’altres</span>
+        <span class="chevron">▶</span>
+      </div>
       <div class="section-body">
-        <p>Consulta tots els exàmens corregits agrupats per classe. Accedeix a estadístiques detallades i exporta les notes.</p>
-        <div class="feature"><div class="feature-title">Estadístiques</div><p>Nota mitjana, moda, percentatge d'aprovats, distribució de notes, preguntes més encertades i més fallades.</p></div>
-        <div class="feature"><div class="feature-title">Exportar notes</div><p>Genera un fitxer Excel amb totes les notes: número d'alumne, nom, cognoms, model, encerts, errors i nota final.</p></div>
-        <div class="feature"><div class="feature-title">Editar respostes / Assignar alumne</div><p>Corregeix manualment qualsevol resposta o assigna el full a un alumne diferent.</p></div>
+        <p>Normalment totes les preguntes valen el mateix. Si vols que alguna compti més (per exemple, perquè és més difícil), li pots donar més punts.</p>
+        <h3 class="subhead">Com es fa</h3>
+        <ol class="steps"><li>Obre la plantilla.</li><li>A <b>Puntuació per pregunta</b>, tria <b>Personalitzada</b>.</li><li>A la llista de <b>Respostes correctes</b>, al costat de cada pregunta apareixen els botons <b>−</b> i <b>+</b>. Fes-los servir per indicar quants punts val aquella pregunta.</li><li>A sobre de la llista veuràs el <b>total de punts</b> de l’examen.</li><li>Toca <b>Desa els canvis</b>.</li></ol>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> Exemple</div><p>Un examen de 10 preguntes: les 8 primeres valen 1 punt i les 2 últimes, 3 punts cadascuna. En total, 14 punts. La nota final es continua donant sobre 10 (o sobre la nota màxima que hagis triat): l’app fa la regla de tres tota sola. Un alumne que només encerta les 2 últimes aconsegueix 6 de 14 punts, és a dir, un 4,29.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Si fas servir penalització, fallar una pregunta que val més també resta més.</div>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="settings" class="section-icon-svg"></ion-icon></span><span class="section-title">Ajustos</span><span class="chevron">▶</span></div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="checkmark-done" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Més d’una resposta correcta</span>
+        <span class="chevron">▶</span>
+      </div>
       <div class="section-body">
-        <div class="feature"><div class="feature-title">Idioma</div><p>Canvia l'idioma de l'app. "Automàtic" usa l'idioma del mòbil.</p></div>
-        <div class="feature"><div class="feature-title">Còpia de seguretat</div><p>Crea un fitxer amb totes les teves dades per guardar-lo on vulguis, amb o sense fotos.</p></div>
-        <div class="feature"><div class="feature-title">Restaurar còpia de seguretat</div><p>Recupera les dades d'una còpia guardada anteriorment.</p></div>
-        <div class="feature"><div class="feature-title">Escriure un correu</div><p>Contacta amb l'equip de FastGrade directament des de l'app.</p></div>
+        <p>De vegades una pregunta té dues respostes vàlides, o t’adones després de l’examen que estava mal plantejada i que una altra opció també hauria de valer. Pots marcar diverses lletres com a correctes en la mateixa pregunta.</p>
+        <h3 class="subhead">Com es fa</h3>
+        <ol class="steps"><li>Obre la plantilla.</li><li>A <b>Respostes correctes</b>, toca totes les lletres que donin per bona aquella pregunta. Si tornes a tocar una lletra marcada, es desmarca.</li><li>Toca <b>Desa els canvis</b>.</li></ol>
+        <p>En corregir, si l’alumne ha marcat qualsevol d’aquestes lletres, compta com a encert.</p>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> Exemple</div><p>Ja has corregit l’examen i t’adones que a la pregunta 12 la B també és correcta. Obre la plantilla, toca també la B a la pregunta 12 i desa. Després ves a <b>Resultats</b>, obre aquell examen i toca <b>Aplica els ajustos de plantilla</b>: l’app torna a calcular totes les notes sense haver d’escanejar res més.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Cada pregunta ha de tenir sempre almenys una resposta correcta, així que l’última lletra marcada no es pot treure.</div>
       </div>
     </div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="pricetags" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Criteris d’avaluació (RA i CA)</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <p>Si a la teva programació treballes amb criteris d’avaluació, resultats d’aprenentatge o competències, pots indicar quin criteri avalua cada pregunta. Així l’app et diu, per a cada alumne, quina part de cada criteri domina. Per exemple: «Marta: CA 2.1 → 90 %, CA 2.3 → 40 %».</p>
+        <h3 class="subhead">1. Crea els criteris</h3>
+        <ol class="steps"><li>Obre la plantilla.</li><li>A la secció <b>Criteris d’avaluació</b>, toca <b>+ Afegeix un criteri</b>.</li><li>Escriu un nom curt, tal com apareix a la teva programació (per exemple, «CA 2.1» o «RA1»).</li><li>Repeteix-ho amb cada criteri que avaluï l’examen.</li></ol>
+        <p>Si t’equivoques, toca el criteri per canviar-li el nom o eliminar-lo.</p>
+        <h3 class="subhead">2. Indica què avalua cada pregunta</h3>
+        <p>A la llista de <b>Respostes correctes</b>, a sota de les lletres de cada pregunta apareixen els teus criteris. Toca els que avalua aquella pregunta (es queden marcats). Una pregunta en pot avaluar un, diversos o cap. Quan acabis, toca <b>Desa els canvis</b>.</p>
+        <h3 class="subhead">3. Consulta els resultats</h3>
+        <div class="feature"><div class="feature-title">De tota la classe</div><p>A <b>Resultats</b>, obre l’examen. A <b>Per criteri</b> hi veuràs la mitjana de la classe en cada criteri.</p></div>
+        <div class="feature"><div class="feature-title">De cada alumne</div><p>En aquest mateix examen, toca el full d’un alumne per veure’n els percentatges.</p></div>
+        <div class="feature"><div class="feature-title">A l’Excel</div><p>Quan toques <b>Exporta les notes</b>, el fitxer porta una columna per criteri amb el percentatge de cada alumne. És just el que sol caldre per posar les notes per criteris.</p></div>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> Com es calcula el percentatge?</div><p>El criteri CA 2.1 és a les preguntes 1, 2, 3 i 4. La Marta n’encerta 3 de 4: té un 75 % al CA 2.1. Si les preguntes valen punts diferents, es té en compte. La penalització no s’aplica aquí: el que es mesura és quina part del criteri sap l’alumne, no la seva nota.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> La barra surt en verd a partir del 50 % i en vermell per sota, sempre amb el número al costat.</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="copy" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Diversos models de l’examen (A, B, C, D)</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <p>Perquè no es copiïn, pots repartir versions diferents del mateix examen: el model A, el B, etc., amb les preguntes en un altre ordre i les respostes canviades de lloc. L’app corregeix cada full amb el seu model.</p>
+        <h3 class="subhead">Com funciona a l’aula</h3>
+        <p>Tots els fulls de respostes s’imprimeixen iguals. Cada alumne marca al seu full, a la casella del model, quin model li ha tocat (A, B, C o D). En escanejar, l’app llegeix aquesta casella i fa servir les respostes correctes d’aquell model.</p>
+        <h3 class="subhead">1. Afegeix els models</h3>
+        <ol class="steps"><li>Obre la plantilla.</li><li>A <b>Models de l’examen</b>, toca <b>+ B</b> (i <b>+ C</b> o <b>+ D</b> si els necessites).</li><li>Toca la lletra d’un model per veure’n i omplir-ne les respostes.</li></ol>
+        <h3 class="subhead">2. Marca les respostes correctes de cada model</h3>
+        <p>Amb el model B triat, marca a cada pregunta la lletra que és correcta <b>al model B</b>. Si has canviat les respostes de lloc, no serà la mateixa que a l’A. No passa res: cada model té les seves pròpies respostes correctes.</p>
+        <h3 class="subhead">3. Si has canviat l’ordre de les preguntes: la casella «= A»</h3>
+        <p>Als models B, C i D, al costat de cada pregunta hi ha una casella que diu <b>= A</b>. Hi has d’escriure quin número té aquesta mateixa pregunta al model A.</p>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> Exemple</div><ul><li>La pregunta 1 del model B és la pregunta 7 del model A → a la pregunta 1 del B hi escrius <b>7</b>.</li><li>La pregunta 2 del model B és la pregunta 3 del model A → a la pregunta 2 del B hi escrius <b>3</b>.</li><li>I així amb totes les preguntes.</li></ul></div>
+        <p>Per a què serveix? Els punts de cada pregunta i els criteris d’avaluació es configuren <b>només al model A</b>. Amb aquesta casella, l’app sap que la pregunta 1 del B és la mateixa que la 7 de l’A i li aplica els seus punts i els seus criteris. A més, les estadístiques de preguntes més fallades i més encertades ajunten tot l’alumnat per la pregunta de debò, sigui quin sigui el model que li hagi tocat.</p>
+        <div class="feature"><div class="feature-title">Si no has canviat l’ordre</div><p>No toquis res: les caselles ja porten el mateix número que la pregunta.</p></div>
+        <div class="feature"><div class="feature-title">Si una casella surt en vermell</div><p>Has escrit el mateix número del model A en dues preguntes. Cada pregunta de l’A hi ha de sortir una sola vegada. L’app no et deixa desar fins que no ho corregeixis.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Si canvies la plantilla quan ja has corregit algun examen, entra en aquell examen (a <b>Resultats</b>) i toca <b>Aplica els ajustos de plantilla</b> perquè les notes es tornin a calcular.</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="camera" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Escanejar: corregir els fulls</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <h3 class="subhead">Com corregir</h3>
+        <ol class="steps"><li>Ves a la pestanya <b>Escanejar</b>.</li><li>Tria la <b>classe</b> i després la <b>plantilla</b> (l’examen).</li><li>Posa el full sobre la taula i encaixa’l dins del marc blanc de la pantalla.</li><li>Toca el botó rodó gran per fer la foto. Si no ha sortit bé, toca <b>Repeteix</b>; si està bé, toca <b>Fes servir aquesta foto</b>.</li><li>Revisa el que ha llegit l’app i toca <b>Accepta</b> per desar-ho. Ja pots passar al full següent.</li></ol>
+        <h3 class="subhead">La pantalla de revisió</h3>
+        <div class="feature"><div class="feature-title">Els colors</div><p>Verd: l’alumne ha encertat. Vermell: ha marcat una resposta equivocada. Anella verda: on era la resposta correcta. Pots ampliar la foto amb dos dits.</p></div>
+        <div class="feature"><div class="feature-title">Corregir una lectura</div><p>Si l’app ha llegit malament alguna resposta, toca la bombolla bona a la foto o la lletra a la llista de sota.</p></div>
+        <div class="feature"><div class="feature-title">L’alumne</div><p>L’app llegeix el codi de 4 xifres del full i et diu de qui és. Si no l’ha llegit bé, el pots canviar. Si no saps de qui és, toca <b>Desa sense assignar</b> i ja l’assignaràs més tard.</p></div>
+        <div class="feature"><div class="feature-title">El model</div><p>Si l’examen té diversos models, et diu quin ha detectat. Si s’ha equivocat, canvia’l.</p></div>
+        <div class="feature"><div class="feature-title">Descarta</div><p>Si no vols desar aquell full, toca <b>Descarta</b> i no es desa res.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Perquè llegeixi bé: bona llum, el full pla i sense ombres, i ben encaixat al marc. Si hi ha poca llum, encén el flaix.</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="stats-chart" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Resultats: notes i estadístiques</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <p>Aquí hi ha tots els exàmens corregits, agrupats per classe. Toca una classe per veure’n els exàmens i toca un examen per veure’n tot el detall.</p>
+        <div class="feature"><div class="feature-title">Eliminar els exàmens d’una classe</div><p>Llisca la classe cap a l’esquerra. S’eliminen els seus exàmens corregits, però la classe i l’alumnat es mantenen.</p></div>
+        <h3 class="subhead">Dins d’un examen</h3>
+        <div class="feature"><div class="feature-title">Estadístiques</div><p>La nota mitjana, la nota que es repeteix més, quants han aprovat, com es reparteixen les notes i quines preguntes s’han fallat i encertat més. Si fas servir criteris d’avaluació, també hi veuràs la mitjana de la classe en cadascun.</p></div>
+        <div class="feature"><div class="feature-title">Fulls corregits</div><p>La llista d’alumnes amb la seva nota. Toca un full per veure la foto amb les respostes marcades i, si fas servir criteris, els percentatges d’aquell alumne.</p></div>
+        <div class="feature"><div class="feature-title">Canviar una resposta a mà</div><p>Dins del full, toca <b>Edita les respostes</b>, canvia el que calgui i desa. La nota es torna a calcular sola.</p></div>
+        <div class="feature"><div class="feature-title">Assignar un full a un alumne</div><p>Si un full s’ha quedat sense alumne, obre’l, toca <b>Assigna a un alumne</b> i tria qui és.</p></div>
+        <div class="feature"><div class="feature-title">Exporta les notes</div><p>Crea un fitxer que s’obre amb l’Excel o que pots passar al teu quadern de notes. Porta el número i el nom de cada alumne, el model, els encerts, els errors, les respostes en blanc, la nota i, si en fas servir, el percentatge de cada criteri. El pots enviar per correu, desar a Drive, etc.</p></div>
+        <div class="feature"><div class="feature-title">Aplica els ajustos de plantilla</div><p>Si canvies la plantilla després de corregir (una resposta correcta, la penalització, els punts…), aquest botó torna a calcular totes les notes de l’examen. No cal tornar a escanejar res.</p></div>
+        <div class="feature"><div class="feature-title">Canviar la nota màxima d’un examen</div><p>Toca on diu «Sobre 10» per calcular les notes d’aquell examen sobre un altre número (per exemple, sobre 100). Només afecta aquell examen.</p></div>
+        <div class="feature"><div class="feature-title">Eliminar</div><p>Llisca un full cap a l’esquerra per eliminar-lo, o fes servir <b>Elimina l’examen sencer</b>, al final de la pantalla.</p></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="settings" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Ajustos</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <div class="feature"><div class="feature-title">Aparença</div><p>Tria com vols veure l’app: <b>Clar</b> (fons blanc), <b>Fosc</b> (fons negre, més còmode de nit) o <b>Automàtic</b> (canvia sol, igual que el teu mòbil).</p></div>
+        <div class="feature"><div class="feature-title">Idioma</div><p>L’idioma de l’app. «Automàtic» fa servir el del teu mòbil.</p></div>
+        <div class="feature"><div class="feature-title">Obre el tutorial d’ús</div><p>Obre aquesta guia.</p></div>
+        <div class="feature"><div class="feature-title">Contrasenya de les còpies</div><p>Protegeix les còpies de seguretat amb una contrasenya. Només l’has de posar una vegada i després es fa servir sola. Te la demanarà si recuperes una còpia en un altre mòbil, així que apunta-la en un lloc segur.</p></div>
+        <div class="feature"><div class="feature-title">Desa la còpia de seguretat</div><p>Desa-ho tot (classes, alumnat, exàmens i notes) en un fitxer que pots portar a Drive, a l’ordinador o a un llapis de memòria. Fes-ho de tant en tant: si perds el mòbil o en canvies, no perdràs res.</p></div>
+        <div class="feature"><div class="feature-title">Restaura la còpia de seguretat</div><p>Recupera les teves dades a partir d’una còpia. Compte: substitueix tot el que hi hagi ara a l’app.</p></div>
+        <div class="feature"><div class="feature-title">Torna a veure el tour</div><p>Repeteix la presentació que surt la primera vegada que obres l’app.</p></div>
+        <div class="feature"><div class="feature-title">Contacte i privacitat</div><p>Escriu-nos un correu si tens dubtes o problemes, o consulta la política de privacitat.</p></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="help-circle" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Si alguna cosa no funciona</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <div class="feature"><div class="feature-title">L’app no llegeix bé el full</div><p>Busca un lloc amb més llum o encén el flaix, posa el full pla i encaixa’l bé al marc. S’han de veure els 4 quadrats negres de les cantonades, i no giris ni el full ni el mòbil. Si tot i així falla alguna resposta, la pots canviar a mà a la pantalla de revisió.</p></div>
+        <div class="feature"><div class="feature-title">M’he equivocat en una resposta correcta i ja havia corregit</div><p>Arregla la plantilla i desa. Després, a <b>Resultats</b>, obre l’examen i toca <b>Aplica els ajustos de plantilla</b>.</p></div>
+        <div class="feature"><div class="feature-title">No sé de qui és un full</div><p>Passa si l’alumne no ha escrit bé el codi. Desa’l amb <b>Desa sense assignar</b> i, més tard, a <b>Resultats</b>, obre’l i toca <b>Assigna a un alumne</b>.</p></div>
+        <div class="feature"><div class="feature-title">He canviat de mòbil</div><p>Si havies fet una còpia de seguretat, instal·la l’app al mòbil nou i, a <b>Ajustos</b>, toca <b>Restaura la còpia de seguretat</b>.</p></div>
+      </div>
+    </div>
+
   </main>
 </div>
 
 <div data-lang="en">
-  <header><h1>FastGrade</h1><p>App user guide</p></header>
+  <header><h1>FastGrade</h1><p>Step-by-step user guide</p></header>
   <div class="lang-bar">
     <button class="lang-btn" onclick="setLang('ca')">Català</button>
     <button class="lang-btn active" onclick="setLang('en')">English</button>
     <button class="lang-btn" onclick="setLang('es')">Español</button>
-    <button class="lang-btn" onclick="setLang('eu')">Euskera</button>
+    <button class="lang-btn" onclick="setLang('eu')">Euskara</button>
     <button class="lang-btn" onclick="setLang('gl')">Galego</button>
   </div>
   <main>
-    <div class="section open"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="home" class="section-icon-svg"></ion-icon></span><span class="section-title">Home</span><span class="chevron">▶</span></div>
+
+    <div class="section open">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="rocket" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Start here</span>
+        <span class="chevron">▶</span>
+      </div>
       <div class="section-body">
-        <p>The main screen shows a summary of your work: exams pending correction and recently graded ones.</p>
-        <div class="feature"><div class="feature-title">Scan exam</div><p>Large button at the top. Takes you directly to the scan tab to grade a new sheet.</p></div>
-        <div class="feature"><div class="feature-title">Pending</div><p>Exams that still have sheets left to scan. Tap one to go to its detail.</p></div>
-        <div class="feature"><div class="feature-title">Recently graded</div><p>The latest graded sheets with the student's name and score.</p></div>
-        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> All data is stored only on your device. The app never sends anything to a server.</div>
+        <p>FastGrade grades multiple-choice tests with your phone’s camera. You don’t need any tech skills: if you can take a photo with your phone, you can use FastGrade.</p>
+        <h3 class="subhead">How it works, in 5 steps</h3>
+        <ol class="steps"><li><b>Create your class.</b> In the <b>Classes</b> tab, create the group and add your students. The app gives each student a 4-digit number, which works like their “ID card” on the test.</li><li><b>Create the test.</b> In the <b>Templates</b> tab, say how many questions it has and mark the correct answer for each one.</li><li><b>Print the answer sheets</b> from that same template. Students answer by filling in the bubbles with a pen.</li><li><b>Take a photo of each sheet</b> in the <b>Scan</b> tab. The app reads the answers and works out the grade on its own.</li><li><b>Check the grades</b> in the <b>Results</b> tab: each student’s grade, class statistics and a file you can open in Excel.</li></ol>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> What is a “template”?</div><p>It’s your test inside the app. It stores how many questions it has, which answer is right for each one and how you want it graded. You create it once and can use it with all your classes.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Everything is stored only on your phone. The app sends nothing to the internet: not your students’ names, not their grades, not the photos.</div>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="people" class="section-icon-svg"></ion-icon></span><span class="section-title">Classes</span><span class="chevron">▶</span></div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="home" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Home</span>
+        <span class="chevron">▶</span>
+      </div>
       <div class="section-body">
-        <p>Organise your students by class. Each student has a 4-digit code they fill in on the exam sheet to identify themselves.</p>
-        <div class="feature"><div class="feature-title">New class</div><p>Button at the bottom. Enter the class name (e.g. "Year 10 A").</p></div>
-        <div class="feature"><div class="feature-title">Rename / Change colour / Delete</div><p>Long-press a class to access options. Swipe left to delete.</p></div>
-        <div class="feature"><div class="feature-title">Add student</div><p>Inside the class, tap "Add student". A 4-digit code is assigned automatically.</p></div>
-        <div class="feature"><div class="feature-title">Edit / Delete student</div><p>Tap a student to edit their name or code. Swipe left to delete.</p></div>
-        <div class="feature"><div class="feature-title">Randomise codes</div><p>Changes all student codes in the class at once.</p></div>
-        <div class="feature"><div class="feature-title">Import students (Excel/CSV)</div><p>Import a student list from an Excel or CSV file.</p></div>
+        <p>This is the first screen you see when you open the app. At a glance, it shows you what’s still to do.</p>
+        <div class="feature"><div class="feature-title">Scan a test</div><p>The big button at the top. It takes you straight to the camera to grade.</p></div>
+        <div class="feature"><div class="feature-title">Still to grade</div><p>Tests you’ve started grading where some students still haven’t been scanned. Tap one to go to that test.</p></div>
+        <div class="feature"><div class="feature-title">Recently graded</div><p>The last sheets you graded, with the student’s name and grade.</p></div>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="document-text" class="section-icon-svg"></ion-icon></span><span class="section-title">Templates</span><span class="chevron">▶</span></div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="people" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Classes</span>
+        <span class="chevron">▶</span>
+      </div>
       <div class="section-body">
-        <p>A template defines how the exam works: number of questions, answer options, scoring and correct answers.</p>
-        <div class="feature"><div class="feature-title">New / Edit / Duplicate / Delete</div><p>Long-press a template for options, or swipe left to delete.</p></div>
-        <div class="feature"><div class="feature-title">Questions and options</div><p>How many questions the exam has and how many answer choices per question.</p></div>
-        <div class="feature"><div class="feature-title">Penalty</div><p>How much each wrong answer deducts. 0 means no penalty.</p></div>
-        <div class="feature"><div class="feature-title">Exam models</div><p>If you hand out multiple versions (A, B, C…) with different correct answers, add each model. The app will detect which model each sheet is when scanning.</p></div>
-        <div class="feature"><div class="feature-title">Print sheets</div><p>Generate a PDF with a blank sheet or one sheet per student with their name and code pre-printed.</p></div>
+        <p>Here are your groups and their students. Each student has a <b>4-digit code</b>: they write it on the answer sheet so the app knows whose sheet it is.</p>
+        <h3 class="subhead">Create a class and add students</h3>
+        <ol class="steps"><li>Tap <b>New class</b> and type its name (for example, “10th grade A”).</li><li>Tap the class to open it.</li><li>Tap <b>Add student</b> and type their first and last name. The 4-digit code is added automatically.</li><li>If you already have the list in Excel, tap <b>Import students (Excel/CSV)</b> and choose the file. The app finds the first and last names on its own, so you don’t have to type them one by one.</li></ol>
+        <h3 class="subhead">Other things you can do</h3>
+        <div class="feature"><div class="feature-title">Change a student</div><p>Tap their name to change their name or code, or to delete them.</p></div>
+        <div class="feature"><div class="feature-title">Change every code</div><p><b>Randomize codes</b> gives every student in the class a new code at once.</p></div>
+        <div class="feature"><div class="feature-title">Rename a class or change its color</div><p>In the list of classes, tap the three dots (…) next to the class or press and hold it. Colors help you tell classes apart at a glance.</p></div>
+        <div class="feature"><div class="feature-title">Delete</div><p>Swipe left on a student or a class. Careful: deleting a class also deletes its students and tests.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Two students can’t have the same code. If you try to repeat one, the app warns you.</div>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="camera" class="section-icon-svg"></ion-icon></span><span class="section-title">Scan</span><span class="chevron">▶</span></div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="document-text" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Templates: create the test</span>
+        <span class="chevron">▶</span>
+      </div>
       <div class="section-body">
-        <p>Grade an exam sheet by taking a photo. The app reads the answers automatically and calculates the score.</p>
-        <div class="feature"><div class="feature-title">Choose class and template</div><p>Select which class and template the exam belongs to.</p></div>
-        <div class="feature"><div class="feature-title">Flash</div><p>Toggle the camera flash for better lighting.</p></div>
-        <div class="feature"><div class="feature-title">Alignment frame</div><p>Fit the entire sheet inside the white frame before taking the photo.</p></div>
-        <div class="feature"><div class="feature-title">Retake / Use this photo</div><p>Retake if the photo didn't come out well, or confirm it to analyse the sheet.</p></div>
-        <div class="feature"><div class="feature-title">Review: edit answers</div><p>Tap a bubble in the photo or a letter in the list to change a detected answer.</p></div>
-        <div class="feature"><div class="feature-title">Accept / Discard</div><p>Accept to save the result or discard to cancel.</p></div>
-        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> For best results: good lighting, flat sheet with no shadows, fully inside the frame.</div>
+        <p>A template is your test inside the app. Tap a template in the list to open it and change anything you like. With the three dots (…), or by pressing and holding it, you can also <b>duplicate</b> it (to make a similar test without starting from scratch) or <b>delete</b> it.</p>
+        <h3 class="subhead">Create a test, step by step</h3>
+        <ol class="steps"><li>In the <b>Templates</b> tab, tap <b>New template</b>.</li><li>Type the <b>title</b> and, if you want, the subject and school year. They are printed at the top of the sheet. You can also add your <b>school logo</b>.</li><li>Choose the <b>sheet language</b>: this is the language of the printed text, not of the app.</li><li>Type the <b>number of questions</b> and choose how many <b>options</b> each one has (from A–B up to A–B–C–D–E).</li><li>Decide whether wrong answers <b>take points off</b>, and whether blank answers do too. To keep it simple, leave the penalty at 0: wrong answers then take nothing off.</li><li>Choose the <b>maximum grade</b>, for example 10 or 100.</li><li>Under <b>Correct answers</b>, tap the right letter for each question.</li><li>Tap <b>Create template</b>. If you’re changing a template that already exists, the button says <b>Save changes</b>.</li></ol>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> The penalty, explained simply</div><p>It’s what each wrong answer takes off. For example, with 0.25, four wrong answers take off as much as one right answer gives. If you choose <b>Automatic</b>, the app uses the usual formula for multiple-choice tests: with 4 options, each wrong answer takes off a third of a right answer.</p></div>
+        <h3 class="subhead">Print the answer sheets</h3>
+        <p>Open the template and scroll down to <b>Print sheets</b>. You have two options:</p>
+        <div class="feature"><div class="feature-title">Blank sheet</div><p>A blank sheet. The student writes their 4-digit code by hand. Make as many photocopies as you like.</p></div>
+        <div class="feature"><div class="feature-title">Sheets for a class</div><p>One sheet per student, with their name and code already printed. Choose the class and the test date.</p></div>
+        <div class="feature"><div class="feature-title">2 tests per page</div><p>If the test has few questions, you can print two sheets on each page and cut it in half. It saves paper.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> The sheets come out as a PDF: print them from your phone or send them to your computer.</div>
+        <p>The next sections explain how to give some questions more points than others, accept more than one answer, work with assessment criteria and hand out several versions of the test. <b>All of it is optional</b>: if you don’t need it, skip it.</p>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="stats-chart" class="section-icon-svg"></ion-icon></span><span class="section-title">Results</span><span class="chevron">▶</span></div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="podium" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Questions worth more than others</span>
+        <span class="chevron">▶</span>
+      </div>
       <div class="section-body">
-        <p>View all graded exams grouped by class, with detailed statistics and grade export.</p>
-        <div class="feature"><div class="feature-title">Statistics</div><p>Average score, mode, pass rate, score distribution, most-answered and most-missed questions.</p></div>
-        <div class="feature"><div class="feature-title">Export grades</div><p>Generate an Excel file with all grades: student number, name, model, correct/wrong/blank answers and final score.</p></div>
-        <div class="feature"><div class="feature-title">Edit answers / Assign student</div><p>Manually correct any answer or reassign a sheet to a different student.</p></div>
+        <p>Normally every question is worth the same. If you want one to count for more (for example, because it’s harder), you can give it more points.</p>
+        <h3 class="subhead">How to do it</h3>
+        <ol class="steps"><li>Open the template.</li><li>Under <b>Points per question</b>, choose <b>Custom</b>.</li><li>In the <b>Correct answers</b> list, <b>−</b> and <b>+</b> buttons appear next to each question. Use them to set how many points that question is worth.</li><li>Above the list you’ll see the test’s <b>total points</b>.</li><li>Tap <b>Save changes</b>.</li></ol>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> Example</div><p>A 10-question test: the first 8 are worth 1 point each and the last 2 are worth 3 points each. That’s 14 points in total. The final grade is still given out of 10 (or whatever maximum grade you chose): the app does the maths for you. A student who only gets the last 2 right earns 6 of the 14 points, which is 4.29 out of 10.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> If you use a penalty, getting a higher-value question wrong also takes off more.</div>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="settings" class="section-icon-svg"></ion-icon></span><span class="section-title">Settings</span><span class="chevron">▶</span></div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="checkmark-done" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">More than one correct answer</span>
+        <span class="chevron">▶</span>
+      </div>
       <div class="section-body">
-        <div class="feature"><div class="feature-title">Language</div><p>Change the app language. "Automatic" uses the device language.</p></div>
-        <div class="feature"><div class="feature-title">Backup</div><p>Create a file with all your data to save wherever you prefer, with or without photos.</p></div>
-        <div class="feature"><div class="feature-title">Restore backup</div><p>Recover data from a previously saved backup.</p></div>
-        <div class="feature"><div class="feature-title">Contact support</div><p>Opens your mail app with a pre-filled message to contact the FastGrade team.</p></div>
+        <p>Sometimes a question has two valid answers, or you realize after the test that a question was badly worded and another option should also count. You can mark several letters as correct in the same question.</p>
+        <h3 class="subhead">How to do it</h3>
+        <ol class="steps"><li>Open the template.</li><li>Under <b>Correct answers</b>, tap every letter that should count as right for that question. Tap a marked letter again to unmark it.</li><li>Tap <b>Save changes</b>.</li></ol>
+        <p>When grading, if the student marked any of those letters, it counts as correct.</p>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> Example</div><p>You’ve already graded the test and realize that B is also correct in question 12. Open the template, also tap B in question 12 and save. Then go to <b>Results</b>, open that test and tap <b>Apply template settings</b>: the app recalculates every grade without scanning anything again.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Every question must always have at least one correct answer, so the last marked letter can’t be removed.</div>
       </div>
     </div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="pricetags" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Assessment criteria</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <p>If your syllabus uses assessment criteria, learning outcomes or competences, you can say which criterion each question assesses. The app then tells you, for each student, how much of each criterion they have mastered. For example: “Emma: AC 2.1 → 90%, AC 2.3 → 40%”.</p>
+        <h3 class="subhead">1. Create the criteria</h3>
+        <ol class="steps"><li>Open the template.</li><li>In the <b>Assessment criteria</b> section, tap <b>+ Add criterion</b>.</li><li>Type a short name, as it appears in your syllabus (for example, “AC 2.1” or “LO1”).</li><li>Repeat for each criterion the test assesses.</li></ol>
+        <p>If you make a mistake, tap the criterion to rename or delete it.</p>
+        <h3 class="subhead">2. Say what each question assesses</h3>
+        <p>In the <b>Correct answers</b> list, your criteria appear under the letters of each question. Tap the ones that question assesses (they stay highlighted). A question can assess one criterion, several or none. When you’re done, tap <b>Save changes</b>.</p>
+        <h3 class="subhead">3. See the results</h3>
+        <div class="feature"><div class="feature-title">For the whole class</div><p>In <b>Results</b>, open the test. Under <b>By criterion</b> you’ll see the class average for each criterion.</p></div>
+        <div class="feature"><div class="feature-title">For each student</div><p>In the same test, tap a student’s sheet to see their percentages.</p></div>
+        <div class="feature"><div class="feature-title">In Excel</div><p>When you tap <b>Export grades</b>, the file includes one column per criterion with each student’s percentage. That’s usually exactly what you need to report grades by criterion.</p></div>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> How is the percentage worked out?</div><p>Criterion AC 2.1 is in questions 1, 2, 3 and 4. Emma gets 3 of the 4 right, so she has 75% in AC 2.1. If the questions are worth different points, that’s taken into account. The penalty doesn’t apply here: what’s measured is how much of the criterion the student knows, not their grade.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> The bar is green from 50% up and red below that, always with the number next to it.</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="copy" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Several versions of the test (A, B, C, D)</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <p>To stop students copying, you can hand out different versions of the same test: version A, version B, and so on, with the questions in a different order and the answers moved around. The app grades each sheet with its own version.</p>
+        <h3 class="subhead">How it works in class</h3>
+        <p>Every answer sheet is printed the same. Each student marks on their sheet, in the version box, which version they got (A, B, C or D). When scanning, the app reads that box and uses the correct answers for that version.</p>
+        <h3 class="subhead">1. Add the versions</h3>
+        <ol class="steps"><li>Open the template.</li><li>Under <b>Test versions</b>, tap <b>+ B</b> (and <b>+ C</b> or <b>+ D</b> if you need them).</li><li>Tap a version’s letter to see and fill in its answers.</li></ol>
+        <h3 class="subhead">2. Mark the correct answers for each version</h3>
+        <p>With version B selected, mark for each question the letter that is correct <b>in version B</b>. If you moved the answers around, it won’t be the same as in A. That’s fine: each version has its own correct answers.</p>
+        <h3 class="subhead">3. If you changed the order of the questions: the “= A” box</h3>
+        <p>In versions B, C and D, there’s a box labeled <b>= A</b> next to each question. Type in it the number that same question has in version A.</p>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> Example</div><ul><li>Question 1 in version B is question 7 in version A → in question 1 of B, type <b>7</b>.</li><li>Question 2 in version B is question 3 in version A → in question 2 of B, type <b>3</b>.</li><li>And so on for every question.</li></ul></div>
+        <p>What is it for? Points per question and assessment criteria are set up <b>only in version A</b>. With this box, the app knows that question 1 in B is the same as question 7 in A, and applies its points and criteria. The most-missed and most-correct question statistics also group every student by the real question, whichever version they got.</p>
+        <div class="feature"><div class="feature-title">If you didn’t change the order</div><p>Don’t touch anything: the boxes already have the same number as the question.</p></div>
+        <div class="feature"><div class="feature-title">If a box turns red</div><p>You’ve typed the same version A number in two questions. Each question from A must appear only once. The app won’t let you save until you fix it.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> If you change the template after grading a test, open that test (in <b>Results</b>) and tap <b>Apply template settings</b> so the grades are recalculated.</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="camera" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Scan: grade the sheets</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <h3 class="subhead">How to grade</h3>
+        <ol class="steps"><li>Go to the <b>Scan</b> tab.</li><li>Choose the <b>class</b> and then the <b>template</b> (the test).</li><li>Put the sheet on the table and fit it inside the white frame on the screen.</li><li>Tap the big round button to take the photo. If it didn’t come out well, tap <b>Retake</b>; if it’s fine, tap <b>Use this photo</b>.</li><li>Check what the app has read and tap <b>Accept</b> to save it. You can now move on to the next sheet.</li></ol>
+        <h3 class="subhead">The review screen</h3>
+        <div class="feature"><div class="feature-title">The colors</div><p>Green: the student got it right. Red: they marked a wrong answer. Green ring: where the correct answer was. You can zoom in on the photo with two fingers.</p></div>
+        <div class="feature"><div class="feature-title">Fix a reading</div><p>If the app misread an answer, tap the right bubble on the photo or the letter in the list below.</p></div>
+        <div class="feature"><div class="feature-title">The student</div><p>The app reads the 4-digit code on the sheet and tells you whose it is. If it misread it, you can change it. If you don’t know whose it is, tap <b>Save unassigned</b> and assign it later.</p></div>
+        <div class="feature"><div class="feature-title">The version</div><p>If the test has several versions, the app tells you which one it detected. If it got it wrong, change it.</p></div>
+        <div class="feature"><div class="feature-title">Discard</div><p>If you don’t want to save that sheet, tap <b>Discard</b> and nothing is saved.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> For a good reading: good light, a flat sheet with no shadows, well inside the frame. If there’s little light, turn on the flash.</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="stats-chart" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Results: grades and statistics</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <p>Here are all your graded tests, grouped by class. Tap a class to see its tests, and tap a test to see all its details.</p>
+        <div class="feature"><div class="feature-title">Delete a class’s tests</div><p>Swipe the class to the left. Its graded tests are deleted, but the class and its students stay.</p></div>
+        <h3 class="subhead">Inside a test</h3>
+        <div class="feature"><div class="feature-title">Statistics</div><p>The average grade, the most common grade, how many passed, how the grades are spread and which questions were missed and answered correctly most. If you use assessment criteria, you’ll also see the class average for each one.</p></div>
+        <div class="feature"><div class="feature-title">Graded sheets</div><p>The list of students with their grade. Tap a sheet to see the photo with the marked answers and, if you use criteria, that student’s percentages.</p></div>
+        <div class="feature"><div class="feature-title">Change an answer by hand</div><p>Inside the sheet, tap <b>Edit answers</b>, change what you need and save. The grade is recalculated automatically.</p></div>
+        <div class="feature"><div class="feature-title">Assign a sheet to a student</div><p>If a sheet has no student, open it, tap <b>Assign to student</b> and choose who it belongs to.</p></div>
+        <div class="feature"><div class="feature-title">Export grades</div><p>Creates a file that opens in Excel or can be imported into your gradebook. It has each student’s number and name, their version, right, wrong and blank answers, their grade and, if you use them, the percentage for each criterion. You can email it, save it to Drive, etc.</p></div>
+        <div class="feature"><div class="feature-title">Apply template settings</div><p>If you change the template after grading (a correct answer, the penalty, the points…), this button recalculates every grade in the test. You don’t need to scan anything again.</p></div>
+        <div class="feature"><div class="feature-title">Change a test’s maximum grade</div><p>Tap where it says “Out of 10” to grade that test out of a different number (for example, out of 100). It only affects that test.</p></div>
+        <div class="feature"><div class="feature-title">Delete</div><p>Swipe a sheet to the left to delete it, or use <b>Delete entire test</b> at the bottom of the screen.</p></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="settings" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Settings</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <div class="feature"><div class="feature-title">Appearance</div><p>Choose how you want the app to look: <b>Light</b> (white background), <b>Dark</b> (black background, easier on the eyes at night) or <b>Automatic</b> (changes on its own, just like your phone).</p></div>
+        <div class="feature"><div class="feature-title">Language</div><p>The app’s language. “Automatic” uses your phone’s language.</p></div>
+        <div class="feature"><div class="feature-title">View usage tutorial</div><p>Opens this guide.</p></div>
+        <div class="feature"><div class="feature-title">Backup password</div><p>Protects your backups with a password. You only set it once; after that it’s used automatically. You’ll be asked for it if you restore a backup on another phone, so write it down somewhere safe.</p></div>
+        <div class="feature"><div class="feature-title">Save backup</div><p>Saves everything (classes, students, tests and grades) in a file you can keep in Drive, on your computer or on a USB stick. Do it every now and then: if you lose or change your phone, you won’t lose anything.</p></div>
+        <div class="feature"><div class="feature-title">Restore backup</div><p>Brings your data back from a backup. Careful: it replaces everything currently in the app.</p></div>
+        <div class="feature"><div class="feature-title">Watch the tour again</div><p>Replays the introduction shown the first time you open the app.</p></div>
+        <div class="feature"><div class="feature-title">Contact and privacy</div><p>Email us if you have questions or problems, or read the privacy policy.</p></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="help-circle" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">If something isn’t working</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <div class="feature"><div class="feature-title">The app doesn’t read the sheet properly</div><p>Find a brighter spot or turn on the flash, lay the sheet flat and fit it well inside the frame. The 4 black squares in the corners must be visible, and don’t turn the sheet or the phone. If an answer is still wrong, you can change it by hand on the review screen.</p></div>
+        <div class="feature"><div class="feature-title">I got a correct answer wrong and had already graded</div><p>Fix the template and save. Then, in <b>Results</b>, open the test and tap <b>Apply template settings</b>.</p></div>
+        <div class="feature"><div class="feature-title">I don’t know whose sheet this is</div><p>This happens when a student doesn’t write their code properly. Save it with <b>Save unassigned</b> and later, in <b>Results</b>, open it and tap <b>Assign to student</b>.</p></div>
+        <div class="feature"><div class="feature-title">I’ve changed phones</div><p>If you made a backup, install the app on the new phone and, in <b>Settings</b>, tap <b>Restore backup</b>.</p></div>
+      </div>
+    </div>
+
   </main>
 </div>
 
 <div data-lang="eu">
-  <header><h1>FastGrade</h1><p>Aplikazioaren erabiltzaile-gida</p></header>
+  <header><h1>FastGrade</h1><p>Erabiltzeko gida, urratsez urrats</p></header>
   <div class="lang-bar">
     <button class="lang-btn" onclick="setLang('ca')">Català</button>
     <button class="lang-btn" onclick="setLang('en')">English</button>
     <button class="lang-btn" onclick="setLang('es')">Español</button>
-    <button class="lang-btn active" onclick="setLang('eu')">Euskera</button>
+    <button class="lang-btn active" onclick="setLang('eu')">Euskara</button>
     <button class="lang-btn" onclick="setLang('gl')">Galego</button>
   </div>
   <main>
-    <div class="section open"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="home" class="section-icon-svg"></ion-icon></span><span class="section-title">Hasiera</span><span class="chevron">▶</span></div>
+
+    <div class="section open">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="rocket" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Hasi hemen</span>
+        <span class="chevron">▶</span>
+      </div>
       <div class="section-body">
-        <p>Pantaila nagusiak zure lanaren laburpena erakusten du: zuzentzeke dauden azterketak eta azken zuzenduak.</p>
-        <div class="feature"><div class="feature-title">Azterketa eskaneatu</div><p>Goiko botoi handia. Orri berri bat zuzentzeko eskaneatzeko fitxara eramaten zaitu.</p></div>
-        <div class="feature"><div class="feature-title">Zuzentzeke</div><p>Oraindik eskaneatze falta duten orriak dituzten azterketak.</p></div>
-        <div class="feature"><div class="feature-title">Berriki zuzendua</div><p>Azken orri zuzenduak ikaslearen izenarekin eta notarekin.</p></div>
-        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Datu guztiak zure gailuan soilik gordetzen dira. Aplikazioak ez du ezer zerbitzarira bidaltzen.</div>
+        <p>FastGradek test motako azterketak zuzentzen ditu mugikorraren kamerarekin. Ez duzu informatika jakin behar: mugikorrarekin argazki bat ateratzen badakizu, FastGrade erabiltzen badakizu.</p>
+        <h3 class="subhead">Nola funtzionatzen duen, 5 urratsetan</h3>
+        <ol class="steps"><li><b>Sortu zure ikasgela.</b> <b>Ikasgelak</b> fitxan, sortu taldea eta gehitu ikasleak. Aplikazioak 4 zenbakiko kode bat ematen dio ikasle bakoitzari, azterketako «NANa» balitz bezala.</li><li><b>Sortu azterketa.</b> <b>Ereduak</b> fitxan, adierazi zenbat galdera dituen eta markatu galdera bakoitzaren erantzun zuzena.</li><li><b>Inprimatu erantzun-orriak</b> eredu beretik. Ikasleek boligrafoz betetzen dituzte burbuilak.</li><li><b>Atera argazki bat orri bakoitzari</b> <b>Eskaneatu</b> fitxan. Aplikazioak erantzunak irakurtzen ditu eta nota bera jartzen du.</li><li><b>Ikusi notak</b> <b>Emaitzak</b> fitxan: ikasle bakoitzaren nota, ikasgelaren estatistikak eta Excelen irekitzeko fitxategi bat.</li></ol>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> Zer da «eredu» bat?</div><p>Zure azterketa da, aplikazioaren barruan. Zenbat galdera dituen, galdera bakoitzaren erantzun zuzena zein den eta nola puntuatu nahi duzun gordetzen du. Behin sortzen duzu, eta zure ikasgela guztiekin erabil dezakezu.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Dena zure mugikorrean bakarrik gordetzen da. Aplikazioak ez du ezer bidaltzen internetera: ez ikasleen izenik, ez notarik, ez argazkirik.</div>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="people" class="section-icon-svg"></ion-icon></span><span class="section-title">Taldeak</span><span class="chevron">▶</span></div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="home" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Hasiera</span>
+        <span class="chevron">▶</span>
+      </div>
       <div class="section-body">
-        <p>Antolatu zure ikasleak taldeetan. Ikasle bakoitzak 4 digituko kode bat du azterketa-orrian idazteko.</p>
-        <div class="feature"><div class="feature-title">Talde berria</div><p>Beheko botoia. Taldearen izena eskatzen du.</p></div>
-        <div class="feature"><div class="feature-title">Ikaslea gehitu / editatu / ezabatu</div><p>Taldean sartu eta ikasleen aukerak erabiltzeko.</p></div>
-        <div class="feature"><div class="feature-title">Ikasleak inportatu (Excel/CSV)</div><p>Ikasle-zerrenda Excel edo CSV fitxategi batetik inporta ezazu.</p></div>
+        <p>Aplikazioa irekitzean ikusten duzun lehen pantaila da. Begirada batean, zer duzun egiteko esaten dizu.</p>
+        <div class="feature"><div class="feature-title">Azterketa eskaneatu</div><p>Goiko botoi handia. Zuzenean kamerara eramaten zaitu zuzentzeko.</p></div>
+        <div class="feature"><div class="feature-title">Zuzentzeko</div><p>Zuzentzen hasi zaren azterketak, oraindik ikasle batzuk eskaneatzeko dituztenak. Sakatu bat azterketa horretara joateko.</p></div>
+        <div class="feature"><div class="feature-title">Azkenaldian zuzendutakoak</div><p>Zuzendu dituzun azken orriak, ikaslearen izenarekin eta notarekin.</p></div>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="document-text" class="section-icon-svg"></ion-icon></span><span class="section-title">Txantiloiak</span><span class="chevron">▶</span></div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="people" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Ikasgelak</span>
+        <span class="chevron">▶</span>
+      </div>
       <div class="section-body">
-        <p>Txantiloi batek azterketaren ezaugarriak definitzen ditu: galdera kopurua, aukerak, puntuazioa eta erantzun zuzenak.</p>
-        <div class="feature"><div class="feature-title">Txantiloi berria / editatu / bikoiztu / ezabatu</div><p>Txantiloi bat luze sakatuz aukeretara sar zaitezke.</p></div>
-        <div class="feature"><div class="feature-title">Azterketa-ereduak</div><p>Erantzun ezberdinak dituzten bertsio anitz (A, B, C…) badituzu, eredu bakoitza gehitu. Aplikazioak eskaneatzean automatikoki detektatuko du zein eredu den.</p></div>
-        <div class="feature"><div class="feature-title">Orriak inprimatu</div><p>PDF bat sortu orri huts batekin edo ikasle bakoitzarentzat izen eta kodearekin inprimatuta.</p></div>
+        <p>Hemen daude zure taldeak eta haien ikasleak. Ikasle bakoitzak <b>4 zenbakiko kode</b> bat du: azterketa-orrian idazten du, aplikazioak jakin dezan norena den.</p>
+        <h3 class="subhead">Ikasgela bat sortu eta ikasleak gehitu</h3>
+        <ol class="steps"><li>Sakatu <b>Ikasgela berria</b> eta idatzi haren izena (adibidez, «3. DBH A»).</li><li>Sakatu ikasgela barruan sartzeko.</li><li>Sakatu <b>Ikaslea gehitu</b> eta idatzi izena eta abizenak. 4 zenbakiko kodea berez jartzen da.</li><li>Zerrenda Excel batean baduzu, sakatu <b>Ikasleak inportatu (Excel/CSV)</b> eta aukeratu fitxategia. Aplikazioak berak aurkitzen ditu izenak eta abizenak: ez dituzu banan-banan idatzi behar.</li></ol>
+        <h3 class="subhead">Egin ditzakezun beste gauza batzuk</h3>
+        <div class="feature"><div class="feature-title">Ikasle bat aldatu</div><p>Sakatu haren izena izena edo kodea aldatzeko, edo ezabatzeko.</p></div>
+        <div class="feature"><div class="feature-title">Kode guztiak aldatu</div><p><b>Kodeak ausaz aldatu</b> botoiak kode berri bat ematen die ikasgelako ikasle guztiei aldi berean.</p></div>
+        <div class="feature"><div class="feature-title">Ikasgela baten izena edo kolorea aldatu</div><p>Ikasgelen zerrendan, sakatu ikasgelaren hiru puntuak (…) edo sakatu luze. Koloreak begirada batean bereizteko balio du.</p></div>
+        <div class="feature"><div class="feature-title">Ezabatu</div><p>Lerratu hatza ezkerrera ikasle edo ikasgela baten gainean. Kontuz: ikasgela bat ezabatzen baduzu, haren ikasleak eta azterketak ere ezabatzen dira.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Bi ikaslek ezin dute kode bera izan. Bat errepikatzen saiatzen bazara, aplikazioak abisatu egingo dizu.</div>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="camera" class="section-icon-svg"></ion-icon></span><span class="section-title">Eskaneatu</span><span class="chevron">▶</span></div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="document-text" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Ereduak: azterketa sortu</span>
+        <span class="chevron">▶</span>
+      </div>
       <div class="section-body">
-        <p>Argazki bat ateraz azterketa-orri bat zuzendu. Aplikazioak erantzunak automatikoki irakurtzen ditu eta nota kalkulatzen du.</p>
-        <div class="feature"><div class="feature-title">Taldea eta txantiloia aukeratu</div><p>Azterketa zein taldetakoa den eta zein txantiloirekin egin zen hautatu.</p></div>
-        <div class="feature"><div class="feature-title">Flasha</div><p>Kameraren flasha aktibatu edo desaktibatu argiztapena hobetzeko.</p></div>
-        <div class="feature"><div class="feature-title">Argazkia errepikatu / Argazki hau erabili</div><p>Errepikatu argazkia ondo atera ez bada, edo baieztatu orria aztertzeko.</p></div>
-        <div class="feature"><div class="feature-title">Onartu / Baztertu</div><p>Onartu emaitza gordetzeko edo baztertu ezer ez gordetzeko.</p></div>
+        <p>Eredua zure azterketa da, aplikazioaren barruan. Sakatu zerrendako eredu bat irekitzeko eta nahi duzuna aldatzeko. Hiru puntuekin (…), edo luze sakatuta, <b>bikoiztu</b> ere egin dezakezu (antzeko azterketa bat hutsetik hasi gabe egiteko) edo <b>ezabatu</b>.</p>
+        <h3 class="subhead">Azterketa bat sortu, urratsez urrats</h3>
+        <ol class="steps"><li><b>Ereduak</b> fitxan, sakatu <b>Eredu berria</b>.</li><li>Idatzi <b>izenburua</b> eta, nahi baduzu, ikasgaia eta ikasturtea. Orriaren goialdean inprimatzen dira. <b>Ikastetxearen logotipoa</b> ere gehi dezakezu.</li><li>Aukeratu <b>orriaren hizkuntza</b>: inprimatutako testuen hizkuntza da, ez aplikazioarena.</li><li>Idatzi <b>galdera kopurua</b> eta aukeratu galdera bakoitzak zenbat <b>aukera</b> dituen (A-B-tik A-B-C-D-E-ra).</li><li>Erabaki erroreek <b>kentzen</b> duten eta erantzun hutsek ere kentzen duten. Gauzak erraz egin nahi badituzu, utzi zigorra 0-n: horrela erroreek ez dute ezer kentzen.</li><li>Aukeratu <b>gehieneko nota</b>. Normalean, 10.</li><li><b>Erantzun zuzenak</b> atalean, sakatu galdera bakoitzaren letra zuzena.</li><li>Sakatu <b>Eredua sortu</b>. Lehendik zegoen eredu bat aldatzen ari bazara, botoiak <b>Aldaketak gorde</b> dio.</li></ol>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> Zigorra, erraz azalduta</div><p>Errore bakoitzak kentzen duena da. Adibidez, 0,25ekin, lau errorek asmatze batek ematen duen bezainbeste kentzen dute. <b>Automatikoa</b> aukeratzen baduzu, aplikazioak testetako ohiko formula erabiltzen du: 4 aukerarekin, errore bakoitzak asmatze baten herena kentzen du.</p></div>
+        <h3 class="subhead">Erantzun-orriak inprimatu</h3>
+        <p>Ireki eredua eta jaitsi <b>Orriak inprimatu</b> ataleraino. Bi aukera dituzu:</p>
+        <div class="feature"><div class="feature-title">Izenik gabeko orria</div><p>Orri huts bat. Ikasleak eskuz idazten du bere 4 zenbakiko kodea. Nahi adina fotokopia egin ditzakezu.</p></div>
+        <div class="feature"><div class="feature-title">Ikasgela baten orriak</div><p>Orri bat ikasle bakoitzeko, izena eta kodea inprimatuta dituela. Aukeratu ikasgela eta azterketaren data.</p></div>
+        <div class="feature"><div class="feature-title">2 azterketa orriko</div><p>Azterketak galdera gutxi baditu, bi orri inprima ditzakezu folio bakoitzean eta erditik moztu. Papera aurrezten duzu.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Orriak PDF formatuan ateratzen dira: mugikorretik inprima ditzakezu edo ordenagailura bidali.</div>
+        <p>Hurrengo ataletan azaltzen da nola eman puntu gehiago galdera batzuei, nola onartu erantzun bat baino gehiago, nola lan egin ebaluazio-irizpideekin eta nola banatu azterketaren hainbat bertsio. <b>Dena da aukerakoa</b>: behar ez baduzu, jauzi egin.</p>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="stats-chart" class="section-icon-svg"></ion-icon></span><span class="section-title">Emaitzak</span><span class="chevron">▶</span></div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="podium" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Besteek baino gehiago balio duten galderak</span>
+        <span class="chevron">▶</span>
+      </div>
       <div class="section-body">
-        <p>Ikusi zuzendutako azterketa guztiak taldearen arabera, estatistika zehatzak eta notak esportatzeko aukerarekin.</p>
-        <div class="feature"><div class="feature-title">Estatistikak</div><p>Batez besteko nota, moda, gainditzen dutenen ehunekoa, notak banatzea.</p></div>
-        <div class="feature"><div class="feature-title">Notak esportatu</div><p>Excel fitxategi bat sortu nota guztiekin.</p></div>
+        <p>Normalean galdera guztiek berdin balio dute. Galderaren batek gehiago kontatzea nahi baduzu (adibidez, zailagoa delako), puntu gehiago eman diezazkiokezu.</p>
+        <h3 class="subhead">Nola egiten da</h3>
+        <ol class="steps"><li>Ireki eredua.</li><li><b>Puntuazioa galderaka</b> atalean, aukeratu <b>Pertsonalizatua</b>.</li><li><b>Erantzun zuzenak</b> zerrendan, galdera bakoitzaren ondoan <b>−</b> eta <b>+</b> botoiak agertzen dira. Erabili galdera horrek zenbat puntu balio duen adierazteko.</li><li>Zerrendaren gainean azterketaren <b>puntu guztiak</b> ikusiko dituzu.</li><li>Sakatu <b>Aldaketak gorde</b>.</li></ol>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> Adibidea</div><p>10 galderako azterketa bat: lehen 8ek puntu 1 balio dute, eta azken 2ek, 3 puntu bakoitzak. Guztira, 14 puntu. Azken nota 10etik ematen da oraindik ere (edo aukeratu duzun gehieneko notatik): aplikazioak berak egiten du hiruko erregela. Azken 2ak bakarrik asmatzen dituen ikasleak 14tik 6 puntu lortzen ditu, hau da, 4,29.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Zigorra erabiltzen baduzu, gehiago balio duen galdera bat huts egiteak ere gehiago kentzen du.</div>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="settings" class="section-icon-svg"></ion-icon></span><span class="section-title">Ezarpenak</span><span class="chevron">▶</span></div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="checkmark-done" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Erantzun zuzen bat baino gehiago</span>
+        <span class="chevron">▶</span>
+      </div>
       <div class="section-body">
-        <div class="feature"><div class="feature-title">Hizkuntza</div><p>Aldatu aplikazioaren hizkuntza. "Automatikoa" gailuaren hizkuntza erabiltzen du.</p></div>
-        <div class="feature"><div class="feature-title">Segurtasun-kopia</div><p>Sortu fitxategi bat zure datu guztiekin nahi duzun lekuan gordetzeko.</p></div>
-        <div class="feature"><div class="feature-title">Segurtasun-kopia berreskuratu</div><p>Berreskuratu aurretik gordeta dagoen kopia baten datuak.</p></div>
+        <p>Batzuetan galdera batek bi erantzun baliozko ditu, edo azterketaren ondoren konturatzen zara gaizki planteatuta zegoela eta beste aukera batek ere balio beharko lukeela. Galdera berean hainbat letra marka ditzakezu zuzen gisa.</p>
+        <h3 class="subhead">Nola egiten da</h3>
+        <ol class="steps"><li>Ireki eredua.</li><li><b>Erantzun zuzenak</b> atalean, sakatu galdera horretan zuzentzat hartu behar diren letra guztiak. Markatutako letra bat berriro sakatzen baduzu, desmarkatu egiten da.</li><li>Sakatu <b>Aldaketak gorde</b>.</li></ol>
+        <p>Zuzentzean, ikasleak letra horietako edozein markatu badu, asmatzetzat hartzen da.</p>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> Adibidea</div><p>Azterketa zuzendu duzu eta konturatzen zara 12. galderan B ere zuzena dela. Ireki eredua, sakatu B ere 12. galderan eta gorde. Gero, joan <b>Emaitzak</b> fitxara, ireki azterketa hori eta sakatu <b>Ereduaren ezarpenak aplikatu</b>: aplikazioak nota guztiak berriz kalkulatzen ditu, ezer berriro eskaneatu gabe.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Galdera bakoitzak beti izan behar du gutxienez erantzun zuzen bat; beraz, markatutako azken letra ezin da kendu.</div>
       </div>
     </div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="pricetags" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Ebaluazio-irizpideak (IE eta EI)</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <p>Zure programazioan ebaluazio-irizpideekin, ikaskuntza-emaitzekin edo gaitasunekin lan egiten baduzu, galdera bakoitzak zein irizpide ebaluatzen duen adieraz dezakezu. Horrela, aplikazioak esaten dizu ikasle bakoitzak irizpide bakoitzaren zer zati menderatzen duen. Adibidez: «Marta: EI 2.1 → % 90, EI 2.3 → % 40».</p>
+        <h3 class="subhead">1. Sortu irizpideak</h3>
+        <ol class="steps"><li>Ireki eredua.</li><li><b>Ebaluazio-irizpideak</b> atalean, sakatu <b>+ Irizpidea gehitu</b>.</li><li>Idatzi izen labur bat, zure programazioan agertzen den bezala (adibidez, «EI 2.1» edo «IE1»).</li><li>Errepikatu azterketak ebaluatzen duen irizpide bakoitzarekin.</li></ol>
+        <p>Oker egiten baduzu, sakatu irizpidea izena aldatzeko edo ezabatzeko.</p>
+        <h3 class="subhead">2. Adierazi galdera bakoitzak zer ebaluatzen duen</h3>
+        <p><b>Erantzun zuzenak</b> zerrendan, galdera bakoitzaren letren azpian zure irizpideak agertzen dira. Sakatu galdera horrek ebaluatzen dituenak (markatuta geratzen dira). Galdera batek irizpide bat, hainbat edo bat ere ez ebalua dezake. Amaitzean, sakatu <b>Aldaketak gorde</b>.</p>
+        <h3 class="subhead">3. Ikusi emaitzak</h3>
+        <div class="feature"><div class="feature-title">Ikasgela osoarena</div><p><b>Emaitzak</b> fitxan, ireki azterketa. <b>Irizpideka</b> atalean ikasgelaren batez bestekoa ikusiko duzu irizpide bakoitzean.</p></div>
+        <div class="feature"><div class="feature-title">Ikasle bakoitzarena</div><p>Azterketa berean, sakatu ikasle baten orria haren ehunekoak ikusteko.</p></div>
+        <div class="feature"><div class="feature-title">Excelen</div><p><b>Notak esportatu</b> sakatzean, fitxategiak zutabe bat du irizpide bakoitzeko, ikasle bakoitzaren ehunekoarekin. Irizpideen araberako notak jartzeko behar izaten dena da, hain zuzen.</p></div>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> Nola kalkulatzen da ehunekoa?</div><p>EI 2.1 irizpidea 1., 2., 3. eta 4. galderetan dago. Martak 4tik 3 asmatzen ditu: % 75 du EI 2.1ean. Galderek puntu desberdinak balio badituzte, kontuan hartzen da. Zigorra ez da hemen aplikatzen: neurtzen dena da ikasleak irizpidearen zer zati dakien, ez haren nota.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Barra berdez agertzen da % 50etik gora eta gorriz handik behera, beti zenbakia ondoan duela.</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="copy" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Azterketaren hainbat bertsio (A, B, C, D)</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <p>Kopiatu ez dezaten, azterketa beraren bertsio desberdinak bana ditzakezu: A bertsioa, B bertsioa, etab., galderak beste ordena batean eta erantzunak lekuz aldatuta. Aplikazioak orri bakoitza bere bertsioarekin zuzentzen du.</p>
+        <h3 class="subhead">Nola funtzionatzen duen ikasgelan</h3>
+        <p>Erantzun-orri guztiak berdin inprimatzen dira. Ikasle bakoitzak bere orrian, bertsioaren laukian, zein bertsio egokitu zaion markatzen du (A, B, C edo D). Eskaneatzean, aplikazioak lauki hori irakurtzen du eta bertsio horren erantzun zuzenak erabiltzen ditu.</p>
+        <h3 class="subhead">1. Gehitu bertsioak</h3>
+        <ol class="steps"><li>Ireki eredua.</li><li><b>Azterketaren bertsioak</b> atalean, sakatu <b>+ B</b> (eta <b>+ C</b> edo <b>+ D</b> behar badituzu).</li><li>Sakatu bertsio baten letra haren erantzunak ikusteko eta betetzeko.</li></ol>
+        <h3 class="subhead">2. Markatu bertsio bakoitzaren erantzun zuzenak</h3>
+        <p>B bertsioa aukeratuta, markatu galdera bakoitzean <b>B bertsioan</b> zuzena den letra. Erantzunak lekuz aldatu badituzu, ez da A-koaren berdina izango. Ez da ezer gertatzen: bertsio bakoitzak bere erantzun zuzenak ditu.</p>
+        <h3 class="subhead">3. Galderen ordena aldatu baduzu: «= A» laukia</h3>
+        <p>B, C eta D bertsioetan, galdera bakoitzaren ondoan <b>= A</b> dioen lauki bat dago. Bertan idatzi behar duzu galdera horrek A bertsioan zer zenbaki duen.</p>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> Adibidea</div><ul><li>B bertsioko 1. galdera A bertsioko 7. galdera da → B-ko 1. galderan <b>7</b> idazten duzu.</li><li>B bertsioko 2. galdera A bertsioko 3. galdera da → B-ko 2. galderan <b>3</b> idazten duzu.</li><li>Eta horrela galdera guztiekin.</li></ul></div>
+        <p>Zertarako balio du? Galdera bakoitzaren puntuak eta ebaluazio-irizpideak <b>A bertsioan bakarrik</b> konfiguratzen dira. Lauki honi esker, aplikazioak badaki B-ko 1. galdera A-ko 7.aren berdina dela, eta haren puntuak eta irizpideak aplikatzen dizkio. Gainera, gehien huts egindako eta gehien asmatutako galderen estatistikek ikasle guztiak benetako galderaren arabera biltzen dituzte, edozein bertsio egokitu zaiela ere.</p>
+        <div class="feature"><div class="feature-title">Ordena aldatu ez baduzu</div><p>Ez ukitu ezer: laukiek galderaren zenbaki bera dute jada.</p></div>
+        <div class="feature"><div class="feature-title">Lauki bat gorriz agertzen bada</div><p>A bertsioko zenbaki bera idatzi duzu bi galderatan. A-ko galdera bakoitzak behin bakarrik agertu behar du. Aplikazioak ez dizu gordetzen utziko zuzendu arte.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Azterketaren bat zuzendu ondoren eredua aldatzen baduzu, sartu azterketa horretan (<b>Emaitzak</b> fitxan) eta sakatu <b>Ereduaren ezarpenak aplikatu</b>, notak berriz kalkula daitezen.</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="camera" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Eskaneatu: orriak zuzendu</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <h3 class="subhead">Nola zuzendu</h3>
+        <ol class="steps"><li>Joan <b>Eskaneatu</b> fitxara.</li><li>Aukeratu <b>ikasgela</b> eta gero <b>eredua</b> (azterketa).</li><li>Jarri orria mahai gainean eta egokitu pantailako marko zuriaren barruan.</li><li>Sakatu botoi biribil handia argazkia ateratzeko. Ondo atera ez bada, sakatu <b>Errepikatu</b>; ondo badago, sakatu <b>Argazki hau erabili</b>.</li><li>Berrikusi aplikazioak irakurri duena eta sakatu <b>Onartu</b> gordetzeko. Hurrengo orrira pasa zaitezke.</li></ol>
+        <h3 class="subhead">Berrikusteko pantaila</h3>
+        <div class="feature"><div class="feature-title">Koloreak</div><p>Berdea: ikasleak asmatu du. Gorria: erantzun okerra markatu du. Eraztun berdea: non zegoen erantzun zuzena. Argazkia bi hatzekin handitu dezakezu.</p></div>
+        <div class="feature"><div class="feature-title">Irakurketa bat zuzendu</div><p>Aplikazioak erantzunen bat gaizki irakurri badu, sakatu argazkiko burbuila zuzena edo beheko zerrendako letra.</p></div>
+        <div class="feature"><div class="feature-title">Ikaslea</div><p>Aplikazioak orriko 4 zenbakiko kodea irakurtzen du eta norena den esaten dizu. Ondo irakurri ez badu, alda dezakezu. Norena den ez badakizu, sakatu <b>Esleitu gabe gorde</b> eta geroago esleitu.</p></div>
+        <div class="feature"><div class="feature-title">Bertsioa</div><p>Azterketak hainbat bertsio baditu, zein antzeman duen esaten dizu. Oker badago, aldatu.</p></div>
+        <div class="feature"><div class="feature-title">Baztertu</div><p>Orri hori gorde nahi ez baduzu, sakatu <b>Baztertu</b> eta ez da ezer gordeko.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Ondo irakur dezan: argi ona, orria lau eta itzalik gabe, eta markoan ondo sartuta. Argi gutxi badago, piztu flasha.</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="stats-chart" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Emaitzak: notak eta estatistikak</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <p>Hemen daude zuzendutako azterketa guztiak, ikasgelaka multzokatuta. Sakatu ikasgela bat haren azterketak ikusteko, eta sakatu azterketa bat xehetasun guztiak ikusteko.</p>
+        <div class="feature"><div class="feature-title">Ikasgela baten azterketak ezabatu</div><p>Lerratu ikasgela ezkerrera. Haren azterketa zuzenduak ezabatzen dira, baina ikasgela eta ikasleak mantendu egiten dira.</p></div>
+        <h3 class="subhead">Azterketa baten barruan</h3>
+        <div class="feature"><div class="feature-title">Estatistikak</div><p>Batez besteko nota, gehien errepikatzen den nota, zenbatek gainditu duten, notak nola banatzen diren eta zein galdera huts egin eta asmatu diren gehien. Ebaluazio-irizpideak erabiltzen badituzu, ikasgelaren batez bestekoa ere ikusiko duzu irizpide bakoitzean.</p></div>
+        <div class="feature"><div class="feature-title">Zuzendutako orriak</div><p>Ikasleen zerrenda, bakoitza bere notarekin. Sakatu orri bat markatutako erantzunak dituen argazkia ikusteko eta, irizpideak erabiltzen badituzu, ikasle horren ehunekoak.</p></div>
+        <div class="feature"><div class="feature-title">Erantzun bat eskuz aldatu</div><p>Orriaren barruan, sakatu <b>Erantzunak editatu</b>, aldatu behar dena eta gorde. Nota berez kalkulatzen da berriz.</p></div>
+        <div class="feature"><div class="feature-title">Orri bat ikasle bati esleitu</div><p>Orri bat ikaslerik gabe geratu bada, ireki, sakatu <b>Ikasleari esleitu</b> eta aukeratu norena den.</p></div>
+        <div class="feature"><div class="feature-title">Notak esportatu</div><p>Excelen irekitzen den edo zure noten koadernora pasa dezakezun fitxategi bat sortzen du. Ikasle bakoitzaren zenbakia eta izena ditu, haren bertsioa, asmatzeak, erroreak, erantzun hutsak, nota eta, erabiltzen badituzu, irizpide bakoitzaren ehunekoa. Posta bidez bidal dezakezu, Driven gorde, etab.</p></div>
+        <div class="feature"><div class="feature-title">Ereduaren ezarpenak aplikatu</div><p>Zuzendu ondoren eredua aldatzen baduzu (erantzun zuzen bat, zigorra, puntuak…), botoi honek azterketako nota guztiak kalkulatzen ditu berriz. Ez da ezer berriro eskaneatu behar.</p></div>
+        <div class="feature"><div class="feature-title">Azterketa baten gehieneko nota aldatu</div><p>Sakatu «10-tik» dioen tokian azterketa horren notak beste zenbaki baten gainean kalkulatzeko (adibidez, 100etik). Azterketa horri bakarrik eragiten dio.</p></div>
+        <div class="feature"><div class="feature-title">Ezabatu</div><p>Lerratu orri bat ezkerrera ezabatzeko, edo erabili <b>Azterketa osoa ezabatu</b>, pantailaren amaieran.</p></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="settings" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Ezarpenak</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <div class="feature"><div class="feature-title">Itxura</div><p>Aukeratu aplikazioa nola ikusi nahi duzun: <b>Argia</b> (hondo zuria), <b>Iluna</b> (hondo beltza, gauez erosoagoa) edo <b>Automatikoa</b> (berez aldatzen da, zure mugikorra bezala).</p></div>
+        <div class="feature"><div class="feature-title">Hizkuntza</div><p>Aplikazioaren hizkuntza. «Automatikoa» aukerak zure mugikorraren hizkuntza erabiltzen du.</p></div>
+        <div class="feature"><div class="feature-title">Erabiltzeko tutoriala ikusi</div><p>Gida hau irekitzen du.</p></div>
+        <div class="feature"><div class="feature-title">Kopien pasahitza</div><p>Zure segurtasun-kopiak pasahitz batekin babesten ditu. Behin bakarrik jartzen duzu, eta gero berez erabiltzen da. Beste mugikor batean kopia bat berreskuratzen baduzu eskatuko dizu; beraz, idatzi leku seguru batean.</p></div>
+        <div class="feature"><div class="feature-title">Segurtasun-kopia gorde</div><p>Dena gordetzen du (ikasgelak, ikasleak, azterketak eta notak) Drivera, ordenagailura edo USB memoria batera eraman dezakezun fitxategi batean. Egin noizean behin: mugikorra galtzen edo aldatzen baduzu, ez duzu ezer galduko.</p></div>
+        <div class="feature"><div class="feature-title">Segurtasun-kopia berrezarri</div><p>Zure datuak kopia batetik berreskuratzen ditu. Kontuz: orain aplikazioan dagoen guztia ordezten du.</p></div>
+        <div class="feature"><div class="feature-title">Bira berriro ikusi</div><p>Aplikazioa lehen aldiz irekitzean agertzen den aurkezpena errepikatzen du.</p></div>
+        <div class="feature"><div class="feature-title">Harremana eta pribatutasuna</div><p>Idatzi mezu bat zalantzak edo arazoak badituzu, edo irakurri pribatutasun-politika.</p></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="help-circle" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Zerbaitek funtzionatzen ez badu</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <div class="feature"><div class="feature-title">Aplikazioak ez du orria ondo irakurtzen</div><p>Bilatu argi gehiago duen leku bat edo piztu flasha, jarri orria lau eta egokitu ondo markoan. Izkinetako 4 lauki beltzak ikusi behar dira, eta ez biratu ez orria ez mugikorra. Hala ere erantzunen bat gaizki badago, eskuz alda dezakezu berrikusteko pantailan.</p></div>
+        <div class="feature"><div class="feature-title">Erantzun zuzen batean oker nengoen eta jada zuzendua nuen</div><p>Konpondu eredua eta gorde. Gero, <b>Emaitzak</b> fitxan, ireki azterketa eta sakatu <b>Ereduaren ezarpenak aplikatu</b>.</p></div>
+        <div class="feature"><div class="feature-title">Ez dakit orri bat norena den</div><p>Ikasleak bere kodea ondo idatzi ez duenean gertatzen da. Gorde <b>Esleitu gabe gorde</b> botoiarekin eta, geroago, <b>Emaitzak</b> fitxan, ireki eta sakatu <b>Ikasleari esleitu</b>.</p></div>
+        <div class="feature"><div class="feature-title">Mugikorrez aldatu naiz</div><p>Segurtasun-kopia bat egin bazenuen, instalatu aplikazioa mugikor berrian eta, <b>Ezarpenak</b> atalean, sakatu <b>Segurtasun-kopia berrezarri</b>.</p></div>
+      </div>
+    </div>
+
   </main>
 </div>
 
 <div data-lang="gl">
-  <header><h1>FastGrade</h1><p>Guía de uso da app</p></header>
+  <header><h1>FastGrade</h1><p>Guía de uso, paso a paso</p></header>
   <div class="lang-bar">
     <button class="lang-btn" onclick="setLang('ca')">Català</button>
     <button class="lang-btn" onclick="setLang('en')">English</button>
     <button class="lang-btn" onclick="setLang('es')">Español</button>
-    <button class="lang-btn" onclick="setLang('eu')">Euskera</button>
+    <button class="lang-btn" onclick="setLang('eu')">Euskara</button>
     <button class="lang-btn active" onclick="setLang('gl')">Galego</button>
   </div>
   <main>
-    <div class="section open"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="home" class="section-icon-svg"></ion-icon></span><span class="section-title">Inicio</span><span class="chevron">▶</span></div>
+
+    <div class="section open">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="rocket" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Comeza aquí</span>
+        <span class="chevron">▶</span>
+      </div>
       <div class="section-body">
-        <p>A pantalla principal resume o estado do teu traballo: que exames tes pendentes de correxir e os últimos correxidos.</p>
-        <div class="feature"><div class="feature-title">Escanear exame</div><p>Botón grande na parte superior. Lévate directamente á pestana de escanear para correxir unha folla nova.</p></div>
-        <div class="feature"><div class="feature-title">Pendente de correxir</div><p>Mostra os exames que xa creaches pero aos que aínda lles faltan follas por escanear.</p></div>
-        <div class="feature"><div class="feature-title">Correxido recentemente</div><p>As últimas follas correxidas co nome do alumno e a nota.</p></div>
-        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Todos os datos gárdanse só no teu dispositivo. A app non envía nada a ningún servidor.</div>
+        <p>FastGrade corrixe exames tipo test coa cámara do móbil. Non fai falta saber de informática: se sabes facer unha foto co móbil, sabes usar FastGrade.</p>
+        <h3 class="subhead">Como funciona, en 5 pasos</h3>
+        <ol class="steps"><li><b>Crea a túa clase.</b> Na lapela <b>Clases</b>, crea o grupo e engade o teu alumnado. A app dálle a cada alumno/a un número de 4 cifras, que é como o seu «carné» no exame.</li><li><b>Crea o exame.</b> Na lapela <b>Modelos</b>, indica cantas preguntas ten e marca cal é a resposta correcta de cada unha.</li><li><b>Imprime as follas de respostas</b> desde ese mesmo modelo. O alumnado contesta enchendo as burbullas con bolígrafo.</li><li><b>Fai unha foto de cada folla</b> na lapela <b>Escanear</b>. A app le as respostas e pon a nota soa.</li><li><b>Consulta as notas</b> na lapela <b>Resultados</b>: a nota de cada alumno/a, as estatísticas da clase e un ficheiro para abrir co Excel.</li></ol>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> Que é un «modelo»?</div><p>É o teu exame dentro da app. Garda cantas preguntas ten, cal é a resposta boa de cada unha e como o queres puntuar. Créalo unha vez e podes usalo con todas as túas clases.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Todo se garda só no teu móbil. A app non envía nada a internet: nin os nomes do alumnado, nin as notas, nin as fotos.</div>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="people" class="section-icon-svg"></ion-icon></span><span class="section-title">Clases</span><span class="chevron">▶</span></div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="home" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Inicio</span>
+        <span class="chevron">▶</span>
+      </div>
       <div class="section-body">
-        <p>Organiza os teus alumnos por clases. Cada alumno ten un código de 4 cifras que enche na folla de exame.</p>
-        <div class="feature"><div class="feature-title">Nova clase</div><p>Botón na parte inferior. Pídelle o nome da clase.</p></div>
-        <div class="feature"><div class="feature-title">Renomear / Cambiar cor / Eliminar</div><p>Mantén premida unha clase para acceder ás opcións. Desliza cara á esquerda para eliminar.</p></div>
-        <div class="feature"><div class="feature-title">Engadir / Editar / Eliminar alumno</div><p>Dentro da clase, usa os botóns correspondentes.</p></div>
-        <div class="feature"><div class="feature-title">Importar alumnos (Excel/CSV)</div><p>Importa unha lista de alumnos desde un ficheiro Excel ou CSV.</p></div>
+        <p>É a primeira pantalla que ves ao abrir a app. Dunha ollada díche que tes pendente.</p>
+        <div class="feature"><div class="feature-title">Escanear exame</div><p>O botón grande de arriba. Lévate directamente á cámara para corrixir.</p></div>
+        <div class="feature"><div class="feature-title">Pendente de corrixir</div><p>Exames que empezaches a corrixir pero nos que aínda faltan alumnos/as por escanear. Tócao para ir a ese exame.</p></div>
+        <div class="feature"><div class="feature-title">Corrixido recentemente</div><p>As últimas follas que corrixiches, co nome do alumno/a e a súa nota.</p></div>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="document-text" class="section-icon-svg"></ion-icon></span><span class="section-title">Modelos</span><span class="chevron">▶</span></div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="people" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Clases</span>
+        <span class="chevron">▶</span>
+      </div>
       <div class="section-body">
-        <p>Un modelo define como é o exame: número de preguntas, opcións, puntuación e respostas correctas.</p>
-        <div class="feature"><div class="feature-title">Novo / Editar / Duplicar / Eliminar</div><p>Mantén premido un modelo para acceder ás opcións.</p></div>
-        <div class="feature"><div class="feature-title">Modelos do exame</div><p>Se repartes varias versións (A, B, C…) con respostas correctas diferentes, engade cada modelo. A app detectará cal é cada folla ao escanear.</p></div>
-        <div class="feature"><div class="feature-title">Xerar follas</div><p>Xera un PDF cunha folla en branco ou unha por alumno co seu nome e código xa impresos.</p></div>
+        <p>Aquí están os teus grupos e o seu alumnado. Cada alumno/a ten un <b>código de 4 cifras</b>: escríbeo na folla do exame para que a app saiba de quen é.</p>
+        <h3 class="subhead">Crear unha clase e engadir alumnado</h3>
+        <ol class="steps"><li>Toca <b>Nova clase</b> e escribe o seu nome (por exemplo, «3.º ESO A»).</li><li>Toca a clase para entrar.</li><li>Toca <b>Engadir alumno/a</b> e escribe o nome e os apelidos. O código de 4 cifras ponse só.</li><li>Se xa tes a lista nun Excel, toca <b>Importar alumnado (Excel/CSV)</b> e escolle o ficheiro. A app atopa sós os nomes e os apelidos: non fai falta escribilos un por un.</li></ol>
+        <h3 class="subhead">Outras cousas que podes facer</h3>
+        <div class="feature"><div class="feature-title">Cambiar un alumno/a</div><p>Toca o seu nome para cambiarlle o nome ou o código, ou para eliminalo.</p></div>
+        <div class="feature"><div class="feature-title">Cambiar todos os códigos</div><p><b>Aleatorizar códigos</b> dálle un código novo a todo o alumnado da clase á vez.</p></div>
+        <div class="feature"><div class="feature-title">Cambiar o nome ou a cor dunha clase</div><p>Na lista de clases, toca os tres puntos (…) da clase ou mantena premida. A cor serve para distinguilas dunha ollada.</p></div>
+        <div class="feature"><div class="feature-title">Borrar</div><p>Despraza o dedo cara á esquerda sobre un alumno/a ou unha clase. Coidado: se borras unha clase, bórranse tamén o seu alumnado e os seus exames.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Dous alumnos/as non poden ter o mesmo código. Se intentas repetir un, a app avísate.</div>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="camera" class="section-icon-svg"></ion-icon></span><span class="section-title">Escanear</span><span class="chevron">▶</span></div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="document-text" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Modelos: crear o exame</span>
+        <span class="chevron">▶</span>
+      </div>
       <div class="section-body">
-        <p>Correxe unha folla de exame facendo unha foto. A app le as respostas automaticamente e calcula a nota.</p>
-        <div class="feature"><div class="feature-title">Elixir clase e modelo</div><p>Selecciona de que clase é o exame e con que modelo se fixo.</p></div>
-        <div class="feature"><div class="feature-title">Flash / Marco de encadre</div><p>Activa o flash se é necesario e encadra toda a folla dentro do marco.</p></div>
-        <div class="feature"><div class="feature-title">Repetir foto / Usar esta foto</div><p>Repite se a foto non saíu ben, ou confírmaa para analizar a folla.</p></div>
-        <div class="feature"><div class="feature-title">Aceptar / Descartar</div><p>Acepta para gardar o resultado ou descarta para cancelar.</p></div>
+        <p>O modelo é o teu exame dentro da app. Toca un modelo da lista para abrilo e cambiar o que queiras. Cos tres puntos (…), ou manténdoo premido, tamén podes <b>duplicalo</b> (para facer un exame parecido sen empezar de cero) ou <b>eliminalo</b>.</p>
+        <h3 class="subhead">Crear un exame, paso a paso</h3>
+        <ol class="steps"><li>Na lapela <b>Modelos</b>, toca <b>Novo modelo</b>.</li><li>Escribe o <b>título</b> e, se queres, a materia e o curso. Saen impresos arriba da folla. Tamén podes engadir o <b>logotipo do teu centro</b>.</li><li>Escolle o <b>idioma da folla</b>: é o idioma dos textos impresos, non o da app.</li><li>Escribe o <b>número de preguntas</b> e escolle cantas <b>opcións</b> ten cada unha (desde A-B ata A-B-C-D-E).</li><li>Decide se os erros <b>restan</b> e se as preguntas en branco tamén restan. Se non queres complicarte, deixa a penalización en 0: así os erros non restan nada.</li><li>Escolle a <b>nota máxima</b>. Normalmente, 10.</li><li>En <b>Respostas correctas</b>, toca en cada pregunta a letra boa.</li><li>Toca <b>Crear modelo</b>. Se estás cambiando un modelo que xa existía, o botón chámase <b>Gardar cambios</b>.</li></ol>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> A penalización, explicada doado</div><p>É o que resta cada erro. Por exemplo, con 0,25, catro erros quitan o mesmo que dá un acerto. Se escolles <b>Automática</b>, a app usa a fórmula habitual dos tests: con 4 opcións, cada erro resta un terzo de acerto.</p></div>
+        <h3 class="subhead">Imprimir as follas de respostas</h3>
+        <p>Abre o modelo e baixa ata <b>Imprimir follas</b>. Tes dúas opcións:</p>
+        <div class="feature"><div class="feature-title">Folla sen nome</div><p>Unha folla en branco. O alumno/a escribe a man o seu código de 4 cifras. Podes facer tantas fotocopias como queiras.</p></div>
+        <div class="feature"><div class="feature-title">Follas dunha clase</div><p>Unha folla por alumno/a, co seu nome e o seu código xa impresos. Escolle a clase e a data do exame.</p></div>
+        <div class="feature"><div class="feature-title">2 exames por folio</div><p>Se o exame ten poucas preguntas, podes imprimir dúas follas en cada folio e cortalo pola metade. Aforras papel.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> As follas saen en PDF: podes imprimilas desde o móbil ou envialas ao ordenador.</div>
+        <p>Nos apartados seguintes explícase como darlles máis puntos a unhas preguntas ca a outras, aceptar máis dunha resposta, traballar con criterios de avaliación e repartir varias versións do exame. <b>Todo é opcional</b>: se non o necesitas, sáltao.</p>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="stats-chart" class="section-icon-svg"></ion-icon></span><span class="section-title">Resultados</span><span class="chevron">▶</span></div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="podium" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Preguntas que valen máis ca outras</span>
+        <span class="chevron">▶</span>
+      </div>
       <div class="section-body">
-        <p>Consulta todos os exames correxidos agrupados por clase, con estatísticas detalladas e exportación de notas.</p>
-        <div class="feature"><div class="feature-title">Estatísticas</div><p>Nota media, moda, porcentaxe de aprobados, distribución de notas.</p></div>
-        <div class="feature"><div class="feature-title">Exportar notas</div><p>Xera un ficheiro Excel con todas as notas do exame.</p></div>
-        <div class="feature"><div class="feature-title">Editar respostas / Asignar alumno</div><p>Corrixe manualmente calquera resposta ou asigna a folla a un alumno diferente.</p></div>
+        <p>Normalmente todas as preguntas valen o mesmo. Se queres que algunha conte máis (por exemplo, porque é máis difícil), podes darlle máis puntos.</p>
+        <h3 class="subhead">Como se fai</h3>
+        <ol class="steps"><li>Abre o modelo.</li><li>En <b>Puntuación por pregunta</b>, escolle <b>Personalizada</b>.</li><li>Na lista de <b>Respostas correctas</b>, ao lado de cada pregunta aparecen os botóns <b>−</b> e <b>+</b>. Úsaos para indicar cantos puntos vale esa pregunta.</li><li>Enriba da lista verás o <b>total de puntos</b> do exame.</li><li>Toca <b>Gardar cambios</b>.</li></ol>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> Exemplo</div><p>Un exame de 10 preguntas: as 8 primeiras valen 1 punto e as 2 últimas, 3 puntos cada unha. En total, 14 puntos. A nota final segue a darse sobre 10 (ou sobre a nota máxima que escolliches): a app fai a regra de tres soa. Un alumno/a que só acerta as 2 últimas consegue 6 de 14 puntos, é dicir, un 4,29.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Se usas penalización, fallar unha pregunta que vale máis tamén resta máis.</div>
       </div>
     </div>
-    <div class="section"><div class="section-header" onclick="toggle(this)"><span class="section-icon"><ion-icon name="settings" class="section-icon-svg"></ion-icon></span><span class="section-title">Axustes</span><span class="chevron">▶</span></div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="checkmark-done" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Máis dunha resposta correcta</span>
+        <span class="chevron">▶</span>
+      </div>
       <div class="section-body">
-        <div class="feature"><div class="feature-title">Idioma</div><p>Cambia o idioma da app. "Automático" usa o idioma do móbil.</p></div>
-        <div class="feature"><div class="feature-title">Copia de seguridade</div><p>Crea un ficheiro con todos os teus datos para gardalo onde queiras.</p></div>
-        <div class="feature"><div class="feature-title">Restaurar copia de seguridade</div><p>Recupera os datos dunha copia gardada anteriormente.</p></div>
-        <div class="feature"><div class="feature-title">Escribir un correo</div><p>Contacta co equipo de FastGrade directamente desde a app.</p></div>
+        <p>Ás veces unha pregunta ten dúas respostas válidas, ou decátaste despois do exame de que estaba mal formulada e outra opción tamén debería valer. Podes marcar varias letras como correctas na mesma pregunta.</p>
+        <h3 class="subhead">Como se fai</h3>
+        <ol class="steps"><li>Abre o modelo.</li><li>En <b>Respostas correctas</b>, toca todas as letras que dean por boa esa pregunta. Se volves tocar unha letra marcada, desmárcase.</li><li>Toca <b>Gardar cambios</b>.</li></ol>
+        <p>Ao corrixir, se o alumno/a marcou calquera desas letras, conta como acerto.</p>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> Exemplo</div><p>Xa corrixiches o exame e decátaste de que na pregunta 12 a B tamén é correcta. Abre o modelo, toca tamén a B na pregunta 12 e garda. Despois vai a <b>Resultados</b>, abre ese exame e toca <b>Aplicar axustes do modelo</b>: a app volve calcular todas as notas sen ter que escanear outra vez.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Cada pregunta ten que ter sempre polo menos unha resposta correcta, así que a última letra marcada non se pode quitar.</div>
       </div>
     </div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="pricetags" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Criterios de avaliación (RA e CA)</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <p>Se na túa programación traballas con criterios de avaliación, resultados de aprendizaxe ou competencias, podes indicar que criterio avalía cada pregunta. Así a app díche, para cada alumno/a, que parte de cada criterio domina. Por exemplo: «Marta: CA 2.1 → 90 %, CA 2.3 → 40 %».</p>
+        <h3 class="subhead">1. Crea os criterios</h3>
+        <ol class="steps"><li>Abre o modelo.</li><li>Na sección <b>Criterios de avaliación</b>, toca <b>+ Engadir criterio</b>.</li><li>Escribe un nome curto, tal como aparece na túa programación (por exemplo, «CA 2.1» ou «RA1»).</li><li>Repite con cada criterio que avalíe o exame.</li></ol>
+        <p>Se te equivocas, toca o criterio para cambiarlle o nome ou eliminalo.</p>
+        <h3 class="subhead">2. Indica que avalía cada pregunta</h3>
+        <p>Na lista de <b>Respostas correctas</b>, debaixo das letras de cada pregunta aparecen os teus criterios. Toca os que avalía esa pregunta (quedan marcados). Unha pregunta pode avaliar un, varios ou ningún. Ao rematar, toca <b>Gardar cambios</b>.</p>
+        <h3 class="subhead">3. Consulta os resultados</h3>
+        <div class="feature"><div class="feature-title">De toda a clase</div><p>En <b>Resultados</b>, abre o exame. En <b>Por criterio</b> verás a media da clase en cada criterio.</p></div>
+        <div class="feature"><div class="feature-title">De cada alumno/a</div><p>Nese mesmo exame, toca a folla dun alumno/a para ver as súas porcentaxes.</p></div>
+        <div class="feature"><div class="feature-title">No Excel</div><p>Ao tocar <b>Exportar notas</b>, o ficheiro leva unha columna por criterio coa porcentaxe de cada alumno/a. É xusto o que adoita facer falta para poñer as notas por criterios.</p></div>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> Como se calcula a porcentaxe?</div><p>O criterio CA 2.1 está nas preguntas 1, 2, 3 e 4. Marta acerta 3 das 4: ten un 75 % no CA 2.1. Se as preguntas valen puntos distintos, tense en conta. A penalización non se aplica aquí: o que se mide é que parte do criterio sabe o alumno/a, non a súa nota.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> A barra sae en verde a partir do 50 % e en vermello por debaixo, sempre co número ao lado.</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="copy" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Varias versións do exame (A, B, C, D)</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <p>Para que non se copien, podes repartir versións distintas do mesmo exame: a versión A, a B, etc., coas preguntas noutra orde e as respostas cambiadas de sitio. A app corrixe cada folla coa súa versión.</p>
+        <h3 class="subhead">Como funciona na aula</h3>
+        <p>Todas as follas de respostas se imprimen iguais. Cada alumno/a marca na súa folla, na casiña da versión, que versión lle tocou (A, B, C ou D). Ao escanear, a app le esa casiña e usa as respostas correctas desa versión.</p>
+        <h3 class="subhead">1. Engade as versións</h3>
+        <ol class="steps"><li>Abre o modelo.</li><li>En <b>Versións do exame</b>, toca <b>+ B</b> (e <b>+ C</b> ou <b>+ D</b> se os necesitas).</li><li>Toca a letra dunha versión para ver e encher as súas respostas.</li></ol>
+        <h3 class="subhead">2. Marca as respostas correctas de cada versión</h3>
+        <p>Coa versión B escollida, marca en cada pregunta a letra que é correcta <b>na versión B</b>. Se cambiaches as respostas de sitio, non será a mesma que na A. Non pasa nada: cada versión ten as súas propias respostas correctas.</p>
+        <h3 class="subhead">3. Se cambiaches a orde das preguntas: a caixa «= A»</h3>
+        <p>Nas versións B, C e D, ao lado de cada pregunta hai unha caixa que pon <b>= A</b>. Aí escribes que número ten esa mesma pregunta na versión A.</p>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> Exemplo</div><ul><li>A pregunta 1 da versión B é a pregunta 7 da versión A → na pregunta 1 da B escribes <b>7</b>.</li><li>A pregunta 2 da versión B é a pregunta 3 da versión A → na pregunta 2 da B escribes <b>3</b>.</li><li>E así con todas as preguntas.</li></ul></div>
+        <p>Para que serve? Os puntos de cada pregunta e os criterios de avaliación configúranse <b>só na versión A</b>. Con esta caixa, a app sabe que a pregunta 1 da B é a mesma que a 7 da A e aplícalle os seus puntos e os seus criterios. Ademais, as estatísticas de preguntas máis falladas e máis acertadas xuntan todo o alumnado pola pregunta de verdade, sexa cal sexa a versión que lle tocou.</p>
+        <div class="feature"><div class="feature-title">Se non cambiaches a orde</div><p>Non toques nada: as caixas xa veñen co mesmo número ca a pregunta.</p></div>
+        <div class="feature"><div class="feature-title">Se unha caixa sae en vermello</div><p>Escribiches o mesmo número da versión A en dúas preguntas. Cada pregunta da A ten que aparecer unha soa vez. A app non te deixa gardar ata que o corrixas.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Se cambias o modelo cando xa corrixiches algún exame, entra nese exame (en <b>Resultados</b>) e toca <b>Aplicar axustes do modelo</b> para que as notas se volvan calcular.</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="camera" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Escanear: corrixir as follas</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <h3 class="subhead">Como corrixir</h3>
+        <ol class="steps"><li>Vai á lapela <b>Escanear</b>.</li><li>Escolle a <b>clase</b> e despois o <b>modelo</b> (o exame).</li><li>Pon a folla sobre a mesa e encáixaa dentro do marco branco da pantalla.</li><li>Toca o botón redondo grande para facer a foto. Se non saíu ben, toca <b>Repetir</b>; se está ben, toca <b>Usar esta foto</b>.</li><li>Revisa o que leu a app e toca <b>Aceptar</b> para gardalo. Xa podes pasar á seguinte folla.</li></ol>
+        <h3 class="subhead">A pantalla de revisión</h3>
+        <div class="feature"><div class="feature-title">As cores</div><p>Verde: o alumno/a acertou. Vermello: marcou unha resposta equivocada. Aro verde: onde estaba a resposta correcta. Podes ampliar a foto con dous dedos.</p></div>
+        <div class="feature"><div class="feature-title">Corrixir unha lectura</div><p>Se a app leu mal algunha resposta, toca a burbulla boa na foto ou a letra na lista de abaixo.</p></div>
+        <div class="feature"><div class="feature-title">O alumno/a</div><p>A app le o código de 4 cifras da folla e díche de quen é. Se non o leu ben, podes cambialo. Se non sabes de quen é, toca <b>Gardar sen asignar</b> e asígnalo máis tarde.</p></div>
+        <div class="feature"><div class="feature-title">A versión</div><p>Se o exame ten varias versións, díche cal detectou. Se se equivocou, cámbiaa.</p></div>
+        <div class="feature"><div class="feature-title">Descartar</div><p>Se non queres gardar esa folla, toca <b>Descartar</b> e non se garda nada.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Para que lea ben: boa luz, a folla plana e sen sombras, e ben encaixada no marco. Se hai pouca luz, acende o flash.</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="stats-chart" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Resultados: notas e estatísticas</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <p>Aquí están todos os exames corrixidos, agrupados por clase. Toca unha clase para ver os seus exames e toca un exame para ver todo o detalle.</p>
+        <div class="feature"><div class="feature-title">Borrar os exames dunha clase</div><p>Despraza a clase cara á esquerda. Bórranse os seus exames corrixidos, pero a clase e o alumnado mantéñense.</p></div>
+        <h3 class="subhead">Dentro dun exame</h3>
+        <div class="feature"><div class="feature-title">Estatísticas</div><p>A nota media, a nota que máis se repite, cantos aprobaron, como se reparten as notas e que preguntas se fallaron e se acertaron máis. Se usas criterios de avaliación, tamén verás a media da clase en cada un.</p></div>
+        <div class="feature"><div class="feature-title">Follas corrixidas</div><p>A lista de alumnado coa súa nota. Toca unha folla para ver a foto coas respostas marcadas e, se usas criterios, as porcentaxes dese alumno/a.</p></div>
+        <div class="feature"><div class="feature-title">Cambiar unha resposta a man</div><p>Dentro da folla, toca <b>Editar respostas</b>, cambia o que faga falta e garda. A nota volve calcularse soa.</p></div>
+        <div class="feature"><div class="feature-title">Asignar unha folla a un alumno/a</div><p>Se unha folla quedou sen alumno/a, ábrea, toca <b>Asignar a un alumno/a</b> e escolle de quen é.</p></div>
+        <div class="feature"><div class="feature-title">Exportar notas</div><p>Crea un ficheiro que se abre co Excel ou que podes pasar ao teu caderno de notas. Leva o número e o nome de cada alumno/a, a súa versión, os acertos, os erros, as respostas en branco, a nota e, se os usas, a porcentaxe de cada criterio. Podes envialo por correo, gardalo en Drive, etc.</p></div>
+        <div class="feature"><div class="feature-title">Aplicar axustes do modelo</div><p>Se cambias o modelo despois de corrixir (unha resposta correcta, a penalización, os puntos…), este botón volve calcular todas as notas do exame. Non hai que escanear nada outra vez.</p></div>
+        <div class="feature"><div class="feature-title">Cambiar a nota máxima dun exame</div><p>Toca onde pon «Sobre 10» para calcular as notas dese exame sobre outro número (por exemplo, sobre 100). Só afecta a ese exame.</p></div>
+        <div class="feature"><div class="feature-title">Borrar</div><p>Despraza unha folla cara á esquerda para borrala, ou usa <b>Eliminar exame completo</b>, ao final da pantalla.</p></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="settings" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Axustes</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <div class="feature"><div class="feature-title">Aparencia</div><p>Escolle como queres ver a app: <b>Claro</b> (fondo branco), <b>Escuro</b> (fondo negro, máis cómodo de noite) ou <b>Automático</b> (cambia só, igual que o teu móbil).</p></div>
+        <div class="feature"><div class="feature-title">Idioma</div><p>O idioma da app. «Automático» usa o do teu móbil.</p></div>
+        <div class="feature"><div class="feature-title">Ver tutorial de uso</div><p>Abre esta guía.</p></div>
+        <div class="feature"><div class="feature-title">Contrasinal das copias</div><p>Protexe as túas copias de seguridade cun contrasinal. Só o pos unha vez e despois úsase só. Pedirácho se recuperas unha copia noutro móbil, así que apúntao nun lugar seguro.</p></div>
+        <div class="feature"><div class="feature-title">Gardar copia de seguridade</div><p>Garda todo (clases, alumnado, exames e notas) nun ficheiro que podes levar a Drive, ao ordenador ou a un pendrive. Faino de cando en vez: se perdes o móbil ou cambias de móbil, non perderás nada.</p></div>
+        <div class="feature"><div class="feature-title">Restaurar copia de seguridade</div><p>Recupera os teus datos a partir dunha copia. Coidado: substitúe todo o que haxa agora na app.</p></div>
+        <div class="feature"><div class="feature-title">Ver o percorrido outra vez</div><p>Repite a presentación que sae a primeira vez que abres a app.</p></div>
+        <div class="feature"><div class="feature-title">Contacto e privacidade</div><p>Escríbenos un correo se tes dúbidas ou problemas, ou consulta a política de privacidade.</p></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="help-circle" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Se algo non funciona</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <div class="feature"><div class="feature-title">A app non le ben a folla</div><p>Busca un sitio con máis luz ou acende o flash, pon a folla plana e encáixaa ben no marco. Teñen que verse os 4 cadrados negros das esquinas, e non xires nin a folla nin o móbil. Se aínda así falla algunha resposta, podes cambiala a man na pantalla de revisión.</p></div>
+        <div class="feature"><div class="feature-title">Equivoqueime nunha resposta correcta e xa corrixira</div><p>Arranxa o modelo e garda. Despois, en <b>Resultados</b>, abre o exame e toca <b>Aplicar axustes do modelo</b>.</p></div>
+        <div class="feature"><div class="feature-title">Non sei de quen é unha folla</div><p>Pasa se o alumno/a non escribiu ben o seu código. Gárdaa con <b>Gardar sen asignar</b> e, máis tarde, en <b>Resultados</b>, ábrea e toca <b>Asignar a un alumno/a</b>.</p></div>
+        <div class="feature"><div class="feature-title">Cambiei de móbil</div><p>Se fixeches unha copia de seguridade, instala a app no móbil novo e, en <b>Axustes</b>, toca <b>Restaurar copia de seguridade</b>.</p></div>
+      </div>
+    </div>
+
   </main>
 </div>
 
+
 <script>
+var TITLES = {"es": "FastGrade · Ayuda", "ca": "FastGrade · Ajuda", "en": "FastGrade · Help", "eu": "FastGrade · Laguntza", "gl": "FastGrade · Axuda"};
 function setLang(lang) {
-  document.querySelectorAll('[data-lang]').forEach(el => el.classList.remove('visible'));
+  document.querySelectorAll('[data-lang]').forEach(function (el) { el.classList.remove('visible'); });
   document.querySelector('[data-lang="' + lang + '"]').classList.add('visible');
-  localStorage.setItem('fg-lang', lang);
+  document.documentElement.lang = lang;
+  document.title = TITLES[lang];
+  try { localStorage.setItem('fg-lang', lang); } catch (e) {}
 }
 function toggle(header) {
-  const section = header.parentElement;
-  section.classList.toggle('open');
+  header.parentElement.classList.toggle('open');
 }
-(function() {
-  const saved = localStorage.getItem('fg-lang');
-  const browser = (navigator.language || '').split('-')[0];
-  const supported = ['es','ca','en','eu','gl'];
-  const lang = supported.includes(saved) ? saved : (supported.includes(browser) ? browser : 'es');
+(function () {
+  var saved = null;
+  try { saved = localStorage.getItem('fg-lang'); } catch (e) {}
+  var browser = (navigator.language || '').split('-')[0];
+  var supported = ['es', 'ca', 'en', 'eu', 'gl'];
+  var lang = supported.indexOf(saved) >= 0 ? saved : (supported.indexOf(browser) >= 0 ? browser : 'es');
   if (lang !== 'es') setLang(lang);
 })();
 </script>
