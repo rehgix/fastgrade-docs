@@ -253,6 +253,28 @@
     </div>
     <div class="section">
       <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="grid" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Rúbricas: evaluar por niveles de logro</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <p>Además de exámenes tipo test, FastGrade sirve para evaluar con <b>rúbricas</b>: trabajos, exposiciones orales, proyectos, cuadernos… En vez de que el alumno conteste preguntas, eres tú quien marca en la hoja, en cada criterio, el nivel de logro que ha alcanzado. La app lee la hoja y calcula la nota.</p>
+        <h3 class="subhead">Crear una rúbrica</h3>
+        <ol class="steps"><li>En <b>Plantillas</b>, toca <b>Nueva plantilla</b> y escribe el título.</li><li>En <b>Tipo de plantilla</b>, elige <b>Rúbrica</b>.</li><li>En <b>Niveles de logro</b>, revisa los niveles y los puntos de cada uno. Vienen puestos Experto (4), Avanzado (3), Aprendiz (2), Novato (1) y Sin hacer (0), pero puedes cambiarles el nombre y los puntos, añadir niveles (hasta 8) o quitarlos (mínimo 2).</li><li>En <b>Criterios de la rúbrica</b>, escribe el nombre de cada criterio, por ejemplo «Expresión oral» o «Uso de fuentes». Puedes tener hasta 15.</li><li>Elige la <b>Nota máxima</b> y toca <b>Crear plantilla</b>.</li></ol>
+        <h3 class="subhead">Importar una rúbrica desde Excel (por ejemplo, de Corubrics)</h3>
+        <p>Si ya tienes la rúbrica hecha en Excel o en Corubrics, no hace falta escribirla otra vez.</p>
+        <ol class="steps"><li>Si quieres un archivo de ejemplo con el formato correcto, toca <b>Descargar plantilla de rúbrica (Excel)</b> y rellénalo.</li><li>Toca <b>Importar rúbrica desde Excel</b> y elige el archivo. La app coge los niveles, los criterios, el peso de cada criterio y el texto de cada casilla.</li></ol>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> El formato del Excel</div><p>En la primera fila, el nombre de cada nivel; en la segunda, sus puntos. En la primera columna, un criterio en cada fila. Si la última columna se llama <b>PESO</b>, indica cuánto cuenta cada criterio en la nota (por ejemplo, 0,25 = 25 %). En el resto de casillas va el texto que describe cada nivel de cada criterio.</p></div>
+        <div class="feature"><div class="feature-title">El peso de cada criterio</div><p>Si la rúbrica importada trae pesos, al lado de cada criterio verás su <b>Peso</b> en %, y lo puedes cambiar. Si no trae, todos los criterios cuentan igual.</p></div>
+        <div class="feature"><div class="feature-title">Qué se imprime</div><p>Con una rúbrica escrita en la app, la hoja lleva una fila de burbujas por criterio y, debajo, una leyenda que explica qué es cada fila y cada columna. Con una rúbrica importada con texto, se imprime la tabla completa de la rúbrica, con una burbuja en cada casilla (en ese caso, solo en hoja entera, no 2 por folio).</p></div>
+        <h3 class="subhead">Corregir con la rúbrica</h3>
+        <ol class="steps"><li>Imprime las hojas igual que con un examen: con el nombre de cada alumno o en blanco.</li><li>Mientras evalúas, rellena en cada criterio la burbuja del nivel que ha alcanzado el alumno.</li><li>Escanea la hoja en <b>Escanear</b>, como cualquier otra. La app lee qué nivel has marcado en cada criterio y pone la nota.</li></ol>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> Cómo se calcula la nota</div><p>Una rúbrica de 4 criterios con niveles de 4, 3, 2, 1 y 0 puntos da como máximo 16 puntos. Si un alumno saca 4, 3, 3 y 2, suma 12 de 16 puntos: sobre 10, un 7,5. Si los criterios tienen peso, cada uno cuenta según su peso. Un criterio sin marcar cuenta 0 puntos.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> En <b>Resultados</b>, al abrir la hoja de un alumno verás el nivel que ha sacado en cada criterio y sus puntos. En las rúbricas no hay penalización ni modelos A, B, C, D.</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
         <span class="section-icon"><ion-icon name="camera" class="section-icon-svg"></ion-icon></span>
         <span class="section-title">Escanear: corregir las hojas</span>
         <span class="chevron">▶</span>
@@ -493,6 +515,28 @@
         <div class="feature"><div class="feature-title">Si no has canviat l’ordre</div><p>No toquis res: les caselles ja porten el mateix número que la pregunta.</p></div>
         <div class="feature"><div class="feature-title">Si una casella surt en vermell</div><p>Has escrit el mateix número del model A en dues preguntes. Cada pregunta de l’A hi ha de sortir una sola vegada. L’app no et deixa desar fins que no ho corregeixis.</p></div>
         <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Si canvies la plantilla quan ja has corregit algun examen, entra en aquell examen (a <b>Resultats</b>) i toca <b>Aplica els ajustos de plantilla</b> perquè les notes es tornin a calcular.</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="grid" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Rúbriques: avaluar per nivells d’assoliment</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <p>A més d’exàmens tipus test, FastGrade serveix per avaluar amb <b>rúbriques</b>: treballs, exposicions orals, projectes, llibretes… En comptes que l’alumne contesti preguntes, ets tu qui marca al full, a cada criteri, el nivell d’assoliment que ha assolit. L’app llegeix el full i calcula la nota.</p>
+        <h3 class="subhead">Crear una rúbrica</h3>
+        <ol class="steps"><li>A <b>Plantilles</b>, toca <b>Nova plantilla</b> i escriu el títol.</li><li>A <b>Tipus de plantilla</b>, tria <b>Rúbrica</b>.</li><li>A <b>Nivells d’assoliment</b>, revisa els nivells i els punts de cadascun. Vénen posats Expert (4), Avançat (3), Aprenent (2), Novell (1) i Sense fer (0), però els pots canviar el nom i els punts, afegir-hi nivells (fins a 8) o treure’n (mínim 2).</li><li>A <b>Criteris de la rúbrica</b>, escriu el nom de cada criteri, per exemple «Expressió oral» o «Ús de fonts». En pots tenir fins a 15.</li><li>Tria la <b>Nota màxima</b> i toca <b>Crea la plantilla</b>.</li></ol>
+        <h3 class="subhead">Importar una rúbrica des d’Excel (per exemple, de Corubrics)</h3>
+        <p>Si ja tens la rúbrica feta a l’Excel o a Corubrics, no cal que la tornis a escriure.</p>
+        <ol class="steps"><li>Si vols un fitxer d’exemple amb el format correcte, toca <b>Descarregar plantilla de rúbrica (Excel)</b> i omple’l.</li><li>Toca <b>Importar rúbrica des d’Excel</b> i tria el fitxer. L’app n’agafa els nivells, els criteris, el pes de cada criteri i el text de cada casella.</li></ol>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> El format de l’Excel</div><p>A la primera fila, el nom de cada nivell; a la segona, els seus punts. A la primera columna, un criteri a cada fila. Si l’última columna es diu <b>PES</b>, indica quant compta cada criteri a la nota (per exemple, 0,25 = 25 %). A la resta de caselles hi va el text que descriu cada nivell de cada criteri.</p></div>
+        <div class="feature"><div class="feature-title">El pes de cada criteri</div><p>Si la rúbrica importada porta pesos, al costat de cada criteri veuràs el seu <b>Pes</b> en %, i el pots canviar. Si no en porta, tots els criteris compten igual.</p></div>
+        <div class="feature"><div class="feature-title">Què s’imprimeix</div><p>Amb una rúbrica escrita a l’app, el full porta una fila de bombolles per criteri i, a sota, una llegenda que explica què és cada fila i cada columna. Amb una rúbrica importada amb text, s’imprimeix la taula completa de la rúbrica, amb una bombolla a cada casella (en aquest cas, només en full sencer, no 2 per foli).</p></div>
+        <h3 class="subhead">Corregir amb la rúbrica</h3>
+        <ol class="steps"><li>Imprimeix els fulls igual que amb un examen: amb el nom de cada alumne o en blanc.</li><li>Mentre avalues, omple a cada criteri la bombolla del nivell que ha assolit l’alumne.</li><li>Escaneja el full a <b>Escanejar</b>, com qualsevol altre. L’app llegeix quin nivell has marcat a cada criteri i posa la nota.</li></ol>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> Com es calcula la nota</div><p>Una rúbrica de 4 criteris amb nivells de 4, 3, 2, 1 i 0 punts dona com a màxim 16 punts. Si un alumne treu 4, 3, 3 i 2, suma 12 de 16 punts: sobre 10, un 7,5. Si els criteris tenen pes, cadascun compta segons el seu pes. Un criteri sense marcar compta 0 punts.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> A <b>Resultats</b>, en obrir el full d’un alumne veuràs el nivell que ha tret a cada criteri i els seus punts. A les rúbriques no hi ha penalització ni models A, B, C, D.</div>
       </div>
     </div>
     <div class="section">
@@ -739,6 +783,28 @@
     </div>
     <div class="section">
       <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="grid" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Rubrics: grading by achievement levels</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <p>Besides multiple-choice tests, FastGrade can grade with <b>rubrics</b>: assignments, oral presentations, projects, notebooks… Instead of the student answering questions, you mark on the sheet, for each criterion, the achievement level the student reached. The app reads the sheet and works out the grade.</p>
+        <h3 class="subhead">Create a rubric</h3>
+        <ol class="steps"><li>In <b>Templates</b>, tap <b>New template</b> and type the title.</li><li>In <b>Template type</b>, choose <b>Rubric</b>.</li><li>In <b>Achievement levels</b>, check the levels and the points for each one. They come set to Expert (4), Advanced (3), Apprentice (2), Novice (1) and Not done (0), but you can rename them, change their points, add levels (up to 8) or remove them (at least 2).</li><li>In <b>Rubric criteria</b>, type the name of each criterion, for example “Oral expression” or “Use of sources”. You can have up to 15.</li><li>Choose the <b>Maximum grade</b> and tap <b>Create template</b>.</li></ol>
+        <h3 class="subhead">Import a rubric from Excel (for example, from Corubrics)</h3>
+        <p>If you already have the rubric in Excel or Corubrics, you don’t need to type it again.</p>
+        <ol class="steps"><li>If you want a sample file with the right format, tap <b>Download rubric template (Excel)</b> and fill it in.</li><li>Tap <b>Import rubric from Excel</b> and choose the file. The app takes the levels, the criteria, each criterion’s weight and the text in each cell.</li></ol>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> The Excel format</div><p>In the first row, the name of each level; in the second, its points. In the first column, one criterion per row. If the last column is called <b>WEIGHT</b>, it says how much each criterion counts towards the grade (for example, 0.25 = 25%). The other cells hold the text describing each level of each criterion.</p></div>
+        <div class="feature"><div class="feature-title">Each criterion’s weight</div><p>If the imported rubric has weights, you’ll see each criterion’s <b>Weight</b> in % next to it, and you can change it. If it doesn’t, all criteria count the same.</p></div>
+        <div class="feature"><div class="feature-title">What gets printed</div><p>With a rubric typed in the app, the sheet has one row of bubbles per criterion and, below it, a legend explaining each row and column. With a rubric imported with text, the full rubric table is printed, with a bubble in each cell (in that case, only on a full sheet, not 2 per page).</p></div>
+        <h3 class="subhead">Grade with the rubric</h3>
+        <ol class="steps"><li>Print the sheets just like for a test: with each student’s name or blank.</li><li>While you assess, fill in, for each criterion, the bubble of the level the student reached.</li><li>Scan the sheet in <b>Scan</b>, like any other. The app reads which level you marked for each criterion and gives the grade.</li></ol>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> How the grade is worked out</div><p>A rubric with 4 criteria and levels worth 4, 3, 2, 1 and 0 points gives at most 16 points. If a student gets 4, 3, 3 and 2, that’s 12 out of 16 points: out of 10, a 7.5. If the criteria have weights, each one counts according to its weight. An unmarked criterion counts as 0 points.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> In <b>Results</b>, when you open a student’s sheet you’ll see the level they got for each criterion and its points. Rubrics have no penalty and no A, B, C, D versions.</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
         <span class="section-icon"><ion-icon name="camera" class="section-icon-svg"></ion-icon></span>
         <span class="section-title">Scan: grade the sheets</span>
         <span class="chevron">▶</span>
@@ -981,6 +1047,28 @@
     </div>
     <div class="section">
       <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="grid" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Errubrikak: lorpen-mailen bidez ebaluatu</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <p>Test motako azterketez gain, FastGrade <b>errubrikekin</b> ebaluatzeko ere balio du: lanak, ahozko aurkezpenak, proiektuak, koadernoak… Ikasleak galderei erantzun beharrean, zuk markatzen duzu orrian, irizpide bakoitzean, ikasleak lortu duen maila. Aplikazioak orria irakurri eta nota kalkulatzen du.</p>
+        <h3 class="subhead">Errubrika bat sortu</h3>
+        <ol class="steps"><li><b>Ereduak</b> fitxan, sakatu <b>Eredu berria</b> eta idatzi izenburua.</li><li><b>Txantiloi mota</b> atalean, aukeratu <b>Errubrika</b>.</li><li><b>Lorpen-mailak</b> atalean, berrikusi mailak eta bakoitzaren puntuak. Aditu (4), Aurreratua (3), Ikaslea (2), Hasiberria (1) eta Egin gabe (0) datoz jarrita, baina izena eta puntuak alda ditzakezu, mailak gehitu (8 arte) edo kendu (gutxienez 2).</li><li><b>Errubrikaren irizpideak</b> atalean, idatzi irizpide bakoitzaren izena, adibidez «Ahozko adierazpena» edo «Iturrien erabilera». 15 arte izan ditzakezu.</li><li>Aukeratu <b>Gehieneko nota</b> eta sakatu <b>Eredua sortu</b>.</li></ol>
+        <h3 class="subhead">Errubrika bat Excel-etik inportatu (adibidez, Corubrics-etik)</h3>
+        <p>Errubrika Excel-en edo Corubrics-en eginda baduzu, ez duzu berriro idatzi beharrik.</p>
+        <ol class="steps"><li>Formatu zuzeneko adibide-fitxategi bat nahi baduzu, sakatu <b>Errubrika-eredua deskargatu (Excel)</b> eta bete ezazu.</li><li>Sakatu <b>Errubrika Excel-etik inportatu</b> eta aukeratu fitxategia. Aplikazioak mailak, irizpideak, irizpide bakoitzaren pisua eta gelaxka bakoitzeko testua hartzen ditu.</li></ol>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> Excelaren formatua</div><p>Lehen errenkadan, maila bakoitzaren izena; bigarrenean, haren puntuak. Lehen zutabean, irizpide bat errenkada bakoitzean. Azken zutabearen izena <b>PISUA</b> bada, irizpide bakoitzak notan zenbat balio duen adierazten du (adibidez, 0,25 = % 25). Gainerako gelaxketan irizpide bakoitzaren maila bakoitza deskribatzen duen testua doa.</p></div>
+        <div class="feature"><div class="feature-title">Irizpide bakoitzaren pisua</div><p>Inportatutako errubrikak pisuak baditu, irizpide bakoitzaren ondoan haren <b>Pisua</b> ikusiko duzu, ehunekotan, eta alda dezakezu. Pisurik ez badu, irizpide guztiek berdin balio dute.</p></div>
+        <div class="feature"><div class="feature-title">Zer inprimatzen den</div><p>Aplikazioan idatzitako errubrika batekin, orriak burbuila-errenkada bat du irizpide bakoitzeko eta, azpian, errenkada eta zutabe bakoitza zer den azaltzen duen legenda bat. Testuarekin inportatutako errubrika batekin, errubrikaren taula osoa inprimatzen da, gelaxka bakoitzean burbuila batekin (kasu horretan, orri osoan bakarrik, ez 2 orriko).</p></div>
+        <h3 class="subhead">Errubrikarekin zuzendu</h3>
+        <ol class="steps"><li>Inprimatu orriak azterketa batekin bezala: ikasle bakoitzaren izenarekin edo zuri.</li><li>Ebaluatzen ari zarela, irizpide bakoitzean bete ikasleak lortu duen mailaren burbuila.</li><li>Eskaneatu orria <b>Eskaneatu</b> fitxan, beste edozein bezala. Aplikazioak irizpide bakoitzean markatu duzun maila irakurri eta nota jartzen du.</li></ol>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> Nola kalkulatzen den nota</div><p>4, 3, 2, 1 eta 0 puntuko mailak dituen 4 irizpideko errubrika batek gehienez 16 puntu ematen ditu. Ikasle batek 4, 3, 3 eta 2 ateratzen baditu, 16tik 12 puntu batzen ditu: 10etik, 7,5. Irizpideek pisua badute, bakoitzak bere pisuaren arabera balio du. Markatu gabeko irizpide batek 0 puntu balio du.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> <b>Emaitzak</b> fitxan, ikasle baten orria irekitzean irizpide bakoitzean atera duen maila eta haren puntuak ikusiko dituzu. Errubriketan ez dago zigorrik ezta A, B, C, D bertsiorik ere.</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
         <span class="section-icon"><ion-icon name="camera" class="section-icon-svg"></ion-icon></span>
         <span class="section-title">Eskaneatu: orriak zuzendu</span>
         <span class="chevron">▶</span>
@@ -1219,6 +1307,28 @@
         <div class="feature"><div class="feature-title">Se non cambiaches a orde</div><p>Non toques nada: as caixas xa veñen co mesmo número ca a pregunta.</p></div>
         <div class="feature"><div class="feature-title">Se unha caixa sae en vermello</div><p>Escribiches o mesmo número da versión A en dúas preguntas. Cada pregunta da A ten que aparecer unha soa vez. A app non te deixa gardar ata que o corrixas.</p></div>
         <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> Se cambias o modelo cando xa corrixiches algún exame, entra nese exame (en <b>Resultados</b>) e toca <b>Aplicar axustes do modelo</b> para que as notas se volvan calcular.</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-icon"><ion-icon name="grid" class="section-icon-svg"></ion-icon></span>
+        <span class="section-title">Rúbricas: avaliar por niveis de logro</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="section-body">
+        <p>Ademais de exames tipo test, FastGrade serve para avaliar con <b>rúbricas</b>: traballos, exposicións orais, proxectos, cadernos… En vez de que o alumnado conteste preguntas, es ti quen marca na folla, en cada criterio, o nivel de logro que acadou. A app le a folla e calcula a nota.</p>
+        <h3 class="subhead">Crear unha rúbrica</h3>
+        <ol class="steps"><li>En <b>Modelos</b>, toca <b>Novo modelo</b> e escribe o título.</li><li>En <b>Tipo de modelo</b>, escolle <b>Rúbrica</b>.</li><li>En <b>Niveis de logro</b>, revisa os niveis e os puntos de cada un. Veñen postos Experto (4), Avanzado (3), Aprendiz (2), Novato (1) e Sen facer (0), pero podes cambiarlles o nome e os puntos, engadir niveis (ata 8) ou quitalos (mínimo 2).</li><li>En <b>Criterios da rúbrica</b>, escribe o nome de cada criterio, por exemplo «Expresión oral» ou «Uso de fontes». Podes ter ata 15.</li><li>Escolle a <b>Nota máxima</b> e toca <b>Crear modelo</b>.</li></ol>
+        <h3 class="subhead">Importar unha rúbrica desde Excel (por exemplo, de Corubrics)</h3>
+        <p>Se xa tes a rúbrica feita en Excel ou en Corubrics, non fai falta escribila outra vez.</p>
+        <ol class="steps"><li>Se queres un ficheiro de exemplo co formato correcto, toca <b>Descargar modelo de rúbrica (Excel)</b> e cúbreo.</li><li>Toca <b>Importar rúbrica desde Excel</b> e escolle o ficheiro. A app colle os niveis, os criterios, o peso de cada criterio e o texto de cada cela.</li></ol>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> O formato do Excel</div><p>Na primeira fila, o nome de cada nivel; na segunda, os seus puntos. Na primeira columna, un criterio en cada fila. Se a última columna se chama <b>PESO</b>, indica canto conta cada criterio na nota (por exemplo, 0,25 = 25 %). No resto de celas vai o texto que describe cada nivel de cada criterio.</p></div>
+        <div class="feature"><div class="feature-title">O peso de cada criterio</div><p>Se a rúbrica importada trae pesos, ao lado de cada criterio verás o seu <b>Peso</b> en %, e podes cambialo. Se non trae, todos os criterios contan igual.</p></div>
+        <div class="feature"><div class="feature-title">Que se imprime</div><p>Cunha rúbrica escrita na app, a folla leva unha fila de burbullas por criterio e, debaixo, unha lenda que explica que é cada fila e cada columna. Cunha rúbrica importada con texto, imprímese a táboa completa da rúbrica, cunha burbulla en cada cela (nese caso, só en folla enteira, non 2 por folio).</p></div>
+        <h3 class="subhead">Corrixir coa rúbrica</h3>
+        <ol class="steps"><li>Imprime as follas igual que cun exame: co nome de cada alumno/a ou en branco.</li><li>Mentres avalías, enche en cada criterio a burbulla do nivel que acadou o alumno/a.</li><li>Escanea a folla en <b>Escanear</b>, como calquera outra. A app le que nivel marcaches en cada criterio e pon a nota.</li></ol>
+        <div class="example"><div class="example-title"><ion-icon name="bulb"></ion-icon> Como se calcula a nota</div><p>Unha rúbrica de 4 criterios con niveis de 4, 3, 2, 1 e 0 puntos dá como máximo 16 puntos. Se un alumno saca 4, 3, 3 e 2, suma 12 de 16 puntos: sobre 10, un 7,5. Se os criterios teñen peso, cada un conta segundo o seu peso. Un criterio sen marcar conta 0 puntos.</p></div>
+        <div class="tip"><ion-icon name="information-circle" class="tip-icon"></ion-icon> En <b>Resultados</b>, ao abrir a folla dun alumno/a verás o nivel que sacou en cada criterio e os seus puntos. Nas rúbricas non hai penalización nin versións A, B, C, D.</div>
       </div>
     </div>
     <div class="section">
